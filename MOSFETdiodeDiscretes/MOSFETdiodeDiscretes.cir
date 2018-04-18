@@ -1,0 +1,39 @@
+* /home/guy/aProjects/circuits/MOSFETdiodeDiscretes/MOSFETdiodeDiscretes.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 18 Apr 2018 18:14:20 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+XQ1  VA VG VK IRF4905		
+D1  VA Net-_D1-Pad1_ 1N4148		;Node Sequence Spec.<2,1>
+D2  VK Net-_D2-Pad1_ 1N4148		;Node Sequence Spec.<2,1>
+Q2  Vbase Vbase Net-_D1-Pad1_ 2N3906		
+R2  Vbase VD2 47K		
+Q3  VG Vbase Net-_D2-Pad1_ 2N3906		
+R3  VG VD3 47K		
+V1  VA GND pulse (9.50V 11.5V 2ms 0 0 5ms 10ms 0)		
+R1  Net-_R1-Pad1_ VK 10		
+V2  Net-_R1-Pad1_ GND +10V 		
+R4  VD GND 1m		
+R6  VD3 VD 1m		
+R5  VD2 VD 1m		
+
+.include ../ComponentModels/1n4148.spi
+.include ../ComponentModels/2n3906.spi
+.include ../ComponentModels/irf4905.spi
+
+*.DC V1 5 15 0.001
+.TRAN 0.05us 10ms
+ // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)
+.control
+run
+plot VA VK  VG Vbase
+plot VA-VK
+plot VA-Vbase VK-Vbase VK-VG
+plot -i(V1) i(V2)
+*plot VD*1000
+plot (VD2-VD)*1000 (VD3-VD)*1000 VD*1000
+
+.end
