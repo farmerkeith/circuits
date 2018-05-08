@@ -1,0 +1,51 @@
+* /home/guy/aProjects/circuits/currentShuntAmpDiscretesRes02/currentShuntAmpDiscretesRes02.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Tue 08 May 2018 22:21:28 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+Q2  Vout Vbase Ve1 2N3906		
+R4  Vout GND 10K		
+Q1  Vbase Vbase VK 2N3906		
+R5  Vbase Vref 9214		
+V1  VK GND +30V 		
+I1  GND VA 1Amp		;Node Sequence Spec.<2,1>
+R1  VK VA 4m		
+R2  VA Ve1 63.4		
+D1  Vref VK D1N4733		;Node Sequence Spec.<2,1>
+R3  Vref GND 15K		
+Q3  VC3 VB3 VE3 2N3906		
+R6  VI3 VD2 9214		
+R7  VD2 GND 2K		
+D2  VD2 VK D1N4733		;Node Sequence Spec.<2,1>
+R8  VK VE3 1m		
+R9  VB3 VI3 180.6m		
+R10  VC3 VI3 1m		
+
+*.include ../ComponentModels/1n4148.spi
+.include ../ComponentModels/2n3906.spi
+*.include ../ComponentModels/irf4905.spi
+.model D1N4733 D(Is=1.214f Rs=1.078 Ikf=0 N=1 Xti=3 Eg=1.11
++ Cjo=185p M=.3509 Vj=.75 Fc=.5  Bv=5.1 Ibv=.70507
++ Nbv=.74348 )
+* Motorola pid=1N4733 case=DO-41
+
+.DC I1 -0.5 8.5 0.1 // V1 20 40 10 
+// DC analysis for 20, 30 and 40 Volts
+//.DC I1 -0.5 8.5 0.1
+// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp
+
+*.TRAN 0.05us 10ms
+ // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)
+.control
+run
+plot Va Ve1 Vk
+plot (VA-VK)*25+2.693 Vout
+plot (VA-VK)*25+2.693-Vout
+plot VA VK  Vbase
+plot Vref
+plot Ve1-Vbase VA-Ve1 VA-Vbase VK-Vbase
+
+.end

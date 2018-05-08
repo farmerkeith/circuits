@@ -9,3 +9,6 @@ The second item is a study of current shunt amplifier circuits, the first made f
 1 May 2018 Added another discrete component amplifier with emitter resistors that gives a greater current range and a more linear response especially for positive currents.
 
 7 May 2018 Added more to the overview, and a spreadsheet analysis of the discrete component amplifier with emitter resistor. It enables better insight into the design sensitivities. Spice simulation required.
+
+8 May 2018. Started spice simulation of discrete component amplifier from spreadsheet. Spice and the spreadsheet model disagree a lot, trying to work out why. 
+

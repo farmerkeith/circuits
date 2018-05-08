@@ -38,9 +38,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "XL4016X2"
-Date "2018-04-11"
-Rev "V3 minor corrections"
+Title "currentShuntAmpRes01"
+Date "2018-05-04"
+Rev ""
 Comp "farmerkeith"
 Comment1 ""
 Comment2 ""
@@ -113,7 +113,7 @@ Wire Wire Line
 Wire Wire Line
 	2500 1600 2800 1600
 Text Notes 4300 3200 0    60   ~ 0
-+PSPICE \n*.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n*.include ../ComponentModels/irf4905.spi\n\n.DC V1 20 40 10 I1 -0.5 8.5 0.1\n// DC analysis for 20, 30 and 40 Volts\n//.DC I1 -0.5 8.5 0.1\n// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp\n\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\nplot Va Ve1 Vk Ve2\nplot (VA-VK)*25+2.693 Vout\nplot (VA-VK)*25+2.693-Vout\nplot VA VK  VC Vbase
++PSPICE \n*.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n*.include ../ComponentModels/irf4905.spi\n\n.DC I1 -0.5 8.5 0.1 V1 20 40 10 \n// DC analysis for 20, 30 and 40 Volts\n//.DC I1 -0.5 8.5 0.1\n// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp\n\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\nplot Va Ve1 Vk Ve2\nplot (VA-VK)*25+2.693 Vout\nplot (VA-VK)*25+2.693-Vout\nplot VA VK  VC Vbase
 Wire Wire Line
 	2550 700  3800 700 
 Connection ~ 2800 700 

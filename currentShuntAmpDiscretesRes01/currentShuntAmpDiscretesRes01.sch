@@ -38,9 +38,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "XL4016X2"
-Date "2018-04-11"
-Rev "V3 minor corrections"
+Title "currentShuntAmpRes01"
+Date "2018-05-01"
+Rev ""
 Comp "farmerkeith"
 Comment1 ""
 Comment2 ""
