@@ -16,3 +16,4 @@ The second item is a study of current shunt amplifier circuits, the first made f
 
 10 May 2018. Completed spice simulation and spreadsheet support for Unidirectional current shunt amplifier using op amp AD822AN. Results are within 1 lsb accuracy for a 10 bit ADC with exact component selection and calibration. More general component selection can be used with software calibration which will give good results but a bit less accuracy.
 
+10 May 2018. Completed spice simulation and spreadsheet support for bidirectional current shunt amplifier using op amp AD822AN. Results are within 1 lsb accuracy for a 10 bit ADC with exact component selection and calibration. More general component selection can be used with software calibration which will give good results but a bit less accuracy.
