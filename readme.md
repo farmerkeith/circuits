@@ -12,3 +12,7 @@ The second item is a study of current shunt amplifier circuits, the first made f
 
 8 May 2018. Started spice simulation of discrete component amplifier from spreadsheet. Spice and the spreadsheet model disagree a lot, trying to work out why. 
 
+9 May 2018. Completed spice simulation of discrete component amplifier and adjusted sspreadsheet to line up. Concluded this design is too fragile for real use. 
+
+10 May 2018. Completed spice simulation and spreadsheet support for Unidirectional current shunt amplifier using op amp AD822AN. Results are within 1 lsb accuracy for a 10 bit ADC with exact component selection and calibration. More general component selection can be used with software calibration which will give good results but a bit less accuracy.
+
