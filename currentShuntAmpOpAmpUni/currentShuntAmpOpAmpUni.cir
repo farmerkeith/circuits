@@ -1,6 +1,6 @@
 * /home/guy/aProjects/circuits/currentShuntAmpOpAmpUni/currentShuntAmpOpAmpUni.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 10 May 2018 10:39:58 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 10 May 2018 14:57:56 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
@@ -9,13 +9,12 @@
 V1  VK GND +30V 		
 I1  GND VA 1Amp		;Node Sequence Spec.<2,1>
 R1  VK VA 4m		
-XU1  Net-_R6-Pad2_ Ve VK Vneg Vop AD822A		;Node Sequence Spec.<3,2,8,4,1>
+XU1  Net-_R6-Pad2_ Ve VK Vneg Vb AD822A		;Node Sequence Spec.<3,2,8,4,1>
 R2  VA Ve 100R		
 Q1  Vout Vb Ve 2N3906		
 R3  Vout GND 15.665K		
 D1  Vneg VK D1N4733		;Node Sequence Spec.<2,1>
 R4  Vneg GND 10K		
-R5  Vop Vb 0R		
 R6  VK Net-_R6-Pad2_ 16.8		
 R7  Net-_R6-Pad2_ Vneg 50K		
 
