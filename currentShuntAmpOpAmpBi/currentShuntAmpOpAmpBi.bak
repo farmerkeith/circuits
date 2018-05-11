@@ -31,7 +31,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:currentShuntAmpOpAmpUni-cache
+LIBS:currentShuntAmpOpAmpBi-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -59,8 +59,8 @@ F 3 "" H 900 3050 50  0001 C CNN
 	1    900  3050
 	1    0    0    -1  
 $EndComp
-Text Notes 4400 3350 0    60   ~ 0
-+PSPICE \n*.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/ad822a.cir\n*.include ../ComponentModels/irf4905.spi\n.model 1N4733 D(Is=1.214f Rs=1.078 Ikf=0 N=1 Xti=3 Eg=1.11\n+ Cjo=185p M=.3509 Vj=.75 Fc=.5  Bv=5.1 Ibv=.70507\n+ Nbv=.74348 )\n* BZX792V4*3 requires R4=506.7\n* 1N4733 requires R4=437.65\n* derived from 1N4733 by changing Bv from 5.1 to 2.4\n* Motorola pid=1N4733 case=DO-41\n\n.DC I1 -20 20 1  V1 10 15 2.5 \n*.DC I1 -0.1 0.8 0.01  \n// DC analysis for 20, 30 and 40 Volts\n//.DC I1 -0.5 8.5 0.1\n// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp\n\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\n*plot Va Ve1 Vk\n*plot (VA-VK)*25+2.693 Vout\n*plot (VA-VK)*25+2.693-Vout\n*plot VA VK  Vbase\n*plot VK-Vref\n*plot Ve1-Vc1 VA-Ve1 VA-Vc1 VK-Vc1\nplot vout\nplot 2.5+i(v1)*0.125-vout // voltage error\n*plot vout*8/5-i(v1) // ccurrent error\n*plot i1\n
+Text Notes 4350 3900 0    60   ~ 0
++PSPICE \n*.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/ad822a.cir\n*.include ../ComponentModels/irf4905.spi\n.model 1N4733 D(Is=1.214f Rs=1.078 Ikf=0 N=1 Xti=3 Eg=1.11\n+ Cjo=185p M=.3509 Vj=.75 Fc=.5  Bv=5.1 Ibv=.70507\n+ Nbv=.74348 )\n* BZX792V4*3 requires R4=506.7\n* 1N4733 requires R4=442.5\n* derived from 1N4733 by changing Bv from 5.1 to 2.4\n* Motorola pid=1N4733 case=DO-41\n\n.DC I1 -20 20 1  V1 10 15 2.5 \n*.DC I1 -0.1 0.8 0.01  \n// DC analysis for 20, 30 and 40 Volts\n//.DC I1 -0.5 8.5 0.1\n// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp\n\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\n*plot Va Ve1 Vk\n*plot (VA-VK)*25+2.693 Vout\n*plot (VA-VK)*25+2.693-Vout\n*plot VA VK  Vbase\n*plot VK-Vref\n*plot Ve1-Vc1 VA-Ve1 VA-Vc1 VK-Vc1\nplot vout\nplot 2.5+i(v1)*0.125-vout // voltage error\nplot (va-ve)/100-vout/6282.5\n*plot vout*8/5-i(v1) // ccurrent error\n*plot i1\n
 Connection ~ 2300 700 
 $Comp
 L VSOURCE V1
@@ -163,7 +163,7 @@ L R R3
 U 1 1 5AF40700
 P 1600 2500
 F 0 "R3" V 1680 2500 50  0000 C CNN
-F 1 "6282" V 1500 2500 50  0000 C CNN
+F 1 "6282.5" V 1500 2500 50  0000 C CNN
 F 2 "" V 1530 2500 50  0001 C CNN
 F 3 "" H 1600 2500 50  0001 C CNN
 	1    1600 2500
@@ -187,7 +187,7 @@ L R R4
 U 1 1 5AF40703
 P 2700 850
 F 0 "R4" V 2780 850 50  0000 C CNN
-F 1 "442.5" V 2700 850 50  0000 C CNN
+F 1 "422.6" V 2700 850 50  0000 C CNN
 F 2 "" V 2630 850 50  0001 C CNN
 F 3 "" H 2700 850 50  0001 C CNN
 	1    2700 850 
@@ -198,13 +198,12 @@ L R R5
 U 1 1 5AF40704
 P 2700 1350
 F 0 "R5" V 2780 1350 50  0000 C CNN
-F 1 "25K" V 2700 1350 50  0000 C CNN
+F 1 "50K" V 2700 1350 50  0000 C CNN
 F 2 "" V 2630 1350 50  0001 C CNN
 F 3 "" H 2700 1350 50  0001 C CNN
 	1    2700 1350
 	1    0    0    -1  
 $EndComp
-Connection ~ 2700 1500
 Wire Wire Line
 	2700 1000 2700 1200
 Connection ~ 2700 700 
@@ -213,9 +212,6 @@ Wire Wire Line
 	1900 1200 1900 1950
 Wire Wire Line
 	2500 1650 2500 1300
-Wire Wire Line
-	2300 1500 2300 3050
-Connection ~ 2300 3050
 $Comp
 L D_Zener_ALT D1
 U 1 1 5AF4167E
@@ -232,13 +228,13 @@ Wire Wire Line
 	3200 1000 3200 700 
 Connection ~ 3200 700 
 Wire Wire Line
-	3200 1300 3200 2000
+	3200 2000 3200 1300
 $Comp
 L R R6
 U 1 1 5AF41732
 P 2700 2500
 F 0 "R6" V 2780 2500 50  0000 C CNN
-F 1 "40K" V 2700 2500 50  0000 C CNN
+F 1 "5K" V 2700 2500 50  0000 C CNN
 F 2 "" V 2630 2500 50  0001 C CNN
 F 3 "" H 2700 2500 50  0001 C CNN
 	1    2700 2500
@@ -250,54 +246,11 @@ Text GLabel 2700 1100 2    60   Input ~ 0
 Voffset
 Text GLabel 2700 1600 2    60   Input ~ 0
 Vref
-$Comp
-L R R7
-U 1 1 5AF44818
-P 2700 1850
-F 0 "R7" V 2780 1850 50  0000 C CNN
-F 1 "25K" V 2700 1850 50  0000 C CNN
-F 2 "" V 2630 1850 50  0001 C CNN
-F 3 "" H 2700 1850 50  0001 C CNN
-	1    2700 1850
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
-	2700 1500 2700 1700
+	2700 1500 2700 2350
 Wire Wire Line
-	2700 2000 2700 2350
-$Comp
-L D_Zener_ALT D2
-U 1 1 5AF448DE
-P 3350 1150
-F 0 "D2" H 3350 1250 50  0000 C CNN
-F 1 "DBZX79B2V4" H 3350 1050 50  0000 C CNN
-F 2 "" H 3350 1150 50  0001 C CNN
-F 3 "" H 3350 1150 50  0001 C CNN
-F 4 "2,1" H 3350 1150 60  0001 C CNN "Spice_Node_Sequence"
-	1    3350 1150
-	0    1    1    0   
-$EndComp
-$Comp
-L D_Zener_ALT D3
-U 1 1 5AF44926
-P 3350 1800
-F 0 "D3" H 3350 1900 50  0000 C CNN
-F 1 "DBZX79B2V4" H 3350 1700 50  0000 C CNN
-F 2 "" H 3350 1800 50  0001 C CNN
-F 3 "" H 3350 1800 50  0001 C CNN
-F 4 "2,1" H 3350 1800 60  0001 C CNN "Spice_Node_Sequence"
-	1    3350 1800
-	0    1    1    0   
-$EndComp
+	2300 2000 3200 2000
 Wire Wire Line
-	3350 1000 3350 700 
-Connection ~ 3350 700 
-Wire Wire Line
-	3350 1650 3350 1300
-Wire Wire Line
-	3350 1950 3350 2000
-Text GLabel 2700 2150 2    60   Input ~ 0
-Vref2
-Wire Wire Line
-	3200 2000 2700 2000
+	2300 1500 2300 2000
+Connection ~ 2700 2000
 $EndSCHEMATC

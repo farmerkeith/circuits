@@ -1,13 +1,13 @@
-* /home/guy/aProjects/circuits/currentShuntAmpOpAmpBi/currentShuntAmpOpAmpBi.cir
+* /home/guy/aProjects/circuits/currentShuntAmpOpAmpBiV2/currentShuntAmpOpAmpBiV2.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Fri 11 May 2018 08:18:49 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Fri 11 May 2018 14:40:29 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
 
 * Sheet Name: /
-V1  VK GND +30V 		
-I1  GND VA 1Amp		;Node Sequence Spec.<2,1>
+V1  VK GND +12.5V 		
+I1  Net-_I1-Pad2_ VA 1Amp		;Node Sequence Spec.<2,1>
 R1  VK VA 2m		
 XU1  Voffset Ve VK Vref Vb AD822A		;Node Sequence Spec.<3,2,8,4,1>
 R2  VA Ve 100R		
@@ -15,15 +15,17 @@ Q1  Vout Vb Ve 2N3906
 R3  Vout GND 6282		
 R4  VK Voffset 422.6		
 R5  Voffset Vref 50K		
-D1  Vref VK 1N4733		;Node Sequence Spec.<2,1>
-R6  Vref GND 5K		
+D1  Vd VK 1N4733		;Node Sequence Spec.<2,1>
+R6  Vd GND 50K		
+V3  Net-_I1-Pad2_ GND 0V 		
+Q2  GND Vd Vref 2N3906		
 
 *.include ../ComponentModels/1n4148.spi
 .include ../ComponentModels/2n3906.spi
 .include ../ComponentModels/ad822a.cir
 *.include ../ComponentModels/irf4905.spi
 .model 1N4733 D(Is=1.214f Rs=1.078 Ikf=0 N=1 Xti=3 Eg=1.11
-+ Cjo=185p M=.3509 Vj=.75 Fc=.5  Bv=5.1 Ibv=.70507
++ Cjo=185p M=.3509 Vj=.75 Fc=.5  Bv=5.81 Ibv=.70507
 + Nbv=.74348 )
 * BZX792V4*3 requires R4=506.7
 * 1N4733 requires R4=442.5
@@ -48,8 +50,7 @@ run
 *plot Ve1-Vc1 VA-Ve1 VA-Vc1 VK-Vc1
 plot vout
 plot 2.5+i(v1)*0.125-vout // voltage error
-plot (va-ve)/100-vout/6282
+*plot (va-ve)/100-vout/6282
 *plot vout*8/5-i(v1) // ccurrent error
-*plot i1
 
 .end
