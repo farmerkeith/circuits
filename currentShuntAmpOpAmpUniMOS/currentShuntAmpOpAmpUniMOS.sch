@@ -31,7 +31,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:currentShuntAmpOpAmpUni-cache
+LIBS:currentShuntAmpOpAmpUniMOS-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -59,8 +59,8 @@ F 3 "" H 900 3050 50  0001 C CNN
 	1    900  3050
 	1    0    0    -1  
 $EndComp
-Text Notes 4400 3350 0    60   ~ 0
-+PSPICE \n*.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/ad822a.cir\n*.include ../ComponentModels/irf4905.spi\n.model D1N4733 D(Is=1.214f Rs=1.078 Ikf=0 N=1 Xti=3 Eg=1.11\n+ Cjo=185p M=.3509 Vj=.75 Fc=.5  Bv=5.1 Ibv=.70507\n+ Nbv=.74348 )\n* Motorola pid=1N4733 case=DO-41\n\n*.MODEL BS250P VDMOS pchan Rg=160 VTO=-3.193 RS=2.041 RD=0.697\n.MODEL MBS250P PMOS(Rg=160 VTO=-3.193 RS=2.041 RD=0.697\n+ IS=2E-13 KP=0.277 Cjo=105p PB=1 LAMBDA=1.2E-2 RB=0.309\n+Rds=1.2E8 Cgdmax=57p Cgdmin=5p CGS=47p TT=86.56n BV=45 IBV=10u)\n\n.DC I1 0 8 0.1  V1 20 40 10 \n*.DC I1 -0.1 0.8 0.01  \n// DC analysis for 20, 30 and 40 Volts\n//.DC I1 -0.5 8.5 0.1\n// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp\n\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\n*plot Va Ve1 Vk\n*plot (VA-VK)*25+2.693 Vout\n*plot (VA-VK)*25+2.693-Vout\n*plot VA VK  Vbase\n*plot VK-Vref\n*plot Ve1-Vc1 VA-Ve1 VA-Vc1 VK-Vc1\nplot vout\nplot vout-i(v1)*5/8 // voltage error\nplot vout*8/5-i(v1) // ccurrent error\n*plot i1\n
+Text Notes 4500 4250 0    60   ~ 0
++PSPICE \n*.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/ad822a.cir\n.include ../ComponentModels/bs250p.spi\n*.include ../ComponentModels/irf4905.spi\n.model D1N4733 D(Is=1.214f Rs=1.078 Ikf=0 N=1 Xti=3 Eg=1.11\n+ Cjo=185p M=.3509 Vj=.75 Fc=.5  Bv=5.1 Ibv=.70507\n+ Nbv=.74348 )\n* Motorola pid=1N4733 case=DO-41\n\n*.MODEL BS250P VDMOS pchan Rg=160 VTO=-3.193 RS=2.041 RD=0.697\n*.MODEL MBS250P PMOS(Rg=160 VTO=-3.193 RS=2.041 RD=0.697\n*+ IS=2E-13 KP=0.277 Cjo=105p PB=1 LAMBDA=1.2E-2 RB=0.309\n*+Rds=1.2E8 Cgdmax=57p Cgdmin=5p CGS=47p TT=86.56n BV=45 IBV=10u)\n\n.DC I1 0 8 0.1  V1 20 40 10 \n*.DC I1 -0.1 0.8 0.01  \n// DC analysis for 20, 30 and 40 Volts\n//.DC I1 -0.5 8.5 0.1\n// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp\n\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\n*plot Va Ve1 Vk\n*plot (VA-VK)*25+2.693 Vout\n*plot (VA-VK)*25+2.693-Vout\n*plot VA VK  Vbase\n*plot VK-Vref\n*plot Ve1-Vc1 VA-Ve1 VA-Vc1 VK-Vc1\nplot vout\nplot vout-i(v1)*5/8 // voltage error\nplot vout*8/5-i(v1) // ccurrent error\n*plot i1\n
 Connection ~ 2300 700 
 $Comp
 L VSOURCE V1
@@ -239,14 +239,13 @@ Wire Wire Line
 Wire Wire Line
 	2500 1650 2500 1300
 $Comp
-L Q_PMOS_GDS M1
+L Q_PMOS_GDS XQ1
 U 1 1 5AF5506C
 P 1700 1950
-F 0 "M1" H 1900 2000 50  0000 L CNN
-F 1 "MBS250P" H 1900 1900 50  0000 L CNN
+F 0 "XQ1" H 1900 2000 50  0000 L CNN
+F 1 "BS250P" H 1900 1900 50  0000 L CNN
 F 2 "" H 1900 2050 50  0001 C CNN
 F 3 "" H 1700 1950 50  0001 C CNN
-F 4 "1,2,3,1" H 1700 1950 60  0001 C CNN "Spice_Node_Sequence"
 	1    1700 1950
 	-1   0    0    1   
 $EndComp

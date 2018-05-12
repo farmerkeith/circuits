@@ -3,8 +3,9 @@
 * obtained from http://ltwiki.org/index.php?title=Bs250
 * model consist of 2 capacitors, 2 resistors, 1 MOSFET and 1 diode
 
-.SUBCKT BS250P 3 4 5
-*              D G S
+.SUBCKT BS250P 4 3 5
+*              G D S
+* 3=Drain, 4=Gate, 5=Source
    M1 3 2 5 5 MBS250 // MOSFET D 2 S S
    RG 4 2 160        // Res    G 2     160R
    RL 3 5 1.2E8      // Res    D S     120 Meg
@@ -12,9 +13,18 @@
    C2 3 2 10E-12     // Cap    D 2     10 pF
    D1 3 5 DBS250     // Diode  D S     Body diode
    *
-   .MODEL MBS250 PMOS VTO=-3.193 RS=2.041 RD=0.697 IS=1E-15 KP=0.277
-   +CBD=105E-12 PB=1 LAMBDA=1.2E-2
-   .MODEL DBS250 D IS=2E-13 RS=0.309
+.MODEL MBS250 PMOS // MOSFET P-channel
+ + VTO=-3.193      // zero bias threshold voltage
+ + RS=2.041 
+ + RD=0.697 
+ + IS=1E-15 
+ + KP=0.277
+ + CBD=105E-12 
+ + PB=1 
+ + LAMBDA=1.2E-2
+.MODEL DBS250 D   // Diode
+ + IS=2E-13 
+ + RS=0.309
 .ENDS BS250P
    *
    *$
