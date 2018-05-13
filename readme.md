@@ -23,3 +23,5 @@ The second item is a study of current shunt amplifier circuits, the first made f
 11 May 2018. Started working on Unidirectional current shunt amplifier using op amp and BS250P MOSFET instead of BJT. Sorting out spice model for BS250P. 
 
 12 May 2018. Added MOSFET diode for high voltages. 
+Restructured the folder with separate folders for each general topic. 
+
