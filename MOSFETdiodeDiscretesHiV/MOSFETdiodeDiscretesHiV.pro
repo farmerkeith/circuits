@@ -1,4 +1,4 @@
-update=Sun 13 May 2018 09:01:05 AEST
+update=Sun 13 May 2018 09:52:34 AEST
 version=1
 last_client=kicad
 [pcbnew]
@@ -25,22 +25,12 @@ version=1
 NetIExt=net
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=./
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [eeschema]
 version=1
 LibDir=../../KiCAD/lib_sch
 [eeschema/libraries]
-LibName1=/home/guy/aProjects/KiCAD/lib_sch/Modules
-LibName2=pspice
+LibName1=pspice
+LibName2=/home/guy/aProjects/KiCAD/lib_sch/Modules
 LibName3=power
 LibName4=device
 LibName5=switches
@@ -73,3 +63,13 @@ LibName31=opto
 LibName32=atmel
 LibName33=contrib
 LibName34=valves
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=./
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=Pcbnew
+SpiceForceRefPrefix=1
+SpiceUseNetNumbers=0
+LabSize=60

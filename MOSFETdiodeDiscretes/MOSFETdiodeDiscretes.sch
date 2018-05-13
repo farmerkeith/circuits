@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:Modules
 LIBS:pspice
 LIBS:power
 LIBS:device
@@ -47,19 +48,10 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L Q_PMOS_DGS XQ1
-U 1 1 5AD33665
-P 3350 1450
-F 0 "XQ1" V 3550 1300 50  0000 L CNN
-F 1 "IRF4905" V 3500 1500 50  0000 L CNN
-F 2 "" H 3550 1550 50  0001 C CNN
-F 3 "" H 3350 1450 50  0001 C CNN
-	1    3350 1450
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
-	1800 1350 3150 1350
+	1800 1350 2850 1350
+Wire Wire Line
+	2850 1350 3150 1350
 $Comp
 L GND #PWR01
 U 1 1 5AD33666
@@ -144,13 +136,15 @@ F 3 "" H 3700 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1800 3700 4700 3700
+	1800 3700 2850 3700
+Wire Wire Line
+	2850 3700 4700 3700
 Wire Wire Line
 	3400 1850 3150 1850
 Wire Wire Line
-	3350 1650 3350 2050
+	3450 1650 3450 2050
 Wire Wire Line
-	3350 2050 3700 2050
+	3450 2050 3700 2050
 Wire Notes Line
 	2400 1150 4100 1150
 Wire Notes Line
@@ -173,7 +167,9 @@ F 3 "" H 1800 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3550 1350 4200 1350
+	3550 1350 3700 1350
+Wire Wire Line
+	3700 1350 4200 1350
 Connection ~ 3700 1350
 $Comp
 L R R1
@@ -205,7 +201,7 @@ VK
 Wire Wire Line
 	3700 1250 3700 1350
 Connection ~ 2850 1350
-Text GLabel 3350 1650 0    60   Input ~ 0
+Text GLabel 3450 1650 0    60   Input ~ 0
 VG
 Text GLabel 2850 2050 0    60   Input ~ 0
 Vbase
@@ -264,4 +260,15 @@ Text GLabel 2850 2650 0    60   Input ~ 0
 VD2
 Text GLabel 3700 2650 0    60   Input ~ 0
 VD3
+$Comp
+L IRF4905 Q1
+U 1 1 5AF774ED
+P 3350 1450
+F 0 "Q1" V 3350 1600 50  0000 L CNN
+F 1 "IRF4905" V 3600 1350 50  0000 L CNN
+F 2 "TO-220" H 3550 1375 50  0001 L CIN
+F 3 "" H 3350 1450 50  0001 L CNN
+	1    3350 1450
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC

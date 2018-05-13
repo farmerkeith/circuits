@@ -21,3 +21,5 @@ The second item is a study of current shunt amplifier circuits, the first made f
 11 May 2018. Bidirectional current shunt amplifier using op amp AD822AN gives a significant error when the rail voltage varies. Variation from 10 to 15 Volts produces about 50 mV variation in the output voltage, which represents about 10 lsbs and is probably the dominant source of error. Supplying the power to the op amp from a zener-defined reference improves this by a factor of about 2, so the range is about 25 mV or 5 lsb. Putting a PNP emitter follower on the zener-defined reference gives another factor of 2, reducing the range to about 12 mV. The best possible, using a simulated fixed reference, achieves about 5 mV range.  
 
 11 May 2018. Started working on Unidirectional current shunt amplifier using op amp and BS250P MOSFET instead of BJT. Sorting out spice model for BS250P. 
+
+12 May 2018. Added MOSFET diode for high voltages. 

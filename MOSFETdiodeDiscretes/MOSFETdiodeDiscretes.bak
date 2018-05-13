@@ -160,13 +160,13 @@ Wire Notes Line
 Wire Notes Line
 	2400 2600 2400 1150
 Text Notes 5250 2750 0    60   ~ 0
-+PSPICE \n.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/irf4905.spi\n\n.DC V1 5 15 0.001\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\nplot VA VK  VG Vbase\nplot VA-VK\nplot VA-Vbase VK-Vbase VK-VG\nplot -i(V1) i(V2)\n*plot VD*1000\nplot (VD2-VD)*1000 (VD3-VD)*1000 VD*1000\n
++PSPICE \n.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/irf4905.spi\n\n*.DC V1 5 15 0.001\n.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\nplot VA VK  VG Vbase\nplot VA-VK\nplot VA-Vbase VK-Vbase VK-VG\nplot -i(V1) i(V2)\n*plot VD*1000\nplot (VD2-VD)*1000 (VD3-VD)*1000 VD*1000\n
 $Comp
 L VSOURCE V1
 U 1 1 5AD34E9F
 P 1800 2050
 F 0 "V1" H 1800 1950 50  0000 C CNN
-F 1 "5V" H 1550 2100 50  0000 C CNN
+F 1 "pulse (9.50V 11.5V 2ms 0 0 5ms 10ms 0)" H 1550 2100 50  0000 C CNN
 F 2 "" H 1800 2050 50  0001 C CNN
 F 3 "" H 1800 2050 50  0001 C CNN
 	1    1800 2050
