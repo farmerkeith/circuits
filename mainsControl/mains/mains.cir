@@ -1,0 +1,30 @@
+* /home/guy/aProjects/circuits/mainsControl/mains/mains.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Mon 21 May 2018 15:40:16 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V1  Net-_R2-Pad2_ GND sine 0 340V 50Hz		
+L1  VP GND 5H		
+L2  VS VS2 12.4mH 		
+R1  VR GND 1000		
+R2  VP Net-_R2-Pad2_ 0.01R		
+D1  GND VS 2W01G		;Node Sequence Spec.<2,1>
+D3  GND VS2 2W01G		;Node Sequence Spec.<2,1>
+D2  VS VR 2W01G		;Node Sequence Spec.<2,1>
+D4  VS2 VR 2W01G		;Node Sequence Spec.<2,1>
+C1  VR GND 100uF		
+
+.include ../../ComponentModels/2w01g.spi
+K L1 L2 1
+.TRAN 0.0001 0.04
+.control
+run
+plot VP VS
+plot i(v1)
+plot vs vs2 vr
+.end
+
+.end
