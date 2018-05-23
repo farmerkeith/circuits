@@ -1,0 +1,26 @@
+*Package Pin 1 : Cathode
+*Package Pin 2 : Anode
+
+*.SUBCKT GBJ1506 2 1 
+*
+* The resistor R1 does not reflect 
+* a physical device. Instead it
+* improves modeling in the reverse 
+* mode of operation.
+*
+*R1 1 2 5.827E+9 
+*D1 1 2 GBJ1506
+*
+.MODEL GBJ1506 D // 1/4 bridge rectifier
++ IS = 5.90861E-7
++ N = 1.906 
++ BV = 600 
++ IBV = 0.0001 
++ RS = 0.00615
++ CJO = 1E-10 // guess  
++ VJ = 0.869 
++ M = 0.03 
++ FC = 0.5 
++ TT = 3.48E-9 
+
+*.ENDS

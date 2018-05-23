@@ -31,7 +31,7 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:mains-cache
+LIBS:diodeTest-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -58,7 +58,7 @@ F 3 "" H 900 1450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 3050 1850 0    60   ~ 0
-+pspice\n.include ../ComponentModels/2w01g.spi\n.DC V1 0.63 1.6 0.01 \n.control\nrun\nplot i(v2)\nplot log(i(v2))/log(10)\nend
++pspice\n.include ../ComponentModels/gbj1506.spi\n.DC V1 0.48 1.55 0.01 \n.control\nrun\nplot i(v2)\nplot log(i(v2))/log(10)\nend
 $Comp
 L GND #PWR01
 U 1 1 5B0238DD
@@ -75,7 +75,7 @@ L D D1
 U 1 1 5B0238DF
 P 1550 750
 F 0 "D1" H 1550 850 50  0000 C CNN
-F 1 "2W01G" H 1550 650 50  0000 C CNN
+F 1 "GBJ1506" H 1550 650 50  0000 C CNN
 F 2 "" H 1550 750 50  0001 C CNN
 F 3 "" H 1550 750 50  0001 C CNN
 F 4 "2,1" H 1550 750 60  0001 C CNN "Spice_Node_Sequence"

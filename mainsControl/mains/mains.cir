@@ -1,6 +1,6 @@
 * /home/guy/aProjects/circuits/mainsControl/mains/mains.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Mon 21 May 2018 21:15:34 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 23 May 2018 22:20:03 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
@@ -9,25 +9,34 @@
 V1  Net-_R2-Pad2_ GND sine 0 340V 50Hz		
 L1  VP GND 50H		
 L2  VS VS2 124mH 		
-R1  Net-_R1-Pad1_ VR 1		
+R1  Net-_R1-Pad1_ Vbat 0.15		
 R2  VP Net-_R2-Pad2_ 0.01R		
-D1  GND VS 2W01G		;Node Sequence Spec.<2,1>
-D3  GND VS2 2W01G		;Node Sequence Spec.<2,1>
-D2  VS Net-_D2-Pad1_ 2W01G		;Node Sequence Spec.<2,1>
-D4  VS2 Net-_D2-Pad1_ 2W01G		;Node Sequence Spec.<2,1>
-C1  VR GND 10000uF		
-V2  Net-_R1-Pad1_ GND DC 12V 		
-R3  VR Net-_D2-Pad1_ 0.5		
+D1  GND VS GBJ1506		;Node Sequence Spec.<2,1>
+D3  GND VS2 GBJ1506		;Node Sequence Spec.<2,1>
+D2  VS VR GBJ1506		;Node Sequence Spec.<2,1>
+D4  VS2 VR GBJ1506		;Node Sequence Spec.<2,1>
+C1  Vbat GND 200uF		
+V2  Net-_R1-Pad1_ GND DC 12.3V // SOC 50%		
+R3  Vbat VR 0.1		
 
-.include ../../ComponentModels/2w01g.spi
+.include ../../ComponentModels/gbj1506.spi
 K L1 L2 1
-.TRAN 0.0001 0.1
+.TRAN 0.0001 0.1 
 .control
 run
-plot VP VS
+*plot VP VS
 plot i(v1)
-plot vs vs2 vr
-plot i(v2)
+*plot vs vs2 vr
+plot avg(i(v2))
+*plot (vbat-12.3)/0.15 i(v2)
+*plot (vr-vbat)/1 i(v2) // current through rectifier
+*plot max(max(vs-vr,vs2-vr),0) // voltage across 1 rectifier diode
+*plot max(max(vs-vr,vs2-vr),0)*(vr-vbat)/0.1*2 // power in bridge rectifier
+plot max(max(vs-vr,vs2-vr),0)*(vr-vbat)/0.1*2 
++avg(max(max(vs-vr,vs2-vr),0)*(vr-vbat)/0.1*2) 
+// average power in bridge rectifier
+plot 10*avg(max(max(vs-vr,vs2-vr),0)*(vr-vbat)/0.1*2) 
+// temperature rise in bridge rectifier
 .end
 
 .end
