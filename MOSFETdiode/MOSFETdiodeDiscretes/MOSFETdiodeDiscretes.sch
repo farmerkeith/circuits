@@ -39,9 +39,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "XL4016X2"
-Date "2018-04-11"
-Rev "V3 minor corrections"
+Title "MOSFETdiodeDiscretes"
+Date "2018-05-24"
+Rev "V2"
 Comp "farmerkeith"
 Comment1 ""
 Comment2 ""
@@ -49,9 +49,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Wire Wire Line
-	1800 1350 2850 1350
-Wire Wire Line
-	2850 1350 3150 1350
+	1800 1350 3150 1350
 $Comp
 L GND #PWR01
 U 1 1 5AD33666
@@ -136,9 +134,7 @@ F 3 "" H 3700 2300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1800 3700 2850 3700
-Wire Wire Line
-	2850 3700 4700 3700
+	1800 3700 4700 3700
 Wire Wire Line
 	3400 1850 3150 1850
 Wire Wire Line
@@ -154,7 +150,7 @@ Wire Notes Line
 Wire Notes Line
 	2400 2600 2400 1150
 Text Notes 5250 2750 0    60   ~ 0
-+PSPICE \n.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/irf4905.spi\n\n*.DC V1 5 15 0.001\n.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n.control\nrun\nplot VA VK  VG Vbase\nplot VA-VK\nplot VA-Vbase VK-Vbase VK-VG\nplot -i(V1) i(V2)\n*plot VD*1000\nplot (VD2-VD)*1000 (VD3-VD)*1000 VD*1000\n
++PSPICE \n.include ../../ComponentModels/1n4148.spi\n.include ../../ComponentModels/2n3906.spi\n.include ../../ComponentModels/irf4905.spi\n\n*.DC V1 5 15 0.001\n.TRAN 0.5us 10ms\n // transient analysis for 10 ms in steps of 0.5 us (20,000 steps)\n.control\nrun\nplot VA VK  VG Vbase\nplot VA-VK\nplot VA-Vbase VK-Vbase VK-VG\nplot -i(V1) i(V2)\n*plot VD*1000\nplot (VD2-VD)*1000 (VD3-VD)*1000 VD*1000\n
 $Comp
 L VSOURCE V1
 U 1 1 5AD34E9F
@@ -167,9 +163,7 @@ F 3 "" H 1800 2050 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3550 1350 3700 1350
-Wire Wire Line
-	3700 1350 4200 1350
+	3550 1350 4200 1350
 Connection ~ 3700 1350
 $Comp
 L R R1
@@ -261,13 +255,14 @@ VD2
 Text GLabel 3700 2650 0    60   Input ~ 0
 VD3
 $Comp
-L IRF4905 Q1
+L IRF4905 XQ1
 U 1 1 5AF774ED
 P 3350 1450
-F 0 "Q1" V 3350 1600 50  0000 L CNN
+F 0 "XQ1" V 3350 1600 50  0000 L CNN
 F 1 "IRF4905" V 3600 1350 50  0000 L CNN
 F 2 "TO-220" H 3550 1375 50  0001 L CIN
 F 3 "" H 3350 1450 50  0001 L CNN
+F 4 "2,1,3" V 3350 1450 60  0001 C CNN "Spice_Node_Sequence"
 	1    3350 1450
 	0    -1   -1   0   
 $EndComp
