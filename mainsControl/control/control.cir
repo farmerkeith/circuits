@@ -1,0 +1,52 @@
+* /home/guy/aProjects/circuits/mainsControl/control/control.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 24 May 2018 12:21:36 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+R4  VG Source 100K		
+R5  Net-_Q2-Pad2_ D3 10K		
+Q2  VG Net-_Q2-Pad2_ GND 2N3904		
+XQ1  VG Vbat Source IRF4905		
+V1  Net-_R1-Pad2_ GND sine 0 340V 50Hz		
+L1  VP GND 50H		
+L2  VS VS2 124mH 		
+R3  Net-_R3-Pad1_ Vbat 0.15		
+R1  VP Net-_R1-Pad2_ 0.01R		
+D1  GND VS GBJ1506		;Node Sequence Spec.<2,1>
+D3  GND VS2 GBJ1506		;Node Sequence Spec.<2,1>
+D2  VS VR GBJ1506		;Node Sequence Spec.<2,1>
+D4  VS2 VR GBJ1506		;Node Sequence Spec.<2,1>
+C1  Source GND 200uF		
+V2  Net-_R3-Pad1_ GND DC 12.3V // SOC 50%		
+R2  Source VR 0.1		
+V3  D3 GND DC 3.1V 		
+
+.include ../../ComponentModels/gbj1506.spi
+.include ../../ComponentModels/irf4905.spi
+.include ../../ComponentModels/2n3904.spi
+K L1 L2 1
+*.DC V3 0 5 5 
+.TRAN 0.0001 0.04 
+.control
+run
+*plot VP VS
+*plot i(v1)
+*plot vs vs2 vr
+plot avg(i(v2))
+*plot (vbat-12.3)/0.15 i(v2)
+*plot (vr-vbat)/1 i(v2) // current through rectifier
+*plot max(max(vs-vr,vs2-vr),0) // voltage across 1 rectifier diode
+set avgpower=avg(max(max(vs-vr,vs2-vr),0)*(vr-source)/0.1*2)
+// average power in bridge rectifier
+plot max(max(vs-vr,vs2-vr),0)*(vr-source)/0.1*2 // power in bridge rectifier
++$avgpower title 'rectifier power'  ylabel Watts
+set temperature=avg(max(max(vs-vr,vs2-vr),0)*(vr-source)/0.1*2)*10
+*plot 10.1*avg(max(max(vs-vr,vs2-vr),0)*(vr-source)/0.1*2) $temperature 
+plot  $temperature title 'temperature rise'  ylabel 'deg C'
+// temperature rise in bridge rectifier
+*.end
+
+.end
