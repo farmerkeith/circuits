@@ -101,7 +101,7 @@ L R R2
 U 1 1 5AF77416
 P 2650 2300
 F 0 "R2" V 2730 2300 50  0000 C CNN
-F 1 "470K" V 2650 2300 50  0000 C CNN
+F 1 "47K" V 2650 2300 50  0000 C CNN
 F 2 "" V 2580 2300 50  0001 C CNN
 F 3 "" H 2650 2300 50  0001 C CNN
 	1    2650 2300
@@ -127,7 +127,7 @@ L R R3
 U 1 1 5AF77418
 P 3500 2300
 F 0 "R3" V 3580 2300 50  0000 C CNN
-F 1 "470K" V 3500 2300 50  0000 C CNN
+F 1 "47K" V 3500 2300 50  0000 C CNN
 F 2 "" V 3430 2300 50  0001 C CNN
 F 3 "" H 3500 2300 50  0001 C CNN
 	1    3500 2300
@@ -150,13 +150,13 @@ Wire Notes Line
 Wire Notes Line
 	2200 3200 2200 1150
 Text Notes 5250 2750 0    60   ~ 0
-+PSPICE \n.include ../ComponentModels/1n4148.spi\n.include ../ComponentModels/2n3906.spi\n.include ../ComponentModels/irf4905.spi\n.include ../ComponentModels/1n4742.spi\n\n.DC V1 25 45 1\n*.TRAN 0.05us 10ms\n // transient analysis for 10 ms in steps of 0.1 us (10,000 steps)\n*pulse (9.50V 11.5V 2ms 0 0 5ms 10ms 0) V1 for transient analysis\n.control\nrun\nplot VA VK  VG Vbase\nplot VA-VK\nplot VA-Vbase VK-Vbase VK-VG\nplot -i(V1) i(V2)\nplot VD VK-VD\n\n
++PSPICE \n.include ../../ComponentModels/1n4148.spi\n.include ../../ComponentModels/2n3906.spi\n.include ../../ComponentModels/irf4905.spi\n.include ../../ComponentModels/1n4742.spi\n\n*.DC V1 -1 45 1 // DC analysis\n.TRAN 100us 10ms\n // transient analysis for 10 ms in steps of 100 us (10,000 steps)\n.control\nrun\nplot VA VK  VG Vbase title "applied voltages"\nplot VA-VK title "Forward Voltage"\nplot VA-Vbase VK-Vbase VK-VG title "control voltages"\nplot -i(V1) i(V2) title "currents"\nplot VD VK-VD title "Zener offset"\n
 $Comp
 L VSOURCE V1
 U 1 1 5AF77419
 P 1600 2050
 F 0 "V1" H 1600 1950 50  0000 C CNN
-F 1 "25V" H 1600 2100 50  0000 C CNN
+F 1 "pulse (25V 40V 2ms 0 0 5ms 10ms 0) //  25V // " H 1350 2150 50  0000 C CNN
 F 2 "" H 1600 2050 50  0001 C CNN
 F 3 "" H 1600 2050 50  0001 C CNN
 	1    1600 2050
@@ -181,7 +181,7 @@ L VSOURCE V2
 U 1 1 5AF7741B
 P 4700 2050
 F 0 "V2" H 4700 1950 50  0000 C CNN
-F 1 "+40V " H 4700 2150 50  0000 C CNN
+F 1 "+30V " H 4700 2150 50  0000 C CNN
 F 2 "" H 4700 2050 50  0001 C CNN
 F 3 "" H 4700 2050 50  0001 C CNN
 	1    4700 2050
@@ -210,7 +210,7 @@ L R R4
 U 1 1 5AF7741C
 P 2650 2950
 F 0 "R4" V 2730 2950 50  0000 C CNN
-F 1 "100K" V 2650 2950 50  0000 C CNN
+F 1 "27K" V 2650 2950 50  0000 C CNN
 F 2 "" H 2650 2950 50  0001 C CNN
 F 3 "" H 2650 2950 50  0001 C CNN
 	1    2650 2950
@@ -230,10 +230,11 @@ $Comp
 L IRF4905 XQ1
 U 1 1 5AF7762E
 P 3150 1450
-F 0 "XQ1" V 3100 1600 50  0000 L CNN
+F 0 "XQ1" V 3100 1550 50  0000 L CNN
 F 1 "IRF4905" V 3400 1300 50  0000 L CNN
 F 2 "TO-220" H 3350 1375 50  0001 L CIN
 F 3 "" H 3150 1450 50  0001 L CNN
+F 4 "2,1,3" V 3150 1450 60  0001 C CNN "Spice_Node_Sequence"
 	1    3150 1450
 	0    -1   -1   0   
 $EndComp
