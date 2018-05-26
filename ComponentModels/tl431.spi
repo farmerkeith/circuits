@@ -2,8 +2,9 @@
 *             K A REF
 .MODEL DCLAMP D (IS=13.5N RS=25M N=1.59 
 + CJO=45P VJ=.75 M=.302 TT=50.4N BV=34V IBV=1MA)
-V1 1 6 2.495 ; used for fixed reference, replaced with EB1 Limiter
+*V1 1 6 2.495 ; used for fixed reference, replaced with EB1 Limiter
 *EB1 1 6 Value = { IF ( V(7,6)> 2.495, 2.495, V(7,6) ) } // does not compile
+EB1 1 6 Value = { V(7,6) > 2.495 ? 2.495: V(7,6) }       // works
 R1 6 2 15.6
 C1 2 6 .5U
 R2 2 3 100
