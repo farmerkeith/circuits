@@ -6,6 +6,8 @@ The first item is a MOSFET diode with a control circuit made from discrete compo
 
 The second item is a study of current shunt amplifier circuits, the first made from discrete components. See the file currenShuntAmplifier.odt for the report so far. I also intend to look at operational amplifiers, Hall effect devices and current splitting MOSFETs. 
 
+The third item is a study of very low dropout linear regulators made with an IRf4905 MOSFET and various control methods.
+
 1 May 2018 Added another discrete component amplifier with emitter resistors that gives a greater current range and a more linear response especially for positive currents.
 
 7 May 2018 Added more to the overview, and a spreadsheet analysis of the discrete component amplifier with emitter resistor. It enables better insight into the design sensitivities. Spice simulation required.
@@ -25,3 +27,4 @@ The second item is a study of current shunt amplifier circuits, the first made f
 12 May 2018. Added MOSFET diode for high voltages. 
 Restructured the folder with separate folders for each general topic. 
 
+25 May 2016. Started study of VLDO regulators. 
