@@ -1,0 +1,24 @@
+* /home/guy/aProjects/circuits/PWMdriver/switchNormal/switchNormal.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 30 May 2018 18:26:49 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V2  IN GND pulse 0V 5V 2ns 3us 3us 7us 20us  		
+R1  OUT GND 5K		
+V1  Net-_S1-Pad2_ GND 12V 		
+R2  OUT2 GND 5K		
+S1  OUT Net-_S1-Pad2_ IN GND SwitchNormal		
+S2  OUT2 Net-_S1-Pad2_ IN GND SwitchInverted		
+
+*.model Switch_Normal SW Roff=1e6 Ron=1 Vt=2.5 Vh=1 // Voff=3.5 Von=1.5
+*.model Switch_Inverted  SW Ron=1e6 Roff=1 Vt=2.5 Vh=1 // Inverted Roff and Ron
+
+.tran 5us 41us
+.control 
+run
+plot in out out2+0.1 title 'Switching action'
+
+.end
