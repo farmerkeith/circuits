@@ -1,0 +1,8 @@
+#!/bin/bash
+# Script to replace "n .model" with "\n .model" and then run ngspice
+echo "Running script file ng"
+sed -e 's/SwitchNormal/SwitchNormal \n.model SwitchNormal SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1/' \
+    -e 's/SwitchInverted/SwitchInverted \n.model SwitchInverted SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1/' \
+    -e 's/Vsine\([0-9.pnum]*\VOffset\)\([0-9.pnum]*\Vpeak\)\([0-9.k]*\Hz\)\([0-9.pnum]*\SDelay\)\([0-9.]*\Damping\)\([0-9.]*\Phase\)/sin \1 \2 \3 \4 \5 \6/' \
+    <$1.cir >$1.tat
+ngspice $1.tat
