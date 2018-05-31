@@ -276,4 +276,6 @@ F 3 "" H 3700 1300 50  0001 C CNN
 $EndComp
 Text GLabel 3450 1300 1    60   Input ~ 0
 VR
+Text Notes 2400 2350 0    60   ~ 0
+SIMULATION RESULTS for GBJ1506\nAverage current into load is 3A\nAverage power in bridge rectifier 5W\nTemperature rise in bridge rectifier ~40C
 $EndSCHEMATC
