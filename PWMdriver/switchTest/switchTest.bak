@@ -1,0 +1,212 @@
+EESchema Schematic File Version 2
+LIBS:Modules
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:pspice
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:switchTest-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Switch Test for ngSpice models"
+Date "2018-05-28"
+Rev ""
+Comp "farmerkeith"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L GND #PWR01
+U 1 1 5B0B929A
+P 1300 900
+F 0 "#PWR01" H 1300 650 50  0001 C CNN
+F 1 "GND" H 1300 750 50  0000 C CNN
+F 2 "" H 1300 900 50  0001 C CNN
+F 3 "" H 1300 900 50  0001 C CNN
+	1    1300 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 5B0B929B
+P 1150 2600
+F 0 "#PWR02" H 1150 2350 50  0001 C CNN
+F 1 "GND" H 1150 2450 50  0000 C CNN
+F 2 "" H 1150 2600 50  0001 C CNN
+F 3 "" H 1150 2600 50  0001 C CNN
+	1    1150 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L VSOURCE V1
+U 1 1 5B0B929D
+P 3900 1500
+F 0 "V1" H 3900 1400 50  0000 C CNN
+F 1 "pulse 0V 5V 2ns 3us 3us 7us 20us  " H 4500 1650 50  0000 C CNN
+F 2 "" H 3900 1500 50  0001 C CNN
+F 3 "" H 3900 1500 50  0001 C CNN
+	1    3900 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR03
+U 1 1 5B0B929E
+P 3900 2200
+F 0 "#PWR03" H 3900 1950 50  0001 C CNN
+F 1 "GND" H 3900 2050 50  0000 C CNN
+F 2 "" H 3900 2200 50  0001 C CNN
+F 3 "" H 3900 2200 50  0001 C CNN
+	1    3900 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	850  800  3900 800 
+Text GLabel 2050 2600 2    60   Input ~ 0
+HO
+Text GLabel 1550 2750 0    60   Input ~ 0
+LO
+Text GLabel 3900 800  2    60   Input ~ 0
+LIN
+Wire Wire Line
+	1950 3050 2050 3050
+$Comp
+L GND #PWR04
+U 1 1 5B0B92A1
+P 2050 3050
+F 0 "#PWR04" H 2050 2800 50  0001 C CNN
+F 1 "GND" H 2050 2900 50  0000 C CNN
+F 2 "" H 2050 3050 50  0001 C CNN
+F 3 "" H 2050 3050 50  0001 C CNN
+	1    2050 3050
+	1    0    0    -1  
+$EndComp
+Text Notes 4600 2250 0    60   ~ 0
++PSPICE\n.model HiSwitch SW Roff=1e6 Ron=1 Vt=-2.5 Vh=-2 // Voff=0.1 Von=4.9\n.model LoSwitch SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2 // Voff=4.9 Von=0.1\n\n.tran 5us 41us\n.control \nrun\nplot lin lo ho+0.1 title 'Switching action'\n
+$Comp
+L R R2
+U 1 1 5B0B92A2
+P 2050 2900
+F 0 "R2" V 2130 2900 50  0000 C CNN
+F 1 "5K" V 2050 2900 50  0000 C CNN
+F 2 "" H 2050 2900 50  0001 C CNN
+F 3 "" H 2050 2900 50  0001 C CNN
+	1    2050 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 5B0B92A3
+P 1950 2900
+F 0 "R1" V 1850 2900 50  0000 C CNN
+F 1 "5K" V 1950 2900 50  0000 C CNN
+F 2 "" H 1950 2900 50  0001 C CNN
+F 3 "" H 1950 2900 50  0001 C CNN
+	1    1950 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L SwitchSpice S1
+U 1 1 5B0B985E
+P 1350 1400
+F 0 "S1" H 1800 1550 50  0000 L CNN
+F 1 "HiSwitch" H 1800 1450 50  0000 L CNN
+F 2 "switchSpice" H 2620 1370 50  0001 C CNN
+F 3 "" H 1350 1400 50  0001 C CNN
+	1    1350 1400
+	1    0    0    1   
+$EndComp
+$Comp
+L SwitchSpice S2
+U 1 1 5B0BA263
+P 1350 2300
+F 0 "S2" H 1800 2450 50  0000 L CNN
+F 1 "LoSwitch" H 1800 2350 50  0000 L CNN
+F 2 "switchSpice" H 2620 2270 50  0001 C CNN
+F 3 "" H 1350 2300 50  0001 C CNN
+	1    1350 2300
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	1150 2000 850  2000
+Wire Wire Line
+	850  2000 850  800 
+Wire Wire Line
+	1650 950  3000 950 
+Wire Wire Line
+	1650 950  1550 1100
+Wire Wire Line
+	1650 1700 2050 1700
+Wire Wire Line
+	2050 1700 2050 2750
+$Comp
+L VSOURCE V2
+U 1 1 5B0BA772
+P 3000 1650
+F 0 "V2" H 3000 1550 50  0000 C CNN
+F 1 "12V " H 3000 1800 50  0000 C CNN
+F 2 "" H 3000 1650 50  0001 C CNN
+F 3 "" H 3000 1650 50  0001 C CNN
+	1    3000 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR05
+U 1 1 5B0BA7FD
+P 3000 2350
+F 0 "#PWR05" H 3000 2100 50  0001 C CNN
+F 1 "GND" H 3000 2200 50  0000 C CNN
+F 2 "" H 3000 2350 50  0001 C CNN
+F 3 "" H 3000 2350 50  0001 C CNN
+	1    3000 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1650 2600 1550 2750
+Wire Wire Line
+	1550 2750 1950 2750
+Connection ~ 1950 950 
+Wire Wire Line
+	1550 2000 1950 2000
+Wire Wire Line
+	1950 2000 1950 950 
+Wire Wire Line
+	1300 900  1150 900 
+Wire Wire Line
+	1150 900  1150 1100
+Wire Wire Line
+	1150 1700 850  1700
+Connection ~ 850  1700
+$EndSCHEMATC

@@ -1,0 +1,25 @@
+* /home/guy/aProjects/circuits/PWMdriver/switchTest/switchTest.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Mon 28 May 2018 21:54:12 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V1  LIN GND pulse 0V 5V 2ns 3us 3us 7us 20us  // pwl 0 0 5us 5V 15us 5V 20us 0V // 		
+R2  HO GND 5K		
+R1  LO GND 5K		
+S1  Net-_S1-Pad1_ HO GND LIN HiSwitch	// connections reversed	
+S2  Net-_S1-Pad1_ LO LIN GND LoSwitch		
+V2  Net-_S1-Pad1_ GND 12V 		
+
+.model HiSwitch SW Roff=1e6 Ron=1 Vt=-2.5 Vh=-2 // Voff=0.1 Von=4.9 // negative threshold and hysteresis
+.model LoSwitch SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2 // Voff=4.9 Von=0.1  // positive threshold, negative hysteresis
+// Notes: Von = Vt+Vh so for HiSwitch Von=-2.5-2=-4.5; for LoSwitch Von=2.5-2=0.5
+// Voff = Vt-Vh so for HiSwitch Voff = -2.5+2 = -0.5; for LoSwitch Voff=2.5+2=4.5
+.tran 5us 41us
+.control 
+run
+plot lin lo ho+0.1 title 'Switching action'
+
+.end
