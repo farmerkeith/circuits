@@ -71,10 +71,10 @@ C_MD1_Trig3_CTrig         VSS MD2_Inv2_1  10p
 R_MD1_Trig3_R1Trig         MD1_Trig3_3 VDD  100Meg  
 R_MD1_Trig3_R2Trig         MD1_Trig3_4 MD1_Trig3_3  66.7Meg  
 R_MD1_Trig3_R3Trig         VSS MD1_Trig3_4  106.1Meg  
-X_MD1_Trig3_Comp         LIN MD1_Trig3_3 MD2_Inv2_1 com COMP // MD2_Inv2_1 is a 0V 5v version of LIN
+X_MD1_Trig3_Comp         LIN MD1_Trig3_3 MD2_Inv2_1 com COMP
 S_MD1_Trig3_PTrig         MD1_Trig3_4 VSS MD2_Inv2_1 VSS MD1_Trig3_PTrig  // name modified
 RS_MD1_Trig3_PTrig        MD2_Inv2_1 VSS 1G
-.MODEL        MD1_Trig3_PTrig SW Roff=1e9 Ron=1 Vt=2.5 Vh=2.49 // Voff=0.01 Von=4.99  // SW, name modified
+.MODEL        MD1_Trig3_PTrig SW Roff=1e9 Ron=1 // Voff=0.01 Von=4.99  // SW, name modified
 
 R_MD1_R1         VSS HIN 750k TC=-0.00783811, 0.0000372046
 R_MD1_R2         VSS SD 750k TC=-0.00783811, 0.0000372046
@@ -85,16 +85,16 @@ R_MD1_Trig1_R3Trig         VSS MD1_Trig1_4  106.1Meg
 X_MD1_Trig1_Comp         HIN MD1_Trig1_3 MD2_Inv1_1 com COMP
 S_MD1_Trig1_PTrig         MD1_Trig1_4 VSS MD2_Inv1_1 VSS MD1_Trig1_PTrig  // name modified
 RS_MD1_Trig1_PTrig        MD2_Inv1_1 VSS 1G
-.MODEL        MD1_Trig1_PTrig SW Roff=1e9 Ron=1 Vt=2.5 Vh=2.49 // Voff=0.01 Von=4.99  // SW, name modified
+.MODEL        MD1_Trig1_PTrig SW Roff=1e9 Ron=1 // Voff=0.01 Von=4.99  // SW, name modified
 
 C_MD1_Trig2_CTrig         VSS MD2_Nor3b_2  10p  
 R_MD1_Trig2_R1Trig         MD1_Trig2_3 VDD  100Meg  
 R_MD1_Trig2_R2Trig         MD1_Trig2_4 MD1_Trig2_3  66.7Meg  
 R_MD1_Trig2_R3Trig         VSS MD1_Trig2_4  106.1Meg  
 X_MD1_Trig2_Comp         SD MD1_Trig2_3 MD2_Nor3b_2 com COMP
-S_MD1_Trig2_PTrig         MD1_Trig2_4 VSS MD2_Nor3b_2 VSS MD1_Trig2_PTrig // name modified
+S_MD1_Trig2_PTrig         MD1_Trig2_4 VSS MD2_Nor3b_2 VSS _MD1_Trig2_PTrig
 RS_MD1_Trig2_PTrig        MD2_Nor3b_2 VSS 1G
-.MODEL        MD1_Trig2_PTrig SW Roff=1e9 Ron=1 Vt=2.5 Vh=2.49 // Voff=0.01 Von=4.99  // SW, name modified
+.MODEL        MD1_Trig2_PTrig SW Roff=1e9 Ron=1 // Voff=0.01 Von=4.99  // SW, name modified
 
 R_MD1_R3         VSS LIN 750k TC=-0.00783811, 0.0000372046
 R_MD1_R4         VSS VDD 7.5Meg TC=-0.00505291, 0.0000236999
@@ -104,21 +104,21 @@ V_MD2_Inv1_V         MD2_Inv1_2 VSS 5V
 C_MD2_Inv1_C         VSS MD2_Nor3a_3  1p  
 S_MD2_Inv1_P         MD2_Inv1_2 MD2_Nor3a_3 MD2_Inv1_1 VSS MD2_Inv1_P  // name modified
 RS_MD2_Inv1_P        MD2_Inv1_1 VSS 1G
-.MODEL        MD2_Inv1_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Inv1_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_Inv1_N         MD2_Nor3a_3 VSS MD2_Inv1_1 VSS MD2_Inv1_N  // name modified
 RS_MD2_Inv1_N        MD2_Inv1_1 VSS 1G
-.MODEL        MD2_Inv1_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Inv1_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD2_Inv2_V         MD2_Inv2_2 VSS 5V
 C_MD2_Inv2_C         VSS MD2_Nor3b_1  1p  
-S_MD2_Inv2_P      MD2_Inv2_2 MD2_Nor3b_1 MD2_Inv2_1 VSS MD2_Inv2_P  // high side
+S_MD2_Inv2_P         MD2_Inv2_2 MD2_Nor3b_1 MD2_Inv2_1 VSS MD2_Inv2_P  // name modified
 RS_MD2_Inv2_P        MD2_Inv2_1 VSS 1G
-.MODEL     MD2_Inv2_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Inv2_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
-S_MD2_Inv2_N      MD2_Nor3b_1 VSS        MD2_Inv2_1 VSS MD2_Inv2_N  // low side
+S_MD2_Inv2_N         MD2_Nor3b_1 VSS MD2_Inv2_1 VSS MD2_Inv2_N  // name modified
 RS_MD2_Inv2_N        MD2_Inv2_1 VSS 1G
-.MODEL     MD2_Inv2_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Inv2_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 C_MD2_RS1_C7         MD2_RS1_6 MD2_RS1_5  10p  
 C_MD2_RS1_C2         VSS MD2_Nor3a_3  10p IC=0 
@@ -131,36 +131,36 @@ C_MD2_RS1_C8         MD2_Nor3a_1 MD2_RS1_6  10p
 C_MD2_RS1_C1         VSS MD2_Nor3a_1  10p IC=0 
 S_MD2_RS1_P1         MD2_RS1_5 MD2_RS1_6 MD2_Nor3a_3 VSS MD2_RS1_P1  // name modified
 RS_MD2_RS1_P1        MD2_Nor3a_3 VSS 1G
-.MODEL        MD2_RS1_P1 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS1_P1 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS1_P2         MD2_RS1_6 MD2_Nor3a_1 MD2_RS1_3 VSS MD2_RS1_P2  // name modified
 RS_MD2_RS1_P2        MD2_RS1_3 VSS 1G
-.MODEL        MD2_RS1_P2 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS1_P2 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS1_N1         MD2_Nor3a_1 VSS MD2_RS1_3 VSS MD2_RS1_N1  // name modified
 RS_MD2_RS1_N1        MD2_RS1_3 VSS 1G
-.MODEL        MD2_RS1_N1 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS1_N1 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_RS1_P3         MD2_RS1_5 MD2_RS1_7 MD2_Nor3b_2 VSS MD2_RS1_P3  // name modified
 RS_MD2_RS1_P3        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_RS1_P3 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS1_P3 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS1_P4         MD2_RS1_7 MD2_RS1_3 MD2_Nor3a_1 VSS MD2_RS1_P4  // name modified
 RS_MD2_RS1_P4        MD2_Nor3a_1 VSS 1G
-.MODEL        MD2_RS1_P4 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS1_P4 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS1_N3         MD2_RS1_3 VSS MD2_Nor3b_2 VSS MD2_RS1_N3  // name modified
 RS_MD2_RS1_N3        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_RS1_N3 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS1_N3 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD2_RS1_V1         MD2_RS1_5 VSS 5V
 S_MD2_RS1_N4         MD2_RS1_3 VSS MD2_Nor3a_1 VSS MD2_RS1_N4  // name modified
 RS_MD2_RS1_N4        MD2_Nor3a_1 VSS 1G
-.MODEL        MD2_RS1_N4 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS1_N4 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_RS1_N2         MD2_Nor3a_1 VSS MD2_Nor3a_3 VSS MD2_RS1_N2  // name modified
 RS_MD2_RS1_N2        MD2_Nor3a_3 VSS 1G
-.MODEL        MD2_RS1_N2 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS1_N2 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 C_MD2_RS2_C7         MD2_RS2_6 MD2_RS2_5  10p  
 C_MD2_RS2_C2         VSS MD2_Nor3b_1  10p IC=0 
@@ -171,88 +171,88 @@ C_MD2_RS2_C12         VSS MD2_RS2_3  10p
 C_MD2_RS2_C9         VSS MD2_Nor3b_3  10p  
 C_MD2_RS2_C8         MD2_Nor3b_3 MD2_RS2_6  10p  
 C_MD2_RS2_C1         VSS MD2_Nor3b_3  10p IC=0 
-S_MD2_RS2_P1       MD2_RS2_5 MD2_RS2_6 MD2_Nor3b_1 VSS MD2_RS2_P1  // name modified
+S_MD2_RS2_P1         MD2_RS2_5 MD2_RS2_6 MD2_Nor3b_1 VSS MD2_RS2_P1  // name modified
 RS_MD2_RS2_P1        MD2_Nor3b_1 VSS 1G
-.MODEL        MD2_RS2_P1 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS2_P1 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS2_P2         MD2_RS2_6 MD2_Nor3b_3 MD2_RS2_3 VSS MD2_RS2_P2  // name modified
 RS_MD2_RS2_P2        MD2_RS2_3 VSS 1G
-.MODEL        MD2_RS2_P2 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS2_P2 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS2_N1         MD2_Nor3b_3 VSS MD2_RS2_3 VSS MD2_RS2_N1  // name modified
 RS_MD2_RS2_N1        MD2_RS2_3 VSS 1G
-.MODEL        MD2_RS2_N1 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS2_N1 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_RS2_P3         MD2_RS2_5 MD2_RS2_7 MD2_Nor3b_2 VSS MD2_RS2_P3  // name modified
 RS_MD2_RS2_P3        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_RS2_P3 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS2_P3 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS2_P4         MD2_RS2_7 MD2_RS2_3 MD2_Nor3b_3 VSS MD2_RS2_P4  // name modified
 RS_MD2_RS2_P4        MD2_Nor3b_3 VSS 1G
-.MODEL        MD2_RS2_P4 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_RS2_P4 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_RS2_N3         MD2_RS2_3 VSS MD2_Nor3b_2 VSS MD2_RS2_N3  // name modified
 RS_MD2_RS2_N3        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_RS2_N3 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS2_N3 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD2_RS2_V1         MD2_RS2_5 VSS 5V
 S_MD2_RS2_N4         MD2_RS2_3 VSS MD2_Nor3b_3 VSS MD2_RS2_N4  // name modified
 RS_MD2_RS2_N4        MD2_Nor3b_3 VSS 1G
-.MODEL        MD2_RS2_N4 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS2_N4 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_RS2_N2         MD2_Nor3b_3 VSS MD2_Nor3b_1 VSS MD2_RS2_N2  // name modified
 RS_MD2_RS2_N2        MD2_Nor3b_1 VSS 1G
-.MODEL        MD2_RS2_N2 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_RS2_N2 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_Nor3a_P1         MD2_Nor3a_4 MD2_Nor3a_5 MD2_Nor3a_1 VSS MD2_Nor3a_P1  // name modified
 RS_MD2_Nor3a_P1        MD2_Nor3a_1 VSS 1G
-.MODEL        MD2_Nor3a_P1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Nor3a_P1 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_Nor3a_P2         MD2_Nor3a_5 MD2_Nor3a_6 MD2_Nor3b_2 VSS MD2_Nor3a_P2  // name modified
 RS_MD2_Nor3a_P2        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_Nor3a_P2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Nor3a_P2 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_Nor3a_P3         MD2_Nor3a_6 MD3_DlyHS_2 MD2_Nor3a_3 VSS MD2_Nor3a_P3  // name modified
 RS_MD2_Nor3a_P3        MD2_Nor3a_3 VSS 1G
-.MODEL        MD2_Nor3a_P3 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Nor3a_P3 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_Nor3a_N1         MD3_DlyHS_2 VSS MD2_Nor3b_2 VSS MD2_Nor3a_N1  // name modified
 RS_MD2_Nor3a_N1        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_Nor3a_N1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Nor3a_N1 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD2_Nor3a_V         MD2_Nor3a_4 VSS 5V
 S_MD2_Nor3a_N2         MD3_DlyHS_2 VSS MD2_Nor3a_1 VSS MD2_Nor3a_N2  // name modified
 RS_MD2_Nor3a_N2        MD2_Nor3a_1 VSS 1G
-.MODEL        MD2_Nor3a_N2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Nor3a_N2 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_Nor3a_N3         MD3_DlyHS_2 VSS MD2_Nor3a_3 VSS MD2_Nor3a_N3  // name modified
 RS_MD2_Nor3a_N3        MD2_Nor3a_3 VSS 1G
-.MODEL        MD2_Nor3a_N3 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Nor3a_N3 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_Nor3b_P1         MD2_Nor3b_4 MD2_Nor3b_5 MD2_Nor3b_1 VSS MD2_Nor3b_P1  // name modified
 RS_MD2_Nor3b_P1        MD2_Nor3b_1 VSS 1G
-.MODEL        MD2_Nor3b_P1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Nor3b_P1 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_Nor3b_P2         MD2_Nor3b_5 MD2_Nor3b_6 MD2_Nor3b_2 VSS MD2_Nor3b_P2  // name modified
 RS_MD2_Nor3b_P2        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_Nor3b_P2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Nor3b_P2 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_Nor3b_P3         MD2_Nor3b_6 MD3_DlyLS_2 MD2_Nor3b_3 VSS MD2_Nor3b_P3  // name modified
 RS_MD2_Nor3b_P3        MD2_Nor3b_3 VSS 1G
-.MODEL        MD2_Nor3b_P3 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 //Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD2_Nor3b_P3 SW Roff=1e6 Ron=1 //Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD2_Nor3b_N1         MD3_DlyLS_2 VSS MD2_Nor3b_2 VSS MD2_Nor3b_N1  // name modified
 RS_MD2_Nor3b_N1        MD2_Nor3b_2 VSS 1G
-.MODEL        MD2_Nor3b_N1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Nor3b_N1 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD2_Nor3b_V         MD2_Nor3b_4 VSS 5V
 S_MD2_Nor3b_N2         MD3_DlyLS_2 VSS MD2_Nor3b_1 VSS MD2_Nor3b_N2  // name modified
 RS_MD2_Nor3b_N2        MD2_Nor3b_1 VSS 1G
-.MODEL        MD2_Nor3b_N2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Nor3b_N2 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD2_Nor3b_N3         MD3_DlyLS_2 VSS MD2_Nor3b_3 VSS MD2_Nor3b_N3  // name modified
 RS_MD2_Nor3b_N3        MD2_Nor3b_3 VSS 1G
-.MODEL        MD2_Nor3b_N3 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD2_Nor3b_N3 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 D_MD5_D2         com LO diode25 
 D_MD5_D1         LO VCC diode25 
@@ -267,36 +267,36 @@ E_MD5_Uvcc_ABM3         MD5_Uvcc_4 com   VALUE { 8.0+(8.5-8.0)/(125+40)*(TEMP+40
 X_MD5_Uvcc_Comp         VCC MD5_Uvcc_2 MD4_Inv5_1 com COMP
 S_MD5_Uvcc_P         MD5_Uvcc_3 MD5_Uvcc_2 MD4_Inv5_1 com MD5_Uvcc_P  // name modified
 RS_MD5_Uvcc_P        MD4_Inv5_1 com 1G
-.MODEL        MD5_Uvcc_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.49 // Voff=4.99 Von=0.01  // SW, name modified
+.MODEL        MD5_Uvcc_P SW Roff=1e6 Ron=1 // Voff=4.99 Von=0.01  // SW, name modified
 
 S_MD5_Uvcc_N         MD5_Uvcc_2 MD5_Uvcc_4 MD4_Inv5_1 com MD5_Uvcc_N  // name modified
 RS_MD5_Uvcc_N        MD4_Inv5_1 com 1G
-.MODEL        MD5_Uvcc_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.01 Von=4.99  // SW, name modified
+.MODEL        MD5_Uvcc_N SW Roff=1e6 Ron=1 // Voff=0.01 Von=4.99  // SW, name modified
 
 S_MD5_Nand_P1         MD5_Nand_5 MD5_OLS_1 MD4_Inv5_1 VSS MD5_Nand_P1  // name modified
 RS_MD5_Nand_P1        MD4_Inv5_1 VSS 1G
-.MODEL        MD5_Nand_P1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD5_Nand_P1 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1  // SW, name modified
 
 S_MD5_Nand_N1         MD5_OLS_1 MD5_Nand_4 MD3_DlyLS_8 VSS MD5_Nand_N1  // name modified
 RS_MD5_Nand_N1        MD3_DlyLS_8 VSS 1G
-.MODEL        MD5_Nand_N1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD5_Nand_N1 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
 S_MD5_Nand_P2         MD5_Nand_5 MD5_OLS_1 MD3_DlyLS_8 VSS MD5_Nand_P2  // name modified
 RS_MD5_Nand_P2        MD3_DlyLS_8 VSS 1G
-.MODEL        MD5_Nand_P2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD5_Nand_P2 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1  // SW, name modified
 
 V_MD5_Nand_V         MD5_Nand_5 VSS 5V
 S_MD5_Nand_N2         MD5_Nand_4 VSS MD4_Inv5_1 VSS MD5_Nand_N2  // name modified
 RS_MD5_Nand_N2        MD4_Inv5_1 VSS 1G
-.MODEL        MD5_Nand_N2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD5_Nand_N2 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
-S_MD5_OLS_P         VCC MD5_OLS_2 MD5_OLS_1 com MD5_OLS_P  // high side output drive
+S_MD5_OLS_P         VCC MD5_OLS_2 MD5_OLS_1 com MD5_OLS_P  // name modified
 RS_MD5_OLS_P        MD5_OLS_1 com 1G
-.MODEL        MD5_OLS_P SW Roff=1e9 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD5_OLS_P SW Roff=1e9 Ron=1m // Voff=4.9 Von=0.1  // SW, name modified
 
-S_MD5_OLS_N         MD5_OLS_3 com MD5_OLS_1 com MD5_OLS_N  // low side output drive
+S_MD5_OLS_N         MD5_OLS_3 com MD5_OLS_1 com MD5_OLS_N  // name modified
 RS_MD5_OLS_N        MD5_OLS_1 com 1G
-.MODEL        MD5_OLS_N SW Roff=1e9 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD5_OLS_N SW Roff=1e9 Ron=1m // Voff=0.1 Von=4.9  // SW, name modified
 
 R_MD5_OLS_R6         LO MD5_OLS_2 11.4 TC=0.00190676, 9.3240e-07
 R_MD5_OLS_R7         MD5_OLS_3 LO 7.76 TC=0.00241396, 2.331e-06
@@ -318,21 +318,21 @@ E_MD4_Uvbs_ABM19         MD4_Uvbs_5 com   VALUE {
 X_MD4_Uvbs_Comp         VB MD4_Uvbs_2 MD4_Inv4_1 com COMP
 S_MD4_Uvbs_P         MD4_Uvbs_4 MD4_Uvbs_2 MD4_Inv4_1 com MD4_Uvbs_P  // name modified
 RS_MD4_Uvbs_P        MD4_Inv4_1 com 1G
-.MODEL        MD4_Uvbs_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.49 // Voff=4.99 Von=0.01  // SW, name modified
+.MODEL        MD4_Uvbs_P SW Roff=1e6 Ron=1 // Voff=4.99 Von=0.01  // SW, name modified
 
 S_MD4_Uvbs_N         MD4_Uvbs_2 MD4_Uvbs_5 MD4_Inv4_1 com MD4_Uvbs_N  // name modified
 RS_MD4_Uvbs_N        MD4_Inv4_1 com 1G
-.MODEL        MD4_Uvbs_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.49 // Voff=0.01 Von=4.99  // SW, name modified
+.MODEL        MD4_Uvbs_N SW Roff=1e6 Ron=1 // Voff=0.01 Von=4.99  // SW, name modified
 
 V_MD4_Inv3_V         MD4_Inv3_2 VSS 5V
 C_MD4_Inv3_C         VSS MD4_OHS_1  1p  
 S_MD4_Inv3_P         MD4_Inv3_2 MD4_OHS_1 MD4_RS_4 VSS MD4_Inv3_P  // name modified
 RS_MD4_Inv3_P        MD4_RS_4 VSS 1G
-.MODEL        MD4_Inv3_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_Inv3_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_Inv3_N         MD4_OHS_1 VSS MD4_RS_4 VSS MD4_Inv3_N  // name modified
 RS_MD4_Inv3_N        MD4_RS_4 VSS 1G
-.MODEL        MD4_Inv3_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_Inv3_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 C_MD4_RS_C7         MD4_RS_6 MD4_RS_5  10p  
 C_MD4_RS_C2         VSS MD4_Inv2_3  10p IC=0 
@@ -345,129 +345,129 @@ C_MD4_RS_C8         MD4_RS_4 MD4_RS_6  10p
 C_MD4_RS_C1         VSS MD4_RS_4  10p IC=0 
 S_MD4_RS_P1         MD4_RS_5 MD4_RS_6 MD4_Inv2_3 VSS MD4_RS_P1  // name modified
 RS_MD4_RS_P1        MD4_Inv2_3 VSS 1G
-.MODEL        MD4_RS_P1 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_RS_P1 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_RS_P2         MD4_RS_6 MD4_RS_4 MD4_RS_3 VSS MD4_RS_P2  // name modified
 RS_MD4_RS_P2        MD4_RS_3 VSS 1G
-.MODEL        MD4_RS_P2 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_RS_P2 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_RS_N1         MD4_RS_4 VSS MD4_RS_3 VSS MD4_RS_N1  // name modified
 RS_MD4_RS_N1        MD4_RS_3 VSS 1G
-.MODEL        MD4_RS_N1 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_RS_N1 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD4_RS_P3         MD4_RS_5 MD4_RS_7 MD3_DlyHS_8 VSS MD4_RS_P3  // name modified
 RS_MD4_RS_P3        MD3_DlyHS_8 VSS 1G
-.MODEL        MD4_RS_P3 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_RS_P3 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_RS_P4         MD4_RS_7 MD4_RS_3 MD4_RS_4 VSS MD4_RS_P4  // name modified
 RS_MD4_RS_P4        MD4_RS_4 VSS 1G
-.MODEL        MD4_RS_P4 SW Roff=1e6 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_RS_P4 SW Roff=1e6 Ron=1m // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_RS_N3         MD4_RS_3 VSS MD3_DlyHS_8 VSS MD4_RS_N3  // name modified
 RS_MD4_RS_N3        MD3_DlyHS_8 VSS 1G
-.MODEL        MD4_RS_N3 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_RS_N3 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD4_RS_V1         MD4_RS_5 VSS 5V
 S_MD4_RS_N4         MD4_RS_3 VSS MD4_RS_4 VSS MD4_RS_N4  // name modified
 RS_MD4_RS_N4        MD4_RS_4 VSS 1G
-.MODEL        MD4_RS_N4 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_RS_N4 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD4_RS_N2         MD4_RS_4 VSS MD4_Inv2_3 VSS MD4_RS_N2  // name modified
 RS_MD4_RS_N2        MD4_Inv2_3 VSS 1G
-.MODEL        MD4_RS_N2 SW Roff=1e8 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_RS_N2 SW Roff=1e8 Ron=1m // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD4_Inv2_V         MD4_Inv2_2 VSS 5V
 C_MD4_Inv2_C         VSS MD4_Inv2_3  1p  
 S_MD4_Inv2_P         MD4_Inv2_2 MD4_Inv2_3 MD4_Nor1_5 VSS MD4_Inv2_P  // name modified
 RS_MD4_Inv2_P        MD4_Nor1_5 VSS 1G
-.MODEL        MD4_Inv2_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_Inv2_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_Inv2_N         MD4_Inv2_3 VSS MD4_Nor1_5 VSS MD4_Inv2_N  // name modified
 RS_MD4_Inv2_N        MD4_Nor1_5 VSS 1G
-.MODEL        MD4_Inv2_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_Inv2_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD4_Inv1_V         MD4_Inv1_2 VSS 5V
 C_MD4_Inv1_C         VSS MD4_Nor1_1  1p  
 S_MD4_Inv1_P         MD4_Inv1_2 MD4_Nor1_1 MD3_DlyHS_8 VSS MD4_Inv1_P  // name modified
 RS_MD4_Inv1_P        MD3_DlyHS_8 VSS 1G
-.MODEL        MD4_Inv1_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_Inv1_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_Inv1_N         MD4_Nor1_1 VSS MD3_DlyHS_8 VSS MD4_Inv1_N  // name modified
 RS_MD4_Inv1_N        MD3_DlyHS_8 VSS 1G
-.MODEL        MD4_Inv1_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_Inv1_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD4_Inv4_V         MD4_Inv4_2 VSS 5V
 C_MD4_Inv4_C         VSS MD4_Nor2_2  1p  
 S_MD4_Inv4_P         MD4_Inv4_2 MD4_Nor2_2 MD4_Inv4_1 VSS MD4_Inv4_P  // name modified
 RS_MD4_Inv4_P        MD4_Inv4_1 VSS 1G
-.MODEL        MD4_Inv4_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_Inv4_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_Inv4_N         MD4_Nor2_2 VSS MD4_Inv4_1 VSS MD4_Inv4_N  // name modified
 RS_MD4_Inv4_N        MD4_Inv4_1 VSS 1G
-.MODEL        MD4_Inv4_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_Inv4_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD4_Nor1_V         MD4_Nor1_3 VSS 5V
 S_MD4_Nor1_P1         MD4_Nor1_3 MD4_Nor1_4 MD4_Nor1_1 VSS MD4_Nor1_P1  // name modified
 RS_MD4_Nor1_P1        MD4_Nor1_1 VSS 1G
-.MODEL        MD4_Nor1_P1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD4_Nor1_P1 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1  // SW, name modified
 
 S_MD4_Nor1_P2         MD4_Nor1_4 MD4_Nor1_5 MD4_Inv6_3 VSS MD4_Nor1_P2  // name modified
 RS_MD4_Nor1_P2        MD4_Inv6_3 VSS 1G
-.MODEL        MD4_Nor1_P2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD4_Nor1_P2 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1  // SW, name modified
 
 S_MD4_Nor1_N1         MD4_Nor1_5 VSS MD4_Inv6_3 VSS MD4_Nor1_N1  // name modified
 RS_MD4_Nor1_N1        MD4_Inv6_3 VSS 1G
-.MODEL        MD4_Nor1_N1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD4_Nor1_N1 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
 S_MD4_Nor1_N2         MD4_Nor1_5 VSS MD4_Nor1_1 VSS MD4_Nor1_N2  // name modified
 RS_MD4_Nor1_N2        MD4_Nor1_1 VSS 1G
-.MODEL        MD4_Nor1_N2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD4_Nor1_N2 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
 V_MD4_Inv5_V         MD4_Inv5_2 VSS 5V
 C_MD4_Inv5_C         VSS MD4_Nor2_1  1p  
 S_MD4_Inv5_P         MD4_Inv5_2 MD4_Nor2_1 MD4_Inv5_1 VSS MD4_Inv5_P  // name modified
 RS_MD4_Inv5_P        MD4_Inv5_1 VSS 1G
-.MODEL        MD4_Inv5_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_Inv5_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_Inv5_N         MD4_Nor2_1 VSS MD4_Inv5_1 VSS MD4_Inv5_N  // name modified
 RS_MD4_Inv5_N        MD4_Inv5_1 VSS 1G
-.MODEL        MD4_Inv5_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_Inv5_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 V_MD4_Nor2_V         MD4_Nor2_3 VSS 5V
 S_MD4_Nor2_P1         MD4_Nor2_3 MD4_Nor2_4 MD4_Nor2_1 VSS MD4_Nor2_P1  // name modified
 RS_MD4_Nor2_P1        MD4_Nor2_1 VSS 1G
-.MODEL        MD4_Nor2_P1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD4_Nor2_P1 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1  // SW, name modified
 
 S_MD4_Nor2_P2         MD4_Nor2_4 MD4_Inv6_1 MD4_Nor2_2 VSS MD4_Nor2_P2  // name modified
 RS_MD4_Nor2_P2        MD4_Nor2_2 VSS 1G
-.MODEL        MD4_Nor2_P2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD4_Nor2_P2 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1  // SW, name modified
 
 S_MD4_Nor2_N1         MD4_Inv6_1 VSS MD4_Nor2_2 VSS MD4_Nor2_N1  // name modified
 RS_MD4_Nor2_N1        MD4_Nor2_2 VSS 1G
-.MODEL        MD4_Nor2_N1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD4_Nor2_N1 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
 S_MD4_Nor2_N2         MD4_Inv6_1 VSS MD4_Nor2_1 VSS MD4_Nor2_N2  // name modified
 RS_MD4_Nor2_N2        MD4_Nor2_1 VSS 1G
-.MODEL        MD4_Nor2_N2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD4_Nor2_N2 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
 V_MD4_Inv6_V         MD4_Inv6_2 VSS 5V
 C_MD4_Inv6_C         VSS MD4_Inv6_3  1p  
 S_MD4_Inv6_P         MD4_Inv6_2 MD4_Inv6_3 MD4_Inv6_1 VSS MD4_Inv6_P  // name modified
 RS_MD4_Inv6_P        MD4_Inv6_1 VSS 1G
-.MODEL        MD4_Inv6_P SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD4_Inv6_P SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD4_Inv6_N         MD4_Inv6_3 VSS MD4_Inv6_1 VSS MD4_Inv6_N  // name modified
 RS_MD4_Inv6_N        MD4_Inv6_1 VSS 1G
-.MODEL        MD4_Inv6_N SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD4_Inv6_N SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 R_MD4_R1         VS VB 120k TC=-0.00135415, -2.516e-7
 S_MD4_OHS_P         VB MD4_OHS_2 MD4_OHS_1 com MD4_OHS_P  // name modified
 RS_MD4_OHS_P        MD4_OHS_1 com 1G
-.MODEL        MD4_OHS_P SW Roff=1e9 Ron=1m Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1 // SW, name modified
+.MODEL        MD4_OHS_P SW Roff=1e9 Ron=1m // Voff=4.9 Von=0.1 // SW, name modified
 
 S_MD4_OHS_N         MD4_OHS_3 VS MD4_OHS_1 com MD4_OHS_N // name modified
 RS_MD4_OHS_N        MD4_OHS_1 com 1G
-.MODEL        MD4_OHS_N SW Roff=1e9 Ron=1m Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9 // SW, name modified
+.MODEL        MD4_OHS_N SW Roff=1e9 Ron=1m // Voff=0.1 Von=4.9 // SW, name modified
 
 R_MD4_OHS_R6         HO MD4_OHS_2 11.4 TC=0.00190676, 9.3240e-07
 R_MD4_OHS_R7         MD4_OHS_3 HO 7.76 TC=0.00241396, 2.331e-06
@@ -479,40 +479,40 @@ C_MD3_DlyHS_C         VSS MD3_DlyHS_5  10n
 S_MD3_DlyHS_delay_P         MD3_DlyHS_20 MD3_DlyHS_5 MD3_DlyHS_2 VSS
 +  MD3_DlyHS_delay_P  // name modified
 RS_MD3_DlyHS_delay_P        MD3_DlyHS_2 VSS 1G
-.MODEL        MD3_DlyHS_delay_P SW Roff=1e6 Ron=10 Vt=2.5 Vh=-2.49 // Voff=4.99V Von=0.01V // SW, name modified
+.MODEL        MD3_DlyHS_delay_P SW Roff=1e6 Ron=10 // Voff=4.99V Von=0.01V // SW, name modified
 
 S_MD3_DlyHS_delay_N         MD3_DlyHS_5 VSS MD3_DlyHS_2 VSS MD3_DlyHS_delay_N  // name modified
 RS_MD3_DlyHS_delay_N        MD3_DlyHS_2 VSS 1G
-.MODEL        MD3_DlyHS_delay_N SW Roff=1e6 Ron=10 Vt=2.5 Vh=2.49 // Voff=0.01V Von=4.99V // SW, name modified
+.MODEL        MD3_DlyHS_delay_N SW Roff=1e6 Ron=10 // Voff=0.01V Von=4.99V // SW, name modified
 
 S_MD3_DlyHS_P1         MD3_DlyHS_10 MD3_DlyHS_11 MD3_DlyHS_6 VSS MD3_DlyHS_P1 // name modified
 RS_MD3_DlyHS_P1        MD3_DlyHS_6 VSS 1G
-.MODEL        MD3_DlyHS_P1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V // SW, name modified
+.MODEL        MD3_DlyHS_P1 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V // SW, name modified
 
 S_MD3_DlyHS_P2         MD3_DlyHS_11 MD3_DlyHS_9 MD3_DlyHS_8 VSS MD3_DlyHS_P2 // name modified
 RS_MD3_DlyHS_P2        MD3_DlyHS_8 VSS 1G
-.MODEL        MD3_DlyHS_P2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V // SW, name modified
+.MODEL        MD3_DlyHS_P2 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V // SW, name modified
 
 S_MD3_DlyHS_N1         MD3_DlyHS_9 VSS MD3_DlyHS_8 VSS MD3_DlyHS_N1  // name modified
 RS_MD3_DlyHS_N1        MD3_DlyHS_8 VSS 1G
-.MODEL        MD3_DlyHS_N1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD3_DlyHS_N1 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD3_DlyHS_MP1         MD3_DlyHS_12 MD3_DlyHS_13 MD3_DlyHS_9 VSS
 +  MD3_DlyHS_MP1  // name modified
 RS_MD3_DlyHS_MP1        MD3_DlyHS_9 VSS 1G
-.MODEL        MD3_DlyHS_MP1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD3_DlyHS_MP1 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD3_DlyHS_MP2         MD3_DlyHS_13 MD3_DlyHS_8 MD3_DlyHS_7 VSS MD3_DlyHS_MP2 // name modified
 RS_MD3_DlyHS_MP2        MD3_DlyHS_7 VSS 1G
-.MODEL        MD3_DlyHS_MP2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1  // SW, name modified
+.MODEL        MD3_DlyHS_MP2 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1  // SW, name modified
 
 S_MD3_DlyHS_MN1         MD3_DlyHS_8 VSS MD3_DlyHS_7 VSS MD3_DlyHS_MN1  // name modified
 RS_MD3_DlyHS_MN1        MD3_DlyHS_7 VSS 1G
-.MODEL        MD3_DlyHS_MN1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD3_DlyHS_MN1 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
 S_MD3_DlyHS_MN2         MD3_DlyHS_8 VSS MD3_DlyHS_9 VSS MD3_DlyHS_MN2  // name modified
 RS_MD3_DlyHS_MN2        MD3_DlyHS_9 VSS 1G
-.MODEL        MD3_DlyHS_MN2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=0.1 Von=4.9  // SW, name modified
+.MODEL        MD3_DlyHS_MN2 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9  // SW, name modified
 
 X_MD3_DlyHS_Comp1         MD3_DlyHS_5 MD3_DlyHS_18 MD3_DlyHS_7 com COMP
 X_MD3_DlyHS_Comp2         MD3_DlyHS_3 MD3_DlyHS_5 MD3_DlyHS_6 com COMP
@@ -544,7 +544,7 @@ C_MD3_DlyHS_C5         VSS MD3_DlyHS_8  10p IC=0V
 V_MD3_DlyHS_VCC2         MD3_DlyHS_12 VSS 5V
 S_MD3_DlyHS_N2         MD3_DlyHS_9 VSS MD3_DlyHS_6 VSS MD3_DlyHS_N2  // name modified
 RS_MD3_DlyHS_N2        MD3_DlyHS_6 VSS 1G
-.MODEL        MD3_DlyHS_N2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V // SW, name modified
+.MODEL        MD3_DlyHS_N2 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V // SW, name modified
 
 C_MD3_DlyHS_C4         VSS MD3_DlyHS_7  10p  
 E_MD3_DlyHS_ABM13         MD3_DlyHS_17 com   VALUE { (1-EXP(-( {toffV1}+({toffV3}-
@@ -555,45 +555,45 @@ C_MD3_DlyLS_C         VSS MD3_DlyLS_5  10n
 S_MD3_DlyLS_delay_P         MD3_DlyLS_20 MD3_DlyLS_5 MD3_DlyLS_2 VSS
 +  MD3_DlyLS_delay_P  // name modified
 RS_MD3_DlyLS_delay_P        MD3_DlyLS_2 VSS 1G
-.MODEL        MD3_DlyLS_delay_P SW Roff=1e6 Ron=10 Vt=2.5 Vh=-2.49 // Voff=4.99V Von=0.01V // SW, name modified
+.MODEL        MD3_DlyLS_delay_P SW Roff=1e6 Ron=10 // Voff=4.99V Von=0.01V // SW, name modified
 
 S_MD3_DlyLS_delay_N         MD3_DlyLS_5 VSS MD3_DlyLS_2 VSS MD3_DlyLS_delay_N // name modified
 RS_MD3_DlyLS_delay_N        MD3_DlyLS_2 VSS 1G
-.MODEL        MD3_DlyLS_delay_N SW Roff=1e6 Ron=10 Vt=2.5 Vh=2.49 // Voff=0.01V Von=4.99V // SW, name modified
+.MODEL        MD3_DlyLS_delay_N SW Roff=1e6 Ron=10 // Voff=0.01V Von=4.99V // SW, name modified
 
 S_MD3_DlyLS_P1         MD3_DlyLS_10 MD3_DlyLS_11 MD3_DlyLS_6 VSS MD3_DlyLS_P1  // name modified
 RS_MD3_DlyLS_P1        MD3_DlyLS_6 VSS 1G
-.MODEL        MD3_DlyLS_P1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD3_DlyLS_P1 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD3_DlyLS_P2         MD3_DlyLS_11 MD3_DlyLS_9 MD3_DlyLS_8 VSS MD3_DlyLS_P2  // name modified
 RS_MD3_DlyLS_P2        MD3_DlyLS_8 VSS 1G
-.MODEL        MD3_DlyLS_P2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V  // SW, name modified
+.MODEL        MD3_DlyLS_P2 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V  // SW, name modified
 
 S_MD3_DlyLS_N1         MD3_DlyLS_9 VSS MD3_DlyLS_8 VSS MD3_DlyLS_N1  // name modified
 RS_MD3_DlyLS_N1        MD3_DlyLS_8 VSS 1G
-.MODEL        MD3_DlyLS_N1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V  // SW, name modified
+.MODEL        MD3_DlyLS_N1 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V  // SW, name modified
 
 S_MD3_DlyLS_MP1         MD3_DlyLS_12 MD3_DlyLS_13 MD3_DlyLS_9 VSS
 +  MD3_DlyLS_MP1 // model name modified
 RS_MD3_DlyLS_MP1        MD3_DlyLS_9 VSS 1G
-.MODEL        MD3_DlyLS_MP1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9V Von=0.1V // SW, model name modified
+.MODEL        MD3_DlyLS_MP1 SW Roff=1e6 Ron=1 // Voff=4.9V Von=0.1V // SW, model name modified
 
 S_MD3_DlyLS_MP2         MD3_DlyLS_13 MD3_DlyLS_8 MD3_DlyLS_7 VSS MD3_DlyLS_MP2 // model name modified
 RS_MD3_DlyLS_MP2        MD3_DlyLS_7 VSS 1G
 
-.MODEL        MD3_DlyLS_MP2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=-2.4 // Voff=4.9 Von=0.1 // SW, model name modified
+.MODEL        MD3_DlyLS_MP2 SW Roff=1e6 Ron=1 // Voff=4.9 Von=0.1 // SW, model name modified
 
 S_MD3_DlyLS_MN1         MD3_DlyLS_8 VSS MD3_DlyLS_7 VSS MD3_DlyLS_MN1 // model name modified
 RS_MD3_DlyLS_MN1        MD3_DlyLS_7 VSS 1G
 
 *.MODEL        _MD3_DlyLS_MN1 VSWITCH Roff=1e6 Ron=1 Voff=0.1 Von=4.9 // original
-.MODEL        MD3_DlyLS_MN1 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9 // SW, name modified
+.MODEL        MD3_DlyLS_MN1 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9 // SW, name modified
 
 S_MD3_DlyLS_MN2         MD3_DlyLS_8 VSS MD3_DlyLS_9 VSS MD3_DlyLS_MN2 // model name modified
 RS_MD3_DlyLS_MN2        MD3_DlyLS_9 VSS 1G
 
 *.MODEL        _MD3_DlyLS_MN2 VSWITCH Roff=1e6 Ron=1 Voff=0.1 Von=4.9 // original
-.MODEL        MD3_DlyLS_MN2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1 Von=4.9   // SW, name modified
+.MODEL        MD3_DlyLS_MN2 SW Roff=1e6 Ron=1 // Voff=0.1 Von=4.9   // SW, name modified
 
 X_MD3_DlyLS_Comp1         MD3_DlyLS_5 MD3_DlyLS_18 MD3_DlyLS_7 com COMP
 X_MD3_DlyLS_Comp2         MD3_DlyLS_3 MD3_DlyLS_5 MD3_DlyLS_6 com COMP
@@ -628,7 +628,7 @@ S_MD3_DlyLS_N2         MD3_DlyLS_9 VSS MD3_DlyLS_6 VSS MD3_DlyLS_N2
 RS_MD3_DlyLS_N2        MD3_DlyLS_6 VSS 1G
 
 *.MODEL        _MD3_DlyLS_N2 VSWITCH Roff=1e6 Ron=1 Voff=0.1V Von=4.9V // original
-.MODEL        MD3_DlyLS_N2 SW Roff=1e6 Ron=1 Vt=2.5 Vh=2.4 // Voff=0.1V Von=4.9V // updated 
+.MODEL        MD3_DlyLS_N2 SW Roff=1e6 Ron=1 // Voff=0.1V Von=4.9V // updated 
 
 C_MD3_DlyLS_C4         VSS MD3_DlyLS_7  10p  
 E_MD3_DlyLS_ABM13         MD3_DlyLS_17 com   VALUE { (1-EXP(-( {toffV1}+({toffV3}-
@@ -639,7 +639,7 @@ E_MD3_DlyLS_ABM13         MD3_DlyLS_17 com   VALUE { (1-EXP(-( {toffV1}+({toffV3
 .ENDS    IR2110
 
 .SUBCKT COMP 1 2 3 4
-E1 5 4 VALUE={V(1)>V(2)? V(4)+5V: V(4)}
+E1 5 4 VALUE={(V(1)>V(2)? V(4)+5V: V(4)}
 R1 5 3 1
 C1 3 4 10P
 .ENDS
