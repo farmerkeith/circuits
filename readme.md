@@ -27,4 +27,7 @@ The third item is a study of very low dropout linear regulators made with an IRf
 12 May 2018. Added MOSFET diode for high voltages. 
 Restructured the folder with separate folders for each general topic. 
 
-25 May 2016. Started study of VLDO regulators. 
+25 May 2018. Started study of VLDO regulators. 
+
+30 May 2018. Working on IR2110 driver and components for ngspice - switches and various voltage sources so far. 
+  
