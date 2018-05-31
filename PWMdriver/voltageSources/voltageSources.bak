@@ -1,0 +1,211 @@
+EESchema Schematic File Version 2
+LIBS:NGspice
+LIBS:Modules
+LIBS:pspice
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:voltageSources-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L VSOURCE V2
+U 1 1 5B0DDFC0
+P 1650 1750
+F 0 "V2" H 1650 1650 50  0000 C CNN
+F 1 "+12V" H 1650 1850 50  0000 C CNN
+F 2 "" H 1650 1750 50  0001 C CNN
+F 3 "" H 1650 1750 50  0001 C CNN
+	1    1650 1750
+	1    0    0    -1  
+$EndComp
+Text GLabel 1650 1050 0    60   Input ~ 0
+VA
+Text GLabel 2500 1050 0    60   Input ~ 0
+VB
+$Comp
+L 0 #GND01
+U 1 1 5B0E04BE
+P 2500 1650
+F 0 "#GND01" H 2500 1550 50  0001 C CNN
+F 1 "0" H 2500 1580 50  0000 C CNN
+F 2 "" H 2500 1650 50  0001 C CNN
+F 3 "" H 2500 1650 50  0001 C CNN
+	1    2500 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L 0 #GND02
+U 1 1 5B0E04D6
+P 1650 2450
+F 0 "#GND02" H 1650 2350 50  0001 C CNN
+F 1 "0" H 1650 2380 50  0000 C CNN
+F 2 "" H 1650 2450 50  0001 C CNN
+F 3 "" H 1650 2450 50  0001 C CNN
+	1    1650 2450
+	1    0    0    -1  
+$EndComp
+Text Notes 3150 1650 0    60   ~ 0
++PSPICE\n.TRAN 0.1m 40m\n.control\nrun\nplot VA VB VC title 'voltages'
+Connection ~ 1650 1050
+Connection ~ 2500 1050
+$Comp
+L R R2
+U 1 1 5B0E065D
+P 2750 1300
+F 0 "R2" V 2830 1300 50  0000 C CNN
+F 1 "10K" V 2750 1300 50  0000 C CNN
+F 2 "" H 2750 1300 50  0001 C CNN
+F 3 "" H 2750 1300 50  0001 C CNN
+	1    2750 1300
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 5B0E0694
+P 2100 1300
+F 0 "R1" V 2180 1300 50  0000 C CNN
+F 1 "10K" V 2100 1300 50  0000 C CNN
+F 2 "" H 2100 1300 50  0001 C CNN
+F 3 "" H 2100 1300 50  0001 C CNN
+	1    2100 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 1050 2500 1050
+Wire Wire Line
+	2100 1050 1650 1050
+$Comp
+L 0 #GND03
+U 1 1 5B0E06D9
+P 2100 1550
+F 0 "#GND03" H 2100 1450 50  0001 C CNN
+F 1 "0" H 2100 1480 50  0000 C CNN
+F 2 "" H 2100 1550 50  0001 C CNN
+F 3 "" H 2100 1550 50  0001 C CNN
+	1    2100 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L 0 #GND04
+U 1 1 5B0E06F0
+P 2750 1550
+F 0 "#GND04" H 2750 1450 50  0001 C CNN
+F 1 "0" H 2750 1480 50  0000 C CNN
+F 2 "" H 2750 1550 50  0001 C CNN
+F 3 "" H 2750 1550 50  0001 C CNN
+	1    2750 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V V3
+U 1 1 5B0E0B2A
+P 2500 2250
+F 0 "V3" H 2500 2200 50  0000 C CNN
+F 1 "+5V" H 2500 2300 50  0000 C CNN
+F 2 "" H 2500 2250 50  0001 C CNN
+F 3 "" H 2500 2250 50  0001 C CNN
+	1    2500 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R3
+U 1 1 5B0E0B84
+P 2750 2200
+F 0 "R3" V 2830 2200 50  0000 C CNN
+F 1 "10K" V 2750 2200 50  0000 C CNN
+F 2 "" H 2750 2200 50  0001 C CNN
+F 3 "" H 2750 2200 50  0001 C CNN
+	1    2750 2200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2500 1950 2750 1950
+$Comp
+L 0 #GND05
+U 1 1 5B0E0BAA
+P 2500 2550
+F 0 "#GND05" H 2500 2450 50  0001 C CNN
+F 1 "0" H 2500 2480 50  0000 C CNN
+F 2 "" H 2500 2550 50  0001 C CNN
+F 3 "" H 2500 2550 50  0001 C CNN
+	1    2500 2550
+	1    0    0    -1  
+$EndComp
+Text GLabel 2500 1950 0    60   Input ~ 0
+VC
+$Comp
+L Vsine V1
+U 1 1 5B0E8815
+P 2500 1350
+F 0 "V1" H 2500 1300 50  0000 C CNN
+F 1 "Vsine0VOffset17.1Vpeak50Hz1000uSDelay0Damping0Phase" H 2500 1800 50  0000 C CNN
+F 2 "" H 2500 1350 50  0001 C CNN
+F 3 "" H 2500 1350 50  0001 C CNN
+	1    2500 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L 0V V4
+U 1 1 5B0EA940
+P 3000 2550
+F 0 "V4" H 3000 2500 50  0000 C CNN
+F 1 "0V" H 3000 2600 50  0000 C CNN
+F 2 "" H 3000 2550 50  0001 C CNN
+F 3 "" H 3000 2550 50  0001 C CNN
+	1    3000 2550
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND #PWR06
+U 1 1 5B0EA963
+P 2750 2650
+F 0 "#PWR06" H 2750 2400 50  0001 C CNN
+F 1 "GND" H 2750 2500 50  0000 C CNN
+F 2 "" H 2750 2650 50  0001 C CNN
+F 3 "" H 2750 2650 50  0001 C CNN
+	1    2750 2650
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
