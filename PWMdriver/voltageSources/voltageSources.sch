@@ -86,7 +86,7 @@ F 3 "" H 1650 2450 50  0001 C CNN
 	1    1650 2450
 	1    0    0    -1  
 $EndComp
-Text Notes 4400 2050 0    60   ~ 0
+Text Notes 4300 3400 0    60   ~ 0
 +PSPICE\n.TRAN 0.1m 40m\n.control\nrun\nplot VA VSine VC title 'DC and sine voltages'\nplot VPulse title 'pulse voltage'\nplot VA VSine VPulse VC title 'Waveforms'\n
 Connection ~ 1650 1050
 Connection ~ 2500 1100
@@ -540,4 +540,53 @@ EE 06 00 79 C8 DD 00 20 0F B9 1B 00 E4 21 77 03 80 3C 39 E7 99 04 41 D0 FE 38 00
 AB 63 3D 24 31 10 00 00 00 00 49 45 4E 44 AE 42 60 82 
 EndData
 $EndBitmap
+Text GLabel 5450 1250 0    60   Input ~ 0
+VPulse
+$Comp
+L 0 #GND?
+U 1 1 5B110CCA
+P 5450 1850
+F 0 "#GND?" H 5450 1750 50  0001 C CNN
+F 1 "0" H 5450 1780 50  0000 C CNN
+F 2 "" H 5450 1850 50  0001 C CNN
+F 3 "" H 5450 1850 50  0001 C CNN
+	1    5450 1850
+	1    0    0    -1  
+$EndComp
+Connection ~ 5450 1250
+$Comp
+L R R?
+U 1 1 5B110CD1
+P 5700 1500
+F 0 "R?" V 5780 1500 50  0000 C CNN
+F 1 "10K" V 5700 1500 50  0000 C CNN
+F 2 "" H 5700 1500 50  0001 C CNN
+F 3 "" H 5700 1500 50  0001 C CNN
+	1    5700 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5700 1250 5450 1250
+$Comp
+L 0 #GND?
+U 1 1 5B110CD8
+P 5700 1750
+F 0 "#GND?" H 5700 1650 50  0001 C CNN
+F 1 "0" H 5700 1680 50  0000 C CNN
+F 2 "" H 5700 1750 50  0001 C CNN
+F 3 "" H 5700 1750 50  0001 C CNN
+	1    5700 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Vpulse0VInit4.95Vpulsed2nSDelay0.2mSRise.2mSFall10.85mSWidth20mSPeriod0Phase V?
+U 1 1 5B110CDE
+P 5450 1550
+F 0 "V?" H 5450 1500 50  0000 C CNN
+F 1 "Vpulse0VInit4.95Vpulsed2nSDelay0.2mSRise.2mSFall10.85mSWidth20mSPeriod0Phase" H 5450 2000 50  0000 C CNN
+F 2 "" H 5450 1550 50  0001 C CNN
+F 3 "" H 5450 1550 50  0001 C CNN
+	1    5450 1550
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
