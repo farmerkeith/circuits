@@ -1,22 +1,26 @@
 * /home/guy/aProjects/circuits/PWMdriver/voltageSources/voltageSources.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 31 May 2018 23:26:08 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Fri 01 Jun 2018 18:17:19 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
 
 * Sheet Name: /
 V2  VA 0 +12V		
-R2  VB 0 10K		
+R2  VSine 0 10K		
 R1  VA 0 10K		
 V3  VC 0 +5V		
 R3  VC Net-_R3-Pad2_ 10K		
-V1  VB 0 sin 0VOffset 17.1Vpeak 50Hz 1mSDelay 0Damping 0Phase		
 V4  Net-_R3-Pad2_ GND 0V		
+R4  VPulse 0 10K		
+V1  VSine 0 sin 0VOffset 17.1Vpeak 50Hz 1mSDelay 0Damping 0Phase		
+V5  VPulse 0 pulse 0VInit 4.95Vpulsed 2nSDelay 0.2mSRise .2mSFall 10.85mSWidth 20mSPeriod 0Phase		
 
 .TRAN 0.1m 40m
 .control
 run
-plot VA VB VC title 'voltages'
+plot VA VSine VC title 'DC and sine voltages'
+plot VPulse title 'pulse voltage'
+plot VA VSine VPulse VC title 'Waveforms'
 
 .end
