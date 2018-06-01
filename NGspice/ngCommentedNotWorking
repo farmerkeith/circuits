@@ -1,0 +1,11 @@
+#!/bin/bash
+# Script to replace "n .model" with "\n .model" and then run ngspice
+echo "Running script file ng"
+sed -e 's/SwitchNormal/SwitchNormal \n.model SwitchNormal SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1/' \
+    -e 's/SwitchInverted/SwitchInverted \n.model SwitchInverted SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1/' \
+    -e 's/Vsine\([0-9.pnum]*\VOffset\)\([0-9.pnum]*\Vpeak\)\([0-9.k]*\Hz\)\([0-9.pnum]*\SDelay\)\([0-9.]*\Damping\)\([0-9.]*\Phase\)/sin \1 \2 \3 \4 \5 \6/' \
+#                \1=VOffset             \2=Vpeak             \3=Hz          \4=SDelay             \5=Damping         \6=Phase          
+    -e 's/Vpulse\([0-9.pnum]*\VInit\)\([0-9.pnum]*\Vpulsed\)\([0-9.k]*\sDelay\)\([0-9.pnum]*\sRise\)\([0-9.pnum]*\sFall\)\([0-9.]*\sWidth\([0-9.]*\sPeriod\([0-9.]*\Phase\)/pulse \1 \2 \3 \4 \5 \6 \7 \8/' \
+#                \1=Initial value (V)  \2=Pulsed value (V)   \3=delay to 1st pulse \4=rise time     \5=fall time         \6=pulse width           \7=Period        \8=Phase degrees  
+    <$1.cir >$1.tat
+ngspice $1.tat
