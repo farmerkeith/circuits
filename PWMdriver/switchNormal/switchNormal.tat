@@ -10,8 +10,10 @@ V2  IN GND pulse 0V 5V 2ns 3us 3us 7us 20us
 R1  OUT GND 5K		
 V1  Net-_S1-Pad2_ GND 12V 		
 R2  OUT2 GND 5K		
-S1  OUT Net-_S1-Pad2_ IN GND SwitchNormal		
-S2  OUT2 Net-_S1-Pad2_ IN GND SwitchInverted		
+S1  OUT Net-_S1-Pad2_ IN GND SwitchNormal 
+.model SwitchNormal SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1		
+S2  OUT2 Net-_S1-Pad2_ IN GND SwitchInverted 
+.model SwitchInverted SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1		
 
 *.model Switch_Normal SW Roff=1e6 Ron=1 Vt=2.5 Vh=1 // Voff=3.5 Von=1.5
 *.model Switch_Inverted  SW Ron=1e6 Roff=1 Vt=2.5 Vh=1 // Inverted Roff and Ron

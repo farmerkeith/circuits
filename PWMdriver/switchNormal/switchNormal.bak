@@ -1,6 +1,5 @@
 EESchema Schematic File Version 2
 LIBS:NGspice
-LIBS:switchNormal-rescue
 LIBS:pspice
 LIBS:power
 LIBS:device
@@ -102,7 +101,7 @@ F 3 "" H 4000 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 4650 1900 0    60   ~ 0
-+PSPICE\n*.model 1SwitchNormal SW Roff=1e6 Ron=1 Vt=2.5 Vh=1 // Voff=3.5 Von=1.5\n*.model 2SwitchInverted  SW Ron=1e6 Roff=1 Vt=2.5 Vh=1 // Inverted Roff and Ron\n\n.tran 5us 41us\n.control \nrun\nplot in out out2+0.1 title 'Switching action'\n
++PSPICE\n*.model Switch_Normal SW Roff=1e6 Ron=1 Vt=2.5 Vh=1 // Voff=3.5 Von=1.5\n*.model Switch_Inverted  SW Ron=1e6 Roff=1 Vt=2.5 Vh=1 // Inverted Roff and Ron\n\n.tran 5us 41us\n.control \nrun\nplot in out out2+0.1 title 'Switching action'\n
 $Comp
 L R-RESCUE-switchNormal R1
 U 1 1 5B0C8937
@@ -193,8 +192,8 @@ Wire Wire Line
 Connection ~ 4000 2050
 Wire Wire Line
 	5250 2100 3650 2100
-Text Notes 1200 850  0    60   ~ 0
-ngspice switches both normal and inverted\nNormal switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nInverted switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\n
+Text Notes 1200 950  0    60   ~ 0
+ngspice switches both normal and inverted\nNormal switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nInverted switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\nBoth switch models are obtained from script ng 
 $Comp
 L SwitchNormal S1
 U 1 1 5B0E5BFC
