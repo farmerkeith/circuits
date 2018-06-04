@@ -122,7 +122,7 @@ Connection ~ 3650 2100
 Wire Wire Line
 	3300 2100 3650 2100
 Text Notes 800  1000 0    60   ~ 0
-ngspice changeover switche made from normal and inverted switches\nNormal switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nInverted switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\nDrive impedance is built into the Ron values of each switch
+ngspice changeover switch made from normal and inverted switches\nNormal switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nInverted switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\nDrive impedance is put in external resistors to give visibility and control
 Wire Wire Line
 	3650 3250 3300 3250
 Wire Wire Line

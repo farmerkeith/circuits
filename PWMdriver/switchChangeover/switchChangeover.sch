@@ -50,10 +50,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L GND #PWR01
+L GND #PWR3
 U 1 1 5B0DBA73
 P 3650 2800
-F 0 "#PWR01" H 3650 2550 50  0001 C CNN
+F 0 "#PWR3" H 3650 2550 50  0001 C CNN
 F 1 "GND" H 3650 2650 50  0000 C CNN
 F 2 "" H 3650 2800 50  0001 C CNN
 F 3 "" H 3650 2800 50  0001 C CNN
@@ -72,10 +72,10 @@ F 3 "" H 2700 2100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR02
+L GND #PWR2
 U 1 1 5B0DBA75
 P 2700 2800
-F 0 "#PWR02" H 2700 2550 50  0001 C CNN
+F 0 "#PWR2" H 2700 2550 50  0001 C CNN
 F 1 "GND" H 2700 2650 50  0000 C CNN
 F 2 "" H 2700 2800 50  0001 C CNN
 F 3 "" H 2700 2800 50  0001 C CNN
@@ -89,7 +89,7 @@ OUT
 Text GLabel 2700 1400 0    60   Input ~ 0
 IN
 Text Notes 4650 1900 0    60   ~ 0
-+PSPICE\n*.model Switch_Normal SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1 // Voff=3.5 Von=1.5\n*.model Switch_Inverted  SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1 // Inverted Roff and Ron\n\n.tran 5us 41us\n.control \nrun\nplot in out  title 'Switching action'\n
++PSPICE\n.tran 5us 41us\n.control \nrun\nplot in out  title 'Switching action'\n
 Wire Wire Line
 	3650 1400 3650 2200
 $Comp
@@ -104,10 +104,10 @@ F 3 "" H 1750 1850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR03
+L GND #PWR1
 U 1 1 5B0DBA7A
 P 1750 2550
-F 0 "#PWR03" H 1750 2300 50  0001 C CNN
+F 0 "#PWR1" H 1750 2300 50  0001 C CNN
 F 1 "GND" H 1750 2400 50  0000 C CNN
 F 2 "" H 1750 2550 50  0001 C CNN
 F 3 "" H 1750 2550 50  0001 C CNN
@@ -122,16 +122,16 @@ Connection ~ 3650 2100
 Wire Wire Line
 	3300 2100 3650 2100
 Text Notes 800  1000 0    60   ~ 0
-ngspice changeover switch made from normal and inverted switches\nNormal switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nInverted switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\nDrive impedance is put in external resistors to give visibility and control
+ngspice changeover switch made from NO and NC switches\nNO switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nNC switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\nDrive impedance is put in external resistors to give visibility and control
 Wire Wire Line
 	3650 3250 3300 3250
 Wire Wire Line
 	3300 3250 3300 2100
 $Comp
-L GND #PWR04
+L GND #PWR5
 U 1 1 5B0DBC43
 P 3650 3850
-F 0 "#PWR04" H 3650 3600 50  0001 C CNN
+F 0 "#PWR5" H 3650 3600 50  0001 C CNN
 F 1 "GND" H 3650 3700 50  0000 C CNN
 F 2 "" H 3650 3850 50  0001 C CNN
 F 3 "" H 3650 3850 50  0001 C CNN
@@ -139,10 +139,10 @@ F 3 "" H 3650 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR05
+L GND #PWR6
 U 1 1 5B0DBC60
 P 4000 3850
-F 0 "#PWR05" H 4000 3600 50  0001 C CNN
+F 0 "#PWR6" H 4000 3600 50  0001 C CNN
 F 1 "GND" H 4000 3700 50  0000 C CNN
 F 2 "" H 4000 3850 50  0001 C CNN
 F 3 "" H 4000 3850 50  0001 C CNN
@@ -161,25 +161,14 @@ F 3 "" H 4950 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR06
+L GND #PWR4
 U 1 1 5B0DBE76
 P 4950 3650
-F 0 "#PWR06" H 4950 3400 50  0001 C CNN
+F 0 "#PWR4" H 4950 3400 50  0001 C CNN
 F 1 "GND" H 4950 3500 50  0000 C CNN
 F 2 "" H 4950 3650 50  0001 C CNN
 F 3 "" H 4950 3650 50  0001 C CNN
 	1    4950 3650
-	1    0    0    -1  
-$EndComp
-$Comp
-L SwitchInverted S2
-U 1 1 5B0D530B
-P 3850 3550
-F 0 "S2" H 4200 3700 50  0000 L CNN
-F 1 "SwitchInverted" H 4200 3600 50  0000 L CNN
-F 2 "switchSpice" H 5120 3520 50  0001 C CNN
-F 3 "" H 3850 3550 50  0001 C CNN
-	1    3850 3550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -491,14 +480,25 @@ AE 42 60 82
 EndData
 $EndBitmap
 $Comp
-L SwitchNormal S1
-U 1 1 5B0E5629
+L SwitchNO S1
+U 1 1 5B14E779
 P 3850 2500
 F 0 "S1" H 4200 2650 50  0000 L CNN
-F 1 "SwitchNormal" H 4200 2550 50  0000 L CNN
+F 1 "SwitchNO" H 4200 2550 50  0000 L CNN
 F 2 "switchSpice" H 5120 2470 50  0001 C CNN
 F 3 "" H 3850 2500 50  0001 C CNN
 	1    3850 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L SwitchNC S2
+U 1 1 5B14E7D4
+P 3850 3550
+F 0 "S2" H 4200 3700 50  0000 L CNN
+F 1 "SwitchNC" H 4200 3600 50  0000 L CNN
+F 2 "switchSpice" H 5120 3520 50  0001 C CNN
+F 3 "" H 3850 3550 50  0001 C CNN
+	1    3850 3550
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

@@ -1,6 +1,6 @@
 * /home/guy/aProjects/circuits/PWMdriver/switchChangeover/switchChangeover.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Fri 01 Jun 2018 15:29:57 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Mon 04 Jun 2018 17:02:51 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
@@ -9,15 +9,12 @@
 V2  IN GND pulse 0V 5V 2ns 3us 3us 7us 20us  		
 V1  Net-_S1-Pad2_ GND 12V 		
 C1  OUT GND 10nF		
-S2  GND Net-_R2-Pad2_ IN GND SwitchInverted 
-.model SwitchInverted SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1		
 R1  OUT Net-_R1-Pad2_ 15		
 R2  OUT Net-_R2-Pad2_ 15		
-S1  Net-_R1-Pad2_ Net-_S1-Pad2_ IN GND SwitchNormal 
-.model SwitchNormal SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1		
-
-*.model Switch_Normal SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1 // Voff=3.5 Von=1.5
-*.model Switch_Inverted  SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1 // Inverted Roff and Ron
+S1  Net-_R1-Pad2_ Net-_S1-Pad2_ IN GND SwitchNO 
+.model SwitchNO SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1		
+S2  GND Net-_R2-Pad2_ IN GND SwitchNC 
+.model SwitchNC SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1		
 
 .tran 5us 41us
 .control 
