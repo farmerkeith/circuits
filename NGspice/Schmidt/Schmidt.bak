@@ -1,0 +1,226 @@
+EESchema Schematic File Version 2
+LIBS:NGspice
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:Schmidt-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "NGspice model for Schmitt Trigger switch"
+Date "2018-06-04"
+Rev ""
+Comp "farmerkeith"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 5500 1800 0    60   ~ 0
++PSPICE\n.TRAN 0.1m 40m\n.control\nrun\nplot Vin Vout title 'Waveforms'\n
+$Comp
+L R R1
+U 1 1 5B14FF3A
+P 4600 1500
+F 0 "R1" V 4680 1500 50  0000 C CNN
+F 1 "10K" V 4600 1500 50  0000 C CNN
+F 2 "" H 4600 1500 50  0001 C CNN
+F 3 "" H 4600 1500 50  0001 C CNN
+	1    4600 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V V1
+U 1 1 5B15031D
+P 1100 1500
+F 0 "V1" H 1100 1450 50  0000 C CNN
+F 1 "+12V" H 1100 1550 50  0000 C CNN
+F 2 "" H 1100 1500 50  0001 C CNN
+F 3 "" H 1100 1500 50  0001 C CNN
+	1    1100 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCVS0.5Gain E1
+U 1 1 5B150359
+P 1650 1500
+F 0 "E1" H 1650 1450 50  0000 C CNN
+F 1 "VCVS0.5Gain" H 1650 1550 50  0000 C CNN
+F 2 "" H 1650 1500 50  0001 C CNN
+F 3 "" H 1650 1500 50  0001 C CNN
+	1    1650 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1450 1400 1300 1400
+Wire Wire Line
+	1300 1400 1300 1200
+Wire Wire Line
+	1300 1200 1100 1200
+$Comp
+L GND #PWR01
+U 1 1 5B1503A4
+P 1100 1800
+F 0 "#PWR01" H 1100 1550 50  0001 C CNN
+F 1 "GND" H 1100 1650 50  0000 C CNN
+F 2 "" H 1100 1800 50  0001 C CNN
+F 3 "" H 1100 1800 50  0001 C CNN
+	1    1100 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR02
+U 1 1 5B1503C5
+P 1650 1800
+F 0 "#PWR02" H 1650 1550 50  0001 C CNN
+F 1 "GND" H 1650 1650 50  0000 C CNN
+F 2 "" H 1650 1800 50  0001 C CNN
+F 3 "" H 1650 1800 50  0001 C CNN
+	1    1650 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR03
+U 1 1 5B1503DF
+P 1450 1600
+F 0 "#PWR03" H 1450 1350 50  0001 C CNN
+F 1 "GND" H 1450 1450 50  0000 C CNN
+F 2 "" H 1450 1600 50  0001 C CNN
+F 3 "" H 1450 1600 50  0001 C CNN
+	1    1450 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V V2
+U 1 1 5B1503F6
+P 2850 1550
+F 0 "V2" H 2850 1500 50  0000 C CNN
+F 1 "+5V" H 2850 1600 50  0000 C CNN
+F 2 "" H 2850 1550 50  0001 C CNN
+F 3 "" H 2850 1550 50  0001 C CNN
+	1    2850 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR04
+U 1 1 5B15041F
+P 2850 1850
+F 0 "#PWR04" H 2850 1600 50  0001 C CNN
+F 1 "GND" H 2850 1700 50  0000 C CNN
+F 2 "" H 2850 1850 50  0001 C CNN
+F 3 "" H 2850 1850 50  0001 C CNN
+	1    2850 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2000 950  1650 950 
+Wire Wire Line
+	1650 950  1650 1200
+Wire Wire Line
+	3050 1250 2850 1250
+$Comp
+L GND #PWR05
+U 1 1 5B150964
+P 4600 1650
+F 0 "#PWR05" H 4600 1400 50  0001 C CNN
+F 1 "GND" H 4600 1500 50  0000 C CNN
+F 2 "" H 4600 1650 50  0001 C CNN
+F 3 "" H 4600 1650 50  0001 C CNN
+	1    4600 1650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 1350 4350 1350
+Wire Wire Line
+	4350 1350 4350 1100
+Text GLabel 4600 1350 2    60   Input ~ 0
+Vout
+Wire Wire Line
+	3350 1800 3350 2100
+Wire Wire Line
+	3350 2100 2000 2100
+Wire Wire Line
+	2000 2100 2000 950 
+$Comp
+L GND #PWR06
+U 1 1 5B151107
+P 2350 1800
+F 0 "#PWR06" H 2350 1550 50  0001 C CNN
+F 1 "GND" H 2350 1650 50  0000 C CNN
+F 2 "" H 2350 1800 50  0001 C CNN
+F 3 "" H 2350 1800 50  0001 C CNN
+	1    2350 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3350 1100 3350 1200
+Wire Wire Line
+	2350 1100 3350 1100
+Wire Wire Line
+	2350 1100 2350 1200
+$Comp
+L Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V3
+U 1 1 5B1511E3
+P 2350 1500
+F 0 "V3" H 2350 1450 50  0000 C CNN
+F 1 "Vpulse0VInit12Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase" H 2350 2200 50  0000 C CNN
+F 2 "" H 2350 1500 50  0001 C CNN
+F 3 "" H 2350 1500 50  0001 C CNN
+	1    2350 1500
+	1    0    0    -1  
+$EndComp
+Text GLabel 2350 1100 0    60   Input ~ 0
+Vin
+Wire Wire Line
+	3700 1800 3700 1900
+Wire Wire Line
+	3700 1900 3050 1900
+Wire Wire Line
+	3050 1900 3050 1250
+Wire Wire Line
+	3700 1200 3700 1100
+Wire Wire Line
+	3700 1100 4350 1100
+$Comp
+L Schmidt1VHysteresis S1
+U 1 1 5B15232B
+P 3550 1500
+F 0 "S1" H 3900 1650 50  0000 L CNN
+F 1 "Schmidt0.5VHysteresis" H 3150 2000 50  0000 L CNN
+F 2 "switchSpice" H 4820 1470 50  0001 C CNN
+F 3 "" H 3550 1500 50  0001 C CNN
+	1    3550 1500
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
