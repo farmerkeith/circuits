@@ -49,10 +49,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L GND #PWR01
+L GND #PWR3
 U 1 1 5B0C8932
 P 3650 2800
-F 0 "#PWR01" H 3650 2550 50  0001 C CNN
+F 0 "#PWR3" H 3650 2550 50  0001 C CNN
 F 1 "GND" H 3650 2650 50  0000 C CNN
 F 2 "" H 3650 2800 50  0001 C CNN
 F 3 "" H 3650 2800 50  0001 C CNN
@@ -71,10 +71,10 @@ F 3 "" H 2700 2100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR02
+L GND #PWR2
 U 1 1 5B0C8934
 P 2700 2800
-F 0 "#PWR02" H 2700 2550 50  0001 C CNN
+F 0 "#PWR2" H 2700 2550 50  0001 C CNN
 F 1 "GND" H 2700 2650 50  0000 C CNN
 F 2 "" H 2700 2800 50  0001 C CNN
 F 3 "" H 2700 2800 50  0001 C CNN
@@ -90,10 +90,10 @@ IN
 Wire Wire Line
 	4000 3300 4000 3350
 $Comp
-L GND #PWR03
+L GND #PWR6
 U 1 1 5B0C8935
 P 4000 3350
-F 0 "#PWR03" H 4000 3100 50  0001 C CNN
+F 0 "#PWR6" H 4000 3100 50  0001 C CNN
 F 1 "GND" H 4000 3200 50  0000 C CNN
 F 2 "" H 4000 3350 50  0001 C CNN
 F 3 "" H 4000 3350 50  0001 C CNN
@@ -127,10 +127,10 @@ F 3 "" H 1750 1850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L GND #PWR04
+L GND #PWR1
 U 1 1 5B0C893B
 P 1750 2550
-F 0 "#PWR04" H 1750 2300 50  0001 C CNN
+F 0 "#PWR1" H 1750 2300 50  0001 C CNN
 F 1 "GND" H 1750 2400 50  0000 C CNN
 F 2 "" H 1750 2550 50  0001 C CNN
 F 3 "" H 1750 2550 50  0001 C CNN
@@ -146,10 +146,10 @@ Wire Wire Line
 Wire Wire Line
 	4000 1150 1750 1150
 $Comp
-L GND #PWR05
+L GND #PWR4
 U 1 1 5B0D0161
 P 5250 2800
-F 0 "#PWR05" H 5250 2550 50  0001 C CNN
+F 0 "#PWR4" H 5250 2550 50  0001 C CNN
 F 1 "GND" H 5250 2650 50  0000 C CNN
 F 2 "" H 5250 2800 50  0001 C CNN
 F 3 "" H 5250 2800 50  0001 C CNN
@@ -161,10 +161,10 @@ OUT2
 Wire Wire Line
 	5600 3250 5600 3300
 $Comp
-L GND #PWR06
+L GND #PWR5
 U 1 1 5B0D0169
 P 5600 3300
-F 0 "#PWR06" H 5600 3050 50  0001 C CNN
+F 0 "#PWR5" H 5600 3050 50  0001 C CNN
 F 1 "GND" H 5600 3150 50  0000 C CNN
 F 2 "" H 5600 3300 50  0001 C CNN
 F 3 "" H 5600 3300 50  0001 C CNN
@@ -193,29 +193,7 @@ Connection ~ 4000 2050
 Wire Wire Line
 	5250 2100 3650 2100
 Text Notes 1200 950  0    60   ~ 0
-ngspice switches both normal and inverted\nNormal switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nInverted switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\nBoth switch models are obtained from script ng 
-$Comp
-L SwitchNormal S1
-U 1 1 5B0E5BFC
-P 3850 2500
-F 0 "S1" H 4200 2650 50  0000 L CNN
-F 1 "SwitchNormal" H 4200 2550 50  0000 L CNN
-F 2 "switchSpice" H 5120 2470 50  0001 C CNN
-F 3 "" H 3850 2500 50  0001 C CNN
-	1    3850 2500
-	1    0    0    -1  
-$EndComp
-$Comp
-L SwitchInverted S2
-U 1 1 5B0E5CAD
-P 5450 2500
-F 0 "S2" H 5800 2650 50  0000 L CNN
-F 1 "SwitchInverted" H 5800 2550 50  0000 L CNN
-F 2 "switchSpice" H 6720 2470 50  0001 C CNN
-F 3 "" H 5450 2500 50  0001 C CNN
-	1    5450 2500
-	1    0    0    -1  
-$EndComp
+ngspice switches both Normally Open and Normally Closed\nNO switch is ON with Vc>Vt+Vh transition and OFF with Vc<Vt-Vh transition\nNC switch is OFF with Vc>Vt+Vh transition and ON with Vc<Vt-Vh transition\nBoth switch models are obtained from script ng 
 $Bitmap
 Pos 2700 5500
 Scale 2.000000
@@ -517,4 +495,26 @@ C8 47 0F 01 00 9A E8 9A 02 00 60 46 45 04 00 20 31 DF CC C6 C7 C7 9B 5E 0D 00 00
 0F B7 BF E3 7F A3 93 6D BA 00 00 00 00 49 45 4E 44 AE 42 60 82 
 EndData
 $EndBitmap
+$Comp
+L SwitchNO S1
+U 1 1 5B14DEF0
+P 3850 2500
+F 0 "S1" H 4200 2650 50  0000 L CNN
+F 1 "SwitchNO" H 4200 2550 50  0000 L CNN
+F 2 "switchSpice" H 5120 2470 50  0001 C CNN
+F 3 "" H 3850 2500 50  0001 C CNN
+	1    3850 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L SwitchNC S2
+U 1 1 5B14E355
+P 5450 2500
+F 0 "S2" H 5800 2650 50  0000 L CNN
+F 1 "SwitchNC" H 5800 2550 50  0000 L CNN
+F 2 "switchSpice" H 6720 2470 50  0001 C CNN
+F 3 "" H 5450 2500 50  0001 C CNN
+	1    5450 2500
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

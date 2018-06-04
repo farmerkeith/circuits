@@ -1,11 +1,11 @@
 #!/bin/bash
-# Script to replace "n .model" with "\n .model" and then run ngspice
+# Script to edit spice netlist output of KiCad to make it work with ngspice 
 echo "Running script file ng"
-sed -e 's/SwitchNormal/SwitchNormal \n.model SwitchNormal SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1/' \
-    -e 's/SwitchInverted/SwitchInverted \n.model SwitchInverted SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1/' \
+sed -e 's/SwitchNO/SwitchNO \n.model SwitchNO SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1/' \
+    -e 's/SwitchNC/SwitchNC \n.model SwitchNC SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1/' \
     -e 's/Vsine\([0-9.pnum]*\VOffset\)\([0-9.pnum]*\Vpeak\)\([0-9.k]*\Hz\)\([0-9.pnum]*\SDelay\)\([0-9.]*\Damping\)\([0-9.]*\Phase\)/sin \1 \2 \3 \4 \5 \6/' \
     -e 's/Vpulse\([0-9.][0-9.pnum]*VInit\)\([0-9.][0-9.pnum]*Vpulsed\)\([0-9.][0-9.pnum]*sDelay\)\([0-9.][0-9.pnum]*sRise\)\([0-9.][0-9.pnum]*sFall\)\([0-9.][0-9.pnum]*sWidth\)\([0-9.][0-9.pnum]*sPeriod\)\([0-9.][0-9.]*Phase\)/pulse \1 \2 \3 \4 \5 \6 \7 \8/' \
     -e 's/VCVS\([0-9.]*\)\(\Gain\)/\1 \2 /' \
     <$1.cir >$1.tat
 ngspice $1.tat
-mousepad $1.tat
+# mousepad $1.tat
