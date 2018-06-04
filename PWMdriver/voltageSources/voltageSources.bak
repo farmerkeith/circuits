@@ -86,8 +86,8 @@ F 3 "" H 1650 2450 50  0001 C CNN
 	1    1650 2450
 	1    0    0    -1  
 $EndComp
-Text Notes 4400 2050 0    60   ~ 0
-+PSPICE\n.TRAN 0.1m 40m\n.control\nrun\nplot VA VSine VC title 'DC and sine voltages'\nplot VPulse title 'pulse voltage'\nplot VA VSine VPulse VC title 'Waveforms'\n
+Text Notes 4300 3400 0    60   ~ 0
++PSPICE\n.TRAN 0.1m 40m\n.control\nrun\nplot VA VSine VC title 'DC and sine voltages'\nplot VPulse title 'pulse voltage'\nplot VA VSine VPulse VC title 'Waveforms'\nplot VNC VCVS title 'VCVS voltage'\n
 Connection ~ 1650 1050
 Connection ~ 2500 1100
 $Comp
@@ -540,4 +540,77 @@ EE 06 00 79 C8 DD 00 20 0F B9 1B 00 E4 21 77 03 80 3C 39 E7 99 04 41 D0 FE 38 00
 AB 63 3D 24 31 10 00 00 00 00 49 45 4E 44 AE 42 60 82 
 EndData
 $EndBitmap
+Text GLabel 5450 1250 0    60   Input ~ 0
+VCVS
+$Comp
+L 0 #GND09
+U 1 1 5B110CCA
+P 5450 1850
+F 0 "#GND09" H 5450 1750 50  0001 C CNN
+F 1 "0" H 5450 1780 50  0000 C CNN
+F 2 "" H 5450 1850 50  0001 C CNN
+F 3 "" H 5450 1850 50  0001 C CNN
+	1    5450 1850
+	1    0    0    -1  
+$EndComp
+Connection ~ 5450 1250
+$Comp
+L R R5
+U 1 1 5B110CD1
+P 5900 1500
+F 0 "R5" V 5980 1500 50  0000 C CNN
+F 1 "10K" V 5900 1500 50  0000 C CNN
+F 2 "" H 5900 1500 50  0001 C CNN
+F 3 "" H 5900 1500 50  0001 C CNN
+	1    5900 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 1250 5450 1250
+$Comp
+L 0 #GND010
+U 1 1 5B110CD8
+P 5900 1750
+F 0 "#GND010" H 5900 1650 50  0001 C CNN
+F 1 "0" H 5900 1680 50  0000 C CNN
+F 2 "" H 5900 1750 50  0001 C CNN
+F 3 "" H 5900 1750 50  0001 C CNN
+	1    5900 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 1650 5250 1850
+Wire Wire Line
+	5250 1850 5250 2050
+Wire Wire Line
+	5250 1850 5450 1850
+$Comp
+L +5V V7
+U 1 1 5B1295A2
+P 4950 1750
+F 0 "V7" H 4950 1700 50  0000 C CNN
+F 1 "+15V" H 4950 1800 50  0000 C CNN
+F 2 "" H 4950 1750 50  0001 C CNN
+F 3 "" H 4950 1750 50  0001 C CNN
+	1    4950 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 1450 4950 1450
+Wire Wire Line
+	5250 2050 4950 2050
+Connection ~ 5250 1850
+Text GLabel 4950 1450 0    60   Input ~ 0
+VNC
+$Comp
+L VCVS0.5Gain E?
+U 1 1 5B12A85C
+P 5450 1550
+F 0 "E?" H 5450 1500 50  0000 C CNN
+F 1 "VCVS0.5Gain" H 5450 1950 50  0000 C CNN
+F 2 "" H 5450 1550 50  0001 C CNN
+F 3 "" H 5450 1550 50  0001 C CNN
+	1    5450 1550
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
