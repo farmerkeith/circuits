@@ -1,0 +1,47 @@
+* /home/guy/aProjects/circuits/currentShunt/currentShuntAmpOpAmpUni/currentShuntAmpOpAmpUni.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 24 May 2018 23:27:59 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V1  VK GND +30V 		
+I1  GND VA 1Amp		;Node Sequence Spec.<2,1>
+R1  VK VA 4m		
+XU1  Net-_R6-Pad2_ Ve VK Vneg Vb AD822A		;Node Sequence Spec.<3,2,8,4,1>
+R2  VA Ve 100R		
+Q1  Vout Vb Ve 2N3906		
+R3  Vout GND 15.665K		
+D1  Vneg VK 1N4733		;Node Sequence Spec.<2,1>
+R4  Vneg GND 10K		
+R6  VK Net-_R6-Pad2_ 16.8		
+R7  Net-_R6-Pad2_ Vneg 50K		
+
+*.include ../../ComponentModels/1n4148.spi
+.include ../../ComponentModels/2n3906.spi
+.include ../../ComponentModels/ad822a.cir
+.include ../../ComponentModels/1n4733.spi
+
+.DC I1 0 8 0.1  V1 20 40 10 
+*.DC I1 -0.1 0.8 0.01  
+// DC analysis for 20, 30 and 40 Volts
+//.DC I1 -0.5 8.5 0.1
+// DC analysis from -0.5 to 8.5 Amps in steps of 0.1 Amp
+
+*.TRAN 1us 10ms
+ // transient analysis for 10 ms in steps of 1 us (10,000 steps)
+.control
+run
+*plot Va Ve1 Vk
+*plot (VA-VK)*25+2.693 Vout
+*plot (VA-VK)*25+2.693-Vout
+*plot VA VK  Vbase
+*plot VK-Vref
+*plot Ve1-Vc1 VA-Ve1 VA-Vc1 VK-Vc1
+plot vout
+plot vout-i(v1)*5/8 // voltage error
+plot vout*8/5-i(v1) // current error
+*plot i1
+
+*.end

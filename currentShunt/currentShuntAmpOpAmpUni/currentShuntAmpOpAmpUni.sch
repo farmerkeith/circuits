@@ -108,8 +108,8 @@ F 3 "" H 2000 700 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1600 600  1600 800 
-Text Notes 9600 1100 0    60   ~ 0
-Objectives:\nShunt resistor 4 m Ohms\nCurrent unidirectional 8 A\nVout 0 at 0 A, 5V at 8A\nVK between 20 and 40 V
+Text Notes 7800 1500 0    60   ~ 0
+Objectives:\nShunt resistor 4 m Ohms\nCurrent unidirectional 8 A\nVout 0 at 0 A, 5V at 8A\nVK between 20 and 40 V\n\nResults:\nSee https://github.com/farmerkeith/circuits/tree/master/currentShunt \nand file currentSensing.ods for circuit details and results
 Connection ~ 3800 3050
 Connection ~ 3800 700 
 Connection ~ 1600 3050
