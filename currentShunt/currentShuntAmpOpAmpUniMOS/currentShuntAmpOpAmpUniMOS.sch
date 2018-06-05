@@ -37,7 +37,7 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "currentShuntAmpOpAmpUniMOS"
+Title "currentShuntAmpOpAmpUnidirectional with MOSFET"
 Date "2018-05-11"
 Rev ""
 Comp "farmerkeith"

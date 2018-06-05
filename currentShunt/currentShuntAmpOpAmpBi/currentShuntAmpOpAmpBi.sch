@@ -37,8 +37,8 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "currentShuntAmpOpAmpUni"
-Date "2018-05-09"
+Title "currentShuntAmpOpAmpBidirectional"
+Date "2018-06-05"
 Rev ""
 Comp "farmerkeith"
 Comment1 ""
