@@ -1,0 +1,205 @@
+EESchema Schematic File Version 2
+LIBS:NGspice
+LIBS:pspice
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:delayModel-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Delay Model for NGSpice simulations"
+Date "2018-06-05"
+Rev ""
+Comp "farmerkeith"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V2
+U 1 1 5B166ECF
+P 2100 1400
+F 0 "V2" H 2100 1350 50  0000 C CNN
+F 1 "Vpulse0VInit5Vpulsed0sDelay2nsRise2nsFall0.998usWidth2usPeriod0Phase" H 2100 1450 50  0000 C CNN
+F 2 "" H 2100 1400 50  0001 C CNN
+F 3 "" H 2100 1400 50  0001 C CNN
+	1    2100 1400
+	1    0    0    -1  
+$EndComp
+Text GLabel 2100 1100 0    60   Input ~ 0
+Vin
+$Comp
+L R R2
+U 1 1 5B166ED1
+P 2450 1450
+F 0 "R2" V 2530 1450 50  0000 C CNN
+F 1 "10K" V 2450 1450 50  0000 C CNN
+F 2 "" V 2380 1450 50  0001 C CNN
+F 3 "" H 2450 1450 50  0001 C CNN
+	1    2450 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 1700 2450 1700
+Wire Wire Line
+	2450 1200 2450 1100
+Text Notes 650  1000 0    60   ~ 0
++Pspice\n.tran 1ns 4us\n.control\nrun\nplot Vin Vout Vcap title 'Voltages'\nplot Vin Vout Vcap xlimit 1.0u 1.2u title 'Fall time Voltages'\nplot Vin Vout Vcap xlimit 0u 0.15u title 'Rise time Voltages'\nplot Vin Vout Vcap xlimit 2.0u 2.15u title 'Rise time Voltages#2'\n
+Connection ~ 2450 1100
+Connection ~ 2450 1700
+Text GLabel 5800 1200 2    60   Input ~ 0
+Vout
+$Comp
+L R R1
+U 1 1 5B166ED3
+P 2750 1100
+F 0 "R1" V 2830 1100 50  0000 C CNN
+F 1 "1K" V 2750 1100 50  0000 C CNN
+F 2 "" V 2680 1100 50  0001 C CNN
+F 3 "" H 2750 1100 50  0001 C CNN
+	1    2750 1100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2100 1100 2500 1100
+Wire Wire Line
+	3000 1100 3650 1100
+$Comp
+L +5V V1
+U 1 1 5B1672FC
+P 3100 1600
+F 0 "V1" H 3100 1550 50  0000 C CNN
+F 1 "+5V" H 3100 1650 50  0000 C CNN
+F 2 "" H 3100 1600 50  0001 C CNN
+F 3 "" H 3100 1600 50  0001 C CNN
+	1    3100 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 800  3950 800 
+Wire Wire Line
+	3950 800  3950 1100
+$Comp
+L SwitchCO94Lo120Hi SCO_subcircuit1
+U 1 1 5B176CF7
+P 3850 1400
+F 0 "SCO_subcircuit1" H 3975 1550 50  0000 L CNN
+F 1 "SwitchCO94Lo120Hi" H 3425 1275 50  0000 L CNN
+F 2 "switchSpice" H 5120 1370 50  0001 C CNN
+F 3 "" H 3850 1400 50  0001 C CNN
+	1    3850 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 1400 5100 1400
+Wire Wire Line
+	3100 1300 3100 800 
+$Comp
+L C C1
+U 1 1 5B1774DE
+P 4450 1650
+F 0 "C1" H 4300 1550 50  0000 L CNN
+F 1 "1.44269504nF" H 4475 1550 50  0000 L CNN
+F 2 "" H 4488 1500 50  0001 C CNN
+F 3 "" H 4450 1650 50  0001 C CNN
+	1    4450 1650
+	1    0    0    -1  
+$EndComp
+Connection ~ 4450 1400
+$Comp
+L VCVS5V2.5VTrigger ENLeq1
+U 1 1 5B17D039
+P 5300 1500
+F 0 "ENLeq1" H 5300 1450 50  0000 C CNN
+F 1 "VCVS5V2.5VTrigger" H 5300 1550 50  0000 C CNN
+F 2 "" H 5300 1500 50  0001 C CNN
+F 3 "" H 5300 1500 50  0001 C CNN
+	1    5300 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 1900 5100 1600
+Wire Wire Line
+	5300 1200 5800 1200
+Text GLabel 4650 1050 2    60   Input ~ 0
+Vcap
+Wire Wire Line
+	4650 1050 4650 1400
+Connection ~ 4650 1400
+$Comp
+L R R3
+U 1 1 5B17E1F8
+P 5750 1550
+F 0 "R3" V 5830 1550 50  0000 C CNN
+F 1 "10K" V 5750 1550 50  0000 C CNN
+F 2 "" V 5680 1550 50  0001 C CNN
+F 3 "" H 5750 1550 50  0001 C CNN
+	1    5750 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 1300 5750 1200
+Connection ~ 5750 1200
+$Comp
+L 0 #GND01
+U 1 1 5B17E541
+P 2450 1950
+F 0 "#GND01" H 2450 1850 50  0001 C CNN
+F 1 "0" H 2450 1880 50  0000 C CNN
+F 2 "" H 2450 1950 50  0001 C CNN
+F 3 "" H 2450 1950 50  0001 C CNN
+	1    2450 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2450 1700 2450 1950
+Wire Wire Line
+	3650 1700 3950 1700
+Wire Wire Line
+	3950 1700 3950 1900
+Wire Wire Line
+	2450 1900 5750 1900
+Connection ~ 4450 1900
+Connection ~ 3950 1900
+Connection ~ 2450 1900
+Connection ~ 3100 1900
+Wire Wire Line
+	5750 1900 5750 1800
+Connection ~ 5100 1900
+Wire Wire Line
+	5300 1800 5300 1900
+Connection ~ 5300 1900
+$EndSCHEMATC

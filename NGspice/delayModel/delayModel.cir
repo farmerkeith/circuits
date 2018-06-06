@@ -1,0 +1,26 @@
+* /home/guy/aProjects/circuits/NGspice/delayModel/delayModel.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 06 Jun 2018 22:44:37 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V2  Vin 0 Vpulse0VInit5Vpulsed0sDelay2nsRise2nsFall0.998usWidth2usPeriod0Phase		
+R2  Vin 0 10K		
+R1  Net-_R1-Pad1_ Vin 1K		
+V1  Net-_SCO_subcircuit1-Pad2_ 0 +5V		
+SCO_subcircuit1  Vcap Net-_SCO_subcircuit1-Pad2_ 0 Net-_R1-Pad1_ 0 SwitchCO94Lo120Hi		
+C1  Vcap 0 1.44269504nF		
+ENLeq1  Vout 0 Vcap 0 VCVS5V2.5VTrigger		
+R3  Vout 0 10K		
+
+.tran 1ns 4us
+.control
+run
+plot Vin Vout Vcap title 'Voltages'
+plot Vin Vout Vcap xlimit 1.0u 1.2u title 'Fall time Voltages'
+plot Vin Vout Vcap xlimit 0u 0.15u title 'Rise time Voltages'
+plot Vin Vout Vcap xlimit 2.0u 2.15u title 'Rise time Voltages#2'
+
+.end
