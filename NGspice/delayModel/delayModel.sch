@@ -77,7 +77,7 @@ Wire Wire Line
 Wire Wire Line
 	2400 1000 2400 900 
 Text Notes 4250 2950 0    60   ~ 0
-+Pspice\n.tran 1ns 4us\n.control\nrun\nplot Vin Vout Vcap title 'Voltages'\nplot Vin Vout Vcap xlimit 1.0u 1.2u title 'Fall time Voltages'\nplot Vin Vout Vcap xlimit 0u 0.15u title 'Rise time Voltages'\nplot Vin Vout Vcap xlimit 2.0u 2.15u title 'Rise time Voltages#2'\n
++Pspice\n.tran 1ns 4us\n.control\nrun\nplot Vin Vout Vcap title 'Voltages'\n*plot Vin Vout Vcap xlimit 1.0u 1.2u title 'Fall time Voltages'\n*plot Vin Vout Vcap xlimit 0u 0.15u title 'Rise time Voltages'\nplot Vin2 Vout2 Vout title 'Voltages2'\nplot Vin2 Vout2 Vout+0.1 xlimit 1.0u 1.2u title 'Fall time Voltages2'\nplot Vin2 Vout2 Vout+0.1 xlimit 0u 0.15u title 'Rise time Voltages2'\n
 Connection ~ 2400 900 
 Connection ~ 2400 1500
 Text GLabel 5750 1000 2    60   Input ~ 0
@@ -942,4 +942,63 @@ D5 81 E5 90 00 00 20 03 13 16 00 00 C0 01 D5 01 00 00 38 98 67 8C 19 1A 1A 2A 3B
 00 A8 9D FF 07 EF 5F 9A 8D F5 E1 FD 1C 00 00 00 00 49 45 4E 44 AE 42 60 82 
 EndData
 $EndBitmap
+$Comp
+L 0 #GND02
+U 1 1 5B1863D7
+P 7500 1950
+F 0 "#GND02" H 7500 1850 50  0001 C CNN
+F 1 "0" H 7500 1880 50  0000 C CNN
+F 2 "" H 7500 1950 50  0001 C CNN
+F 3 "" H 7500 1950 50  0001 C CNN
+	1    7500 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 1450 7500 1950
+$Comp
+L R R4
+U 1 1 5B18642C
+P 7800 1500
+F 0 "R4" V 7880 1500 50  0000 C CNN
+F 1 "10K" V 7800 1500 50  0000 C CNN
+F 2 "" V 7730 1500 50  0001 C CNN
+F 3 "" H 7800 1500 50  0001 C CNN
+	1    7800 1500
+	1    0    0    -1  
+$EndComp
+Text GLabel 8000 1250 2    60   Input ~ 0
+Vout2
+Wire Wire Line
+	8000 1250 7800 1250
+$Comp
+L Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V3
+U 1 1 5B186762
+P 6900 1550
+F 0 "V3" H 6900 1500 50  0000 C CNN
+F 1 "Vpulse0VInit5Vpulsed0sDelay2nsRise2nsFall0.998usWidth2usPeriod0Phase" H 6900 2250 50  0000 C CNN
+F 2 "" H 6900 1550 50  0001 C CNN
+F 3 "" H 6900 1550 50  0001 C CNN
+	1    6900 1550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6900 1250 7300 1250
+Wire Wire Line
+	6900 1850 7800 1850
+Wire Wire Line
+	7800 1850 7800 1750
+Connection ~ 7500 1850
+Text GLabel 6900 1250 0    60   Input ~ 0
+Vin2
+$Comp
+L Delay120Rise94Fall_nsUnits DelayBuffer1
+U 1 1 5B186F99
+P 7550 1250
+F 0 "DelayBuffer1" H 7650 1400 50  0000 C CNN
+F 1 "Delay120Rise94Fall_nsUnits" H 7475 1475 50  0000 C CNN
+F 2 "" H 7550 1250 60  0001 C CNN
+F 3 "" H 7550 1250 60  0001 C CNN
+	1    7550 1250
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

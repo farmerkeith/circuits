@@ -1,6 +1,6 @@
 * /home/guy/aProjects/circuits/NGspice/delayModel/delayModel.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 06 Jun 2018 22:44:37 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 07 Jun 2018 09:42:31 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
@@ -17,13 +17,24 @@ SNCSCO_subcircuit1 Vcap 0 Net-_R1-Pad1_ 0 MNCSCO_subcircuit1
 C1  Vcap 0 1.44269504nF		
 ENLeq1 Vout 0 value={V(Vcap)>2.5 ? 0 + 5 : 0} 		
 R3  Vout 0 10K		
+R4  Vout2 0 10K		
+V3  Vin2 0 pulse 0VInit 5Vpulsed 0sDelay 2nsRise 2nsFall 0.998usWidth 2usPeriod 0Phase		
+VDelayBuffer1 node5VDelayBuffer1 0 5V 
+SNODelayBuffer1 nodeCOMDelayBuffer1 node5VDelayBuffer1 Vin2 0 MNODelayBuffer1 
+.model MNODelayBuffer1 SW Vt=2.5 Vh=0 Roff=1e9 Ron=120 
+SNCDelayBuffer1 nodeCOMDelayBuffer1 0 Vin2 0 MNCDelayBuffer1 
+.model MNCDelayBuffer1 SW Vt=2.5 Vh=0 Ron=1e9 Roff=94 
+CDelayBuffer1 nodeCOMDelayBuffer1 0 1.44269504nF 
+ENLDelayBuffer1 Vout2 0 value={V(nodeCOMDelayBuffer1)>2.5 ? 0+5 : 0} 		
 
 .tran 1ns 4us
 .control
 run
 plot Vin Vout Vcap title 'Voltages'
-plot Vin Vout Vcap xlimit 1.0u 1.2u title 'Fall time Voltages'
-plot Vin Vout Vcap xlimit 0u 0.15u title 'Rise time Voltages'
-plot Vin Vout Vcap xlimit 2.0u 2.15u title 'Rise time Voltages#2'
+*plot Vin Vout Vcap xlimit 1.0u 1.2u title 'Fall time Voltages'
+*plot Vin Vout Vcap xlimit 0u 0.15u title 'Rise time Voltages'
+plot Vin2 Vout2 Vout title 'Voltages2'
+plot Vin2 Vout2 Vout+0.1 xlimit 1.0u 1.2u title 'Fall time Voltages2'
+plot Vin2 Vout2 Vout+0.1 xlimit 0u 0.15u title 'Rise time Voltages2'
 
 *.end
