@@ -63,7 +63,7 @@ $EndComp
 Text GLabel 1650 1050 0    60   Input ~ 0
 VA
 Text GLabel 2500 1100 0    60   Input ~ 0
-VSine
+VSin1
 $Comp
 L 0 #GND01
 U 1 1 5B0E04BE
@@ -87,7 +87,7 @@ F 3 "" H 1650 2450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text Notes 4300 3400 0    60   ~ 0
-+PSPICE\n.TRAN 0.1m 40m\n.control\nrun\nplot VA VSine VC title 'DC and sine voltages'\nplot VPulse title 'pulse voltage'\nplot VA VSine VPulse VC title 'Waveforms'\nplot VNC VCVS title 'VCVS voltage'\n
++PSPICE\n.TRAN 0.1m 40m\n.control\nrun\nplot VA VSin1 VC title 'DC and sine voltages'\nplot VPul1 title 'pulse voltage'\nplot VA VSin1 VPul1 VC title 'Waveforms'\nplot VNC VCVS title 'VCVS voltage'\nplot VNC2 VCVS2 title 'VCVS2 voltage'\n
 Connection ~ 1650 1050
 Connection ~ 2500 1100
 $Comp
@@ -198,7 +198,7 @@ F 3 "" H 2750 2650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 3700 1150 0    60   Input ~ 0
-VPulse
+VPul1
 $Comp
 L 0 #GND07
 U 1 1 5B10EAA6
@@ -240,7 +240,7 @@ L Vsine0VOffset17.1Vpeak50Hz1mSDelay0Damping0Phase V1
 U 1 1 5B10EB8E
 P 2500 1400
 F 0 "V1" H 2500 1350 50  0000 C CNN
-F 1 "Vsine0VOffset17.1Vpeak50Hz1mSDelay0Damping0Phase" H 2500 1900 50  0000 C CNN
+F 1 "Vsine0VOffset17.1Vpeak50Hz1msDelay0Damping0Phase" H 2500 1900 50  0000 C CNN
 F 2 "" H 2500 1400 50  0001 C CNN
 F 3 "" H 2500 1400 50  0001 C CNN
 	1    2500 1400
@@ -251,7 +251,7 @@ L Vpulse0VInit4.95Vpulsed2nSDelay0.2mSRise.2mSFall10.85mSWidth20mSPeriod0Phase V
 U 1 1 5B11028D
 P 3700 1450
 F 0 "V5" H 3700 1400 50  0000 C CNN
-F 1 "Vpulse0VInit4.95Vpulsed2nSDelay0.2mSRise.2mSFall10.85mSWidth20mSPeriod0Phase" H 3700 1900 50  0000 C CNN
+F 1 "Vpulse0VInit4.95Vpulsed2nsDelay0.2msRise0.2msFall10.85msWidth20msPeriod0Phase" H 3700 1900 50  0000 C CNN
 F 2 "" H 3700 1450 50  0001 C CNN
 F 3 "" H 3700 1450 50  0001 C CNN
 	1    3700 1450
@@ -579,9 +579,7 @@ F 3 "" H 5900 1750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	5250 1650 5250 1850
-Wire Wire Line
-	5250 1850 5250 2050
+	5250 1650 5250 2050
 Wire Wire Line
 	5250 1850 5450 1850
 $Comp
@@ -603,14 +601,85 @@ Connection ~ 5250 1850
 Text GLabel 4950 1450 0    60   Input ~ 0
 VNC
 $Comp
-L VCVS0.5Gain E?
+L VCVS0.5Gain E1
 U 1 1 5B12A85C
 P 5450 1550
-F 0 "E?" H 5450 1500 50  0000 C CNN
+F 0 "E1" H 5450 1500 50  0000 C CNN
 F 1 "VCVS0.5Gain" H 5450 1950 50  0000 C CNN
 F 2 "" H 5450 1550 50  0001 C CNN
 F 3 "" H 5450 1550 50  0001 C CNN
 	1    5450 1550
+	1    0    0    -1  
+$EndComp
+Text GLabel 7150 1250 0    60   Input ~ 0
+VCVS2
+$Comp
+L 0 #GND011
+U 1 1 5B177B28
+P 7150 1850
+F 0 "#GND011" H 7150 1750 50  0001 C CNN
+F 1 "0" H 7150 1780 50  0000 C CNN
+F 2 "" H 7150 1850 50  0001 C CNN
+F 3 "" H 7150 1850 50  0001 C CNN
+	1    7150 1850
+	1    0    0    -1  
+$EndComp
+Connection ~ 7150 1250
+$Comp
+L R R6
+U 1 1 5B177B2F
+P 7600 1500
+F 0 "R6" V 7680 1500 50  0000 C CNN
+F 1 "10K" V 7600 1500 50  0000 C CNN
+F 2 "" H 7600 1500 50  0001 C CNN
+F 3 "" H 7600 1500 50  0001 C CNN
+	1    7600 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 1250 7150 1250
+$Comp
+L 0 #GND012
+U 1 1 5B177B36
+P 7600 1750
+F 0 "#GND012" H 7600 1650 50  0001 C CNN
+F 1 "0" H 7600 1680 50  0000 C CNN
+F 2 "" H 7600 1750 50  0001 C CNN
+F 3 "" H 7600 1750 50  0001 C CNN
+	1    7600 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 1650 6950 2050
+Wire Wire Line
+	6950 1850 7150 1850
+Wire Wire Line
+	6950 1450 6650 1450
+Wire Wire Line
+	6950 2050 6650 2050
+Connection ~ 6950 1850
+Text GLabel 6650 1450 0    60   Input ~ 0
+VNC2
+$Comp
+L Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V6
+U 1 1 5B17801B
+P 6650 1750
+F 0 "V6" H 6650 1700 50  0000 C CNN
+F 1 "Vpulse0VInit5Vpulsed2nsDelay6msRise6msFall2msWidth20msPeriod0Phase" H 6950 2450 50  0000 C CNN
+F 2 "" H 6650 1750 50  0001 C CNN
+F 3 "" H 6650 1750 50  0001 C CNN
+	1    6650 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCVS5V2.5VTrigger ENLeq1
+U 1 1 5B17A328
+P 7150 1550
+F 0 "ENLeq1" H 7150 1500 50  0000 C CNN
+F 1 "VCVS5V2.5VTrigger" H 7150 1600 50  0000 C CNN
+F 2 "" H 7150 1550 50  0001 C CNN
+F 3 "" H 7150 1550 50  0001 C CNN
+	1    7150 1550
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

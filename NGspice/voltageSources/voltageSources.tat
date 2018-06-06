@@ -1,30 +1,34 @@
-* /home/guy/aProjects/circuits/PWMdriver/voltageSources/voltageSources.cir
+* /home/guy/aProjects/circuits/NGspice/voltageSources/voltageSources.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Sat 02 Jun 2018 22:25:19 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 06 Jun 2018 20:01:38 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
 
 * Sheet Name: /
 V2  VA 0 +12V		
-R2  VSine 0 10K		
+R2  VSin1 0 10K		
 R1  VA 0 10K		
 V3  VC 0 +5V		
 R3  VC Net-_R3-Pad2_ 10K		
 V4  Net-_R3-Pad2_ GND 0V		
-R4  VPulse 0 10K		
-V1  VSine 0 sin 0VOffset 17.1Vpeak 50Hz 1mSDelay 0Damping 0Phase		
-V5  VPulse 0 pulse 0VInit 4.95Vpulsed 2nsDelay 0.2msRise 0.2msFall 10.85msWidth 20msPeriod 0Phase		
+R4  VPul1 0 10K		
+V1  VSin1 0 sin 0VOffset 17.1Vpeak 50Hz 1msDelay 0Damping 0Phase		
+V5  VPul1 0 pulse 0VInit 4.95Vpulsed 2nsDelay 0.2msRise 0.2msFall 10.85msWidth 20msPeriod 0Phase		
 R5  VCVS 0 10K		
 V7  VNC 0 +15V		
 E1  VCVS 0 VNC 0 0.5 Gain 		
+R6  VCVS2 0 10K		
+V6  VNC2 0 pulse 0VInit 5Vpulsed 2nsDelay 6msRise 6msFall 2msWidth 20msPeriod 0Phase		
+ENLeq1 VCVS2 0 value={V(VNC2)>2.5 ? 0 + 5 : 0} 		
 
 .TRAN 0.1m 40m
 .control
 run
-* plot VA VSine VC title 'DC and sine voltages'
-plot VPulse title 'pulse voltage'
-plot VA VSine VPulse VC title 'Waveforms'
+plot VA VSin1 VC title 'DC and sine voltages'
+plot VPul1 title 'pulse voltage'
+plot VA VSin1 VPul1 VC title 'Waveforms'
 plot VNC VCVS title 'VCVS voltage'
+plot VNC2 VCVS2 title 'VCVS2 voltage'
 
-.end
+*.end

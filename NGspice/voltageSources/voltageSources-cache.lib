@@ -94,6 +94,25 @@ X NC- 4 -200 -100 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
+# VCVS5V2.5VTrigger
+#
+DEF VCVS5V2.5VTrigger ENLeq 0 0 Y Y 1 F N
+F0 "ENLeq" 0 -50 50 H V C CNN
+F1 "VCVS5V2.5VTrigger" 0 50 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+C 0 0 150 0 1 0 N
+T 0 230 -60 100 0 0 1 V Normal 0 C C
+P 2 0 1 0 300 -125 300 25 F
+P 3 0 1 0 250 25 300 125 350 25 F
+X N+ 1 0 300 150 D 50 50 1 1 I
+X N- 2 0 -300 150 U 50 50 1 1 I
+X NC+ 3 -200 100 100 R 50 50 1 1 I
+X NC- 4 -200 -100 100 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
 # VSOURCE
 #
 DEF VSOURCE V 0 40 Y Y 1 F N
@@ -116,6 +135,23 @@ ENDDEF
 DEF Vpulse0VInit4.95Vpulsed2nSDelay0.2mSRise.2mSFall10.85mSWidth20mSPeriod0Phase V 0 0 Y Y 1 F N
 F0 "V" 0 -50 50 H V C CNN
 F1 "Vpulse0VInit4.95Vpulsed2nSDelay0.2mSRise.2mSFall10.85mSWidth20mSPeriod0Phase" 0 50 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+C 0 0 150 0 1 0 N
+T 0 -270 -10 100 0 0 1 V Normal 0 C C
+P 2 0 1 0 -200 -75 -200 75 F
+P 3 0 1 0 -250 75 -200 175 -150 75 F
+X E1 1 0 300 150 D 50 50 1 1 I
+X E2 2 0 -300 150 U 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase
+#
+DEF Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V 0 0 Y Y 1 F N
+F0 "V" 0 -50 50 H V C CNN
+F1 "Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase" 0 50 50 H V C CNN
 F2 "" 0 0 50 H I C CNN
 F3 "" 0 0 50 H I C CNN
 DRAW
