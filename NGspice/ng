@@ -1,15 +1,18 @@
 #!/bin/bash
 # Script to edit spice netlist output of KiCad to make it work with ngspice 
 echo "Running script file ng"
-sed -e 's/SwitchNO/SwitchNO \n.model SwitchNO SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1/' \
+sed -e 's/SwitchNO/SwitchNO \n.model SwitchNO SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1 /' \
     -e 's/Schmidt\([0-9][0-9.]*\)\(VHysteresis\)/Schmidt\n.model Schmidt SW Roff=1e7 Ron=0.01 Vt=0 Vh=\1 /' \
-    -e 's/SwitchNC/SwitchNC \n.model SwitchNC SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1/' \
+    -e 's/SwitchNC/SwitchNC \n.model SwitchNC SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1 /' \
     -e 's/Vsine\([0-9][0-9.pnum]*VOffset\)\([0-9][0-9.pnum]*Vpeak\)\([0-9][0-9.k]*Hz\)\([0-9][0-9.pnum]*sDelay\)\([0-9][0-9.]*Damping\)\([0-9][0-9.]*Phase\)/sin \1 \2 \3 \4 \5 \6/' \
     -e 's/Vpulse\([0-9.][0-9.pnum]*VInit\)\([0-9.][0-9.pnum]*Vpulsed\)\([0-9.][0-9.pnum]*sDelay\)\([0-9.][0-9.pnum]*sRise\)\([0-9.][0-9.pnum]*sFall\)\([0-9.][0-9.pnum]*sWidth\)\([0-9.][0-9.pnum]*sPeriod\)\([0-9.][0-9.]*Phase\)/pulse \1 \2 \3 \4 \5 \6 \7 \8/' \
     -e 's/VCVS\([0-9][0-9.]*\)\(\Gain\)/\1 \2 /' \
     -e 's/Buffer\([0-9][0-9.pnum]*sRise\)\([0-9][0-9.pnum]*sFall\)/Buffer \n.model Buffer d_buffer(rise_delay=\1 fall_delay=\2) /' \
     -e 's/adcBridge/adcBridge \n.model adcBridge adc_bridge(in_low=2 in_high=3) /' \
+    -e 's/\(^SCO_subcircuit[0-9]*\) *\([A-Za-z0-9_\-]*\) \([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]*\) \([A-Za-z0-9_\-]*\) \([A-Za-z0-9_\-]*\) SwitchCO\([0-9][0-9.pnum]*\)\(Lo\)\([0-9][0-9.pnum]*\)\(Hi\)/SNO\1 \2 \3 \5\ \6 MNO\1 \n.model MNO\1 SW Vt=2.5 Vh=0 Roff=1e9 Ron=\9 \nSNC\1 \2 \4 \5 \6 MNC\1 \n.model MNC\1 SW Roff=\7 Ron=1e9 Vt=2.5 Vh=0/' \
     -e 's/.end/*.end/' \
     <$1.cir >$1.tat
 mousepad $1.tat
 ngspice $1.tat
+#    -e 's/^SCO_subcircuit[0-9]*  *\(VCOM\)/.SUBCKT \n0:\0 \n1:\1 \n.ENDS /' \
+#    -e 's/^SCO_subcircuit[0-9]*  *\([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]* \)/.SUBCKT \n\0 \n1:\1 \n2:\2 \n3:\3 \n4:\4 \n5:\5 \n6:\6 \n7:\7 \n8:~ \n.ENDS/' \

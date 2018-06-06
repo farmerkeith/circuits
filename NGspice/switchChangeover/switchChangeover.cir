@@ -1,0 +1,26 @@
+* /home/guy/aProjects/circuits/NGspice/switchChangeover/switchChangeover.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Wed 06 Jun 2018 13:27:26 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V2  IN GND pulse 0V 5V 2ns 3us 3us 7us 20us  		
+V1  Net-_S1-Pad2_ GND 12V 		
+C1  OUT GND 10nF		
+R1  OUT Net-_R1-Pad2_ 15		
+R2  OUT Net-_R2-Pad2_ 15		
+S1  Net-_R1-Pad2_ Net-_S1-Pad2_ IN GND SwitchNO		
+S2  GND Net-_R2-Pad2_ IN GND SwitchNC		
+V3  Net-_SCO_subcircuit1-Pad2_ GND +5V		
+C2  VCOM GND 1.44269504nF		
+SCO_subcircuit1  VCOM Net-_SCO_subcircuit1-Pad2_ GND IN GND SwitchCO94Lo120Hi		
+
+.tran 5us 41us
+.control 
+run
+plot in out  title 'Switching action'
+plot in VCOM  title 'CO Switching action'
+
+.end
