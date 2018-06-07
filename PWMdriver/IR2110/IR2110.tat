@@ -1,0 +1,95 @@
+* /home/guy/aProjects/circuits/PWMdriver/IR2110/IR2110.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 07 Jun 2018 22:28:47 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+R1  LO 0 5K		
+R3  HIN 0 5K		
+V1  Vpp 0 +30V		
+V2  Vpp Vs +12V		
+V5  Vdd 0 +5V		
+V3  Vcc 0 +12V		
+V4  LIN 0 pulse 1VInit 4Vpulsed 2nsDelay 2nsRise 2nsFall 1.998usWidth 5usPeriod 0Phase		
+D1  LIN Vdd 1N4148		;Node Sequence Spec.<2,1>
+D2  0 LIN 1N4148		;Node Sequence Spec.<2,1>
+S1  Net-_S1-Pad1_ Vint1 LIN Net-_E1-Pad1_ Schmidt
+.model Schmidt SW Roff=1e7 Ron=0.01 Vt=0 Vh=1 		
+E1  Net-_E1-Pad1_ 0 Vdd 0 0.5 Gain 		
+V6  Net-_S1-Pad1_ 0 +5V		
+R5  Vint1 0 10K		
+R7  Vs 0 1000K		
+VDelayBuffer1 node5VDelayBuffer1 0 5V 
+SNODelayBuffer1 nodeCOMDelayBuffer1 node5VDelayBuffer1 Vint1 0 MNODelayBuffer1 
+.model MNODelayBuffer1 SW Vt=2.5 Vh=0 Roff=1e9 Ron=120 
+SNCDelayBuffer1 nodeCOMDelayBuffer1 0 Vint1 0 MNCDelayBuffer1 
+.model MNCDelayBuffer1 SW Vt=2.5 Vh=0 Ron=1e9 Roff=94 
+CDelayBuffer1 nodeCOMDelayBuffer1 0 1.44269504nF 
+ENLDelayBuffer1 LINdelayed 0 value={V(nodeCOMDelayBuffer1)>2.5 ? 0+5 : 0} 		
+R9  LINdelayed 0 10K		
+V7  HIN 0 pulse 1.1VInit 3.9Vpulsed 2nsDelay 2nsRise 2nsFall 1.998usWidth 5usPeriod 0Phase		
+D3  SD Vdd 1N4148		;Node Sequence Spec.<2,1>
+D4  0 SD 1N4148		;Node Sequence Spec.<2,1>
+S2  Net-_S2-Pad1_ SDt1 SD Net-_E2-Pad1_ Schmidt
+.model Schmidt SW Roff=1e7 Ron=0.01 Vt=0 Vh=1 		
+E2  Net-_E2-Pad1_ 0 Vdd 0 0.5 Gain 		
+V9  Net-_S2-Pad1_ 0 +5V		
+R6  SDt1 0 10K		
+VDelayBuffer2 node5VDelayBuffer2 0 5V 
+SNODelayBuffer2 nodeCOMDelayBuffer2 node5VDelayBuffer2 SDt1 0 MNODelayBuffer2 
+.model MNODelayBuffer2 SW Vt=2.5 Vh=0 Roff=1e9 Ron=110 
+SNCDelayBuffer2 nodeCOMDelayBuffer2 0 SDt1 0 MNCDelayBuffer2 
+.model MNCDelayBuffer2 SW Vt=2.5 Vh=0 Ron=1e9 Roff=110 
+CDelayBuffer2 nodeCOMDelayBuffer2 0 1.44269504nF 
+ENLDelayBuffer2 SDdelayed 0 value={V(nodeCOMDelayBuffer2)>2.5 ? 0+5 : 0} 		
+R8  SDdelayed 0 10K		
+V8  SD 0 pulse 0.9VInit 4.1Vpulsed 10usDelay 20nsRise 20nsFall 10usWidth 20usPeriod 0Phase		
+D5  HIN Vdd 1N4148		;Node Sequence Spec.<2,1>
+D6  0 HIN 1N4148		;Node Sequence Spec.<2,1>
+S3  Net-_S3-Pad1_ HINt1 HIN Net-_E3-Pad1_ Schmidt
+.model Schmidt SW Roff=1e7 Ron=0.01 Vt=0 Vh=1 		
+E3  Net-_E3-Pad1_ 0 Vdd 0 0.5 Gain 		
+V10  Net-_S3-Pad1_ 0 +5V		
+R10  HINt1 0 10K		
+VDelayBuffer3 node5VDelayBuffer3 0 5V 
+SNODelayBuffer3 nodeCOMDelayBuffer3 node5VDelayBuffer3 HINt1 0 MNODelayBuffer3 
+.model MNODelayBuffer3 SW Vt=2.5 Vh=0 Roff=1e9 Ron=120 
+SNCDelayBuffer3 nodeCOMDelayBuffer3 0 HINt1 0 MNCDelayBuffer3 
+.model MNCDelayBuffer3 SW Vt=2.5 Vh=0 Ron=1e9 Roff=94 
+CDelayBuffer3 nodeCOMDelayBuffer3 0 1.44269504nF 
+ENLDelayBuffer3 HINdelayed 0 value={V(nodeCOMDelayBuffer3)>2.5 ? 0+5 : 0} 		
+R11  HINdelayed 0 10K		
+SNOSCO_subcircuit1 Net-_SCO_subcircuit1-Pad1_ 0  SDdelayed 0 MNOSCO_subcircuit1 
+.model MNOSCO_subcircuit1 SW Vt=2.5 Vh=0 Roff=1e9 Ron=7.5 
+SNCSCO_subcircuit1 Net-_SCO_subcircuit1-Pad1_ LINdelayed SDdelayed 0 MNCSCO_subcircuit1 
+.model MNCSCO_subcircuit1 SW Roff=7.5 Ron=1e9 Vt=2.5 Vh=0		
+SNOSCO_subcircuit2 LO Vcc  Net-_SCO_subcircuit1-Pad1_ 0 MNOSCO_subcircuit2 
+.model MNOSCO_subcircuit2 SW Vt=2.5 Vh=0 Roff=1e9 Ron=7.5 
+SNCSCO_subcircuit2 LO 0 Net-_SCO_subcircuit1-Pad1_ 0 MNCSCO_subcircuit2 
+.model MNCSCO_subcircuit2 SW Roff=7.5 Ron=1e9 Vt=2.5 Vh=0		
+R2  HO 0 500K		
+SNOSCO_subcircuit3 Net-_SCO_subcircuit3-Pad1_ 0  SDdelayed 0 MNOSCO_subcircuit3 
+.model MNOSCO_subcircuit3 SW Vt=2.5 Vh=0 Roff=1e9 Ron=7.5 
+SNCSCO_subcircuit3 Net-_SCO_subcircuit3-Pad1_ HINdelayed SDdelayed 0 MNCSCO_subcircuit3 
+.model MNCSCO_subcircuit3 SW Roff=7.5 Ron=1e9 Vt=2.5 Vh=0		
+SNOSCO_subcircuit4 HO Vpp  Net-_SCO_subcircuit3-Pad1_ 0 MNOSCO_subcircuit4 
+.model MNOSCO_subcircuit4 SW Vt=2.5 Vh=0 Roff=1e9 Ron=7.5 
+SNCSCO_subcircuit4 HO Vs Net-_SCO_subcircuit3-Pad1_ 0 MNCSCO_subcircuit4 
+.model MNCSCO_subcircuit4 SW Roff=7.5 Ron=1e9 Vt=2.5 Vh=0		
+C1  LO 0 3nF		
+C2  HO 0 3nF		
+
+*.include ../../ComponentModels/ir2110.sub
+.include ../../ComponentModels/1n4148.spi
+.tran 5us 21us
+.control 
+run
+plot LIN LINdelayed SD SDdelayed+0.05 HIN HINdelayed title LIN
+*plot LIN Vint1 LINdelayed SD SDt1 SDdelayed title LIN
+plot LIN HIN SD lo ho title 'LO and HO'
+*plot xu1.md1_trig3_3  lin xu1.md2_inv2_1
+*plot lin xu1.md2_inv2_2 xu1.md2_nor3b_1
+
+*.end

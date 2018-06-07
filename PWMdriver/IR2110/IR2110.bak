@@ -1,0 +1,838 @@
+EESchema Schematic File Version 2
+LIBS:NGspice
+LIBS:pspice
+LIBS:Modules
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:IR2110-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "IR2110 for P-channel High side and N-channel Low side"
+Date "2018-06-04"
+Rev ""
+Comp "farmerkeith"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	900  5250 1400 5250
+Text GLabel 1400 6100 0    60   Input ~ 0
+Vs
+Text GLabel 8650 1800 0    60   Input ~ 0
+LO
+Text GLabel 2300 1150 3    60   Input ~ 0
+LIN
+Text GLabel 900  800  0    60   Input ~ 0
+Vcc
+$Comp
+L R R1
+U 1 1 5B096D1F
+P 8650 2050
+F 0 "R1" V 8730 2050 50  0000 C CNN
+F 1 "5K" V 8650 2050 50  0000 C CNN
+F 2 "" H 8650 2050 50  0001 C CNN
+F 3 "" H 8650 2050 50  0001 C CNN
+	1    8650 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  7000 2200 7000
+Text Notes 6900 6200 0    60   ~ 0
++PSPICE\n*.include ../../ComponentModels/ir2110.sub\n.include ../../ComponentModels/1n4148.spi\n.tran 5us 21us\n.control \nrun\nplot LIN LINdelayed SD SDdelayed+0.05 HIN HINdelayed title LIN\n*plot LIN Vint1 LINdelayed SD SDt1 SDdelayed title LIN\nplot LIN HIN SD lo ho title 'LO and HO'\n*plot xu1.md1_trig3_3  lin xu1.md2_inv2_1\n*plot lin xu1.md2_inv2_2 xu1.md2_nor3b_1\n
+$Comp
+L R R3
+U 1 1 5B09E4C6
+P 2200 6050
+F 0 "R3" V 2100 6050 50  0000 C CNN
+F 1 "5K" V 2200 6050 50  0000 C CNN
+F 2 "" H 2200 6050 50  0001 C CNN
+F 3 "" H 2200 6050 50  0001 C CNN
+	1    2200 6050
+	1    0    0    -1  
+$EndComp
+Text GLabel 2200 5800 1    60   Input ~ 0
+HIN
+$Comp
+L +5V V1
+U 1 1 5B153A31
+P 900 5550
+F 0 "V1" H 900 5500 50  0000 C CNN
+F 1 "+30V" H 900 5600 50  0000 C CNN
+F 2 "" H 900 5550 50  0001 C CNN
+F 3 "" H 900 5550 50  0001 C CNN
+	1    900  5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V V2
+U 1 1 5B153B0C
+P 1400 5550
+F 0 "V2" H 1400 5500 50  0000 C CNN
+F 1 "+12V" H 1400 5600 50  0000 C CNN
+F 2 "" H 1400 5550 50  0001 C CNN
+F 3 "" H 1400 5550 50  0001 C CNN
+	1    1400 5550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 6100 1400 5850
+$Comp
+L +5V V5
+U 1 1 5B153E21
+P 1400 1450
+F 0 "V5" H 1400 1400 50  0000 C CNN
+F 1 "+5V" H 1400 1500 50  0000 C CNN
+F 2 "" H 1400 1450 50  0001 C CNN
+F 3 "" H 1400 1450 50  0001 C CNN
+	1    1400 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V V3
+U 1 1 5B153E4C
+P 900 1450
+F 0 "V3" H 900 1400 50  0000 C CNN
+F 1 "+12V" H 900 1500 50  0000 C CNN
+F 2 "" H 900 1450 50  0001 C CNN
+F 3 "" H 900 1450 50  0001 C CNN
+	1    900  1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V4
+U 1 1 5B1541EF
+P 1900 1450
+F 0 "V4" H 1900 1400 50  0000 C CNN
+F 1 "Vpulse1VInit4Vpulsed2nsDelay2nsRise2nsFall1.998usWidth5usPeriod0Phase" H 1900 1800 50  0000 C CNN
+F 2 "" H 1900 1450 50  0001 C CNN
+F 3 "" H 1900 1450 50  0001 C CNN
+	1    1900 1450
+	1    0    0    -1  
+$EndComp
+Text GLabel 2600 850  1    60   Input ~ 0
+Vdd
+$Comp
+L D D1
+U 1 1 5B158594
+P 2800 1000
+F 0 "D1" H 2800 1100 50  0000 C CNN
+F 1 "1N4148" H 2800 900 50  0000 C CNN
+F 2 "" H 2800 1000 50  0001 C CNN
+F 3 "" H 2800 1000 50  0001 C CNN
+F 4 "2,1" H 2800 1000 60  0001 C CNN "Spice_Node_Sequence"
+	1    2800 1000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1400 850  2800 850 
+Wire Wire Line
+	1900 1150 3400 1150
+$Comp
+L D D2
+U 1 1 5B15878E
+P 2800 1300
+F 0 "D2" H 2800 1400 50  0000 C CNN
+F 1 "1N4148" H 2800 1200 50  0000 C CNN
+F 2 "" H 2800 1300 50  0001 C CNN
+F 3 "" H 2800 1300 50  0001 C CNN
+F 4 "2,1" H 2800 1300 60  0001 C CNN "Spice_Node_Sequence"
+	1    2800 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L Schmidt1VHysteresis S1
+U 1 1 5B158EBE
+P 3600 1450
+F 0 "S1" H 3950 1600 50  0000 L CNN
+F 1 "Schmidt1VHysteresis" H 3250 1950 50  0000 L CNN
+F 2 "switchSpice" H 4870 1420 50  0001 C CNN
+F 3 "" H 3600 1450 50  0001 C CNN
+	1    3600 1450
+	1    0    0    -1  
+$EndComp
+Connection ~ 2800 1150
+$Comp
+L VCVS0.5Gain E1
+U 1 1 5B158F41
+P 2800 2050
+F 0 "E1" H 2800 2000 50  0000 C CNN
+F 1 "VCVS0.5Gain" H 2800 2400 50  0000 C CNN
+F 2 "" H 2800 2050 50  0001 C CNN
+F 3 "" H 2800 2050 50  0001 C CNN
+	1    2800 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 1750 2800 1750
+Wire Wire Line
+	2600 2350 9100 2350
+Wire Wire Line
+	2600 2350 2600 2150
+Text GLabel 2600 1950 0    60   Input ~ 0
+Vdd
+$Comp
+L +5V V6
+U 1 1 5B15912D
+P 3750 2050
+F 0 "V6" H 3750 2000 50  0000 C CNN
+F 1 "+5V" H 3750 2100 50  0000 C CNN
+F 2 "" H 3750 2050 50  0001 C CNN
+F 3 "" H 3750 2050 50  0001 C CNN
+	1    3750 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R5
+U 1 1 5B159344
+P 4400 1400
+F 0 "R5" V 4480 1400 50  0000 C CNN
+F 1 "10K" V 4400 1400 50  0000 C CNN
+F 2 "" H 4400 1400 50  0001 C CNN
+F 3 "" H 4400 1400 50  0001 C CNN
+	1    4400 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 1150 4750 1150
+Wire Wire Line
+	4400 2350 4400 1650
+Connection ~ 3750 2350
+Text GLabel 4400 1150 1    60   Input ~ 0
+Vint1
+$Comp
+L R R7
+U 1 1 5B159C70
+P 1400 6350
+F 0 "R7" V 1480 6350 50  0000 C CNN
+F 1 "1000K" V 1400 6350 50  0000 C CNN
+F 2 "" H 1400 6350 50  0001 C CNN
+F 3 "" H 1400 6350 50  0001 C CNN
+	1    1400 6350
+	1    0    0    -1  
+$EndComp
+Connection ~ 1400 6100
+Wire Wire Line
+	1400 6600 1400 7000
+$Comp
+L Delay120Rise94Fall_nsUnits DelayBuffer1
+U 1 1 5B1887F3
+P 5000 1150
+F 0 "DelayBuffer1" H 5100 1300 50  0000 C CNN
+F 1 "Delay120Rise94Fall_nsUnits" H 4950 1500 50  0000 C CNN
+F 2 "" H 5000 1150 60  0001 C CNN
+F 3 "" H 5000 1150 60  0001 C CNN
+	1    5000 1150
+	1    0    0    -1  
+$EndComp
+Connection ~ 4400 1150
+Wire Wire Line
+	4950 2350 4950 1350
+$Comp
+L R R9
+U 1 1 5B188F99
+P 5550 1400
+F 0 "R9" V 5630 1400 50  0000 C CNN
+F 1 "10K" V 5550 1400 50  0000 C CNN
+F 2 "" H 5550 1400 50  0001 C CNN
+F 3 "" H 5550 1400 50  0001 C CNN
+	1    5550 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 1150 6700 1150
+Wire Wire Line
+	5550 2350 5550 1650
+Connection ~ 5550 2350
+Text GLabel 5550 1150 1    60   Input ~ 0
+LINdelayed
+$Comp
+L 0 #GND01
+U 1 1 5B18A0C8
+P 2800 2400
+F 0 "#GND01" H 2800 2300 50  0001 C CNN
+F 1 "0" H 2800 2330 50  0000 C CNN
+F 2 "" H 2800 2400 50  0001 C CNN
+F 3 "" H 2800 2400 50  0001 C CNN
+	1    2800 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  5850 900  7100
+Connection ~ 1400 7000
+$Comp
+L 0 #GND02
+U 1 1 5B18D967
+P 900 7100
+F 0 "#GND02" H 900 7000 50  0001 C CNN
+F 1 "0" H 900 7030 50  0000 C CNN
+F 2 "" H 900 7100 50  0001 C CNN
+F 3 "" H 900 7100 50  0001 C CNN
+	1    900  7100
+	1    0    0    -1  
+$EndComp
+Connection ~ 900  7000
+Wire Wire Line
+	900  1750 1900 1750
+Connection ~ 1400 1750
+Wire Wire Line
+	900  1750 900  1850
+$Comp
+L 0 #GND03
+U 1 1 5B192540
+P 900 1850
+F 0 "#GND03" H 900 1750 50  0001 C CNN
+F 1 "0" H 900 1780 50  0000 C CNN
+F 2 "" H 900 1850 50  0001 C CNN
+F 3 "" H 900 1850 50  0001 C CNN
+	1    900  1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 1150 1400 850 
+Wire Wire Line
+	900  800  900  1150
+$Comp
+L Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V7
+U 1 1 5B195EEA
+P 1800 6600
+F 0 "V7" H 1800 6550 50  0000 C CNN
+F 1 "Vpulse1.1VInit3.9Vpulsed2nsDelay2nsRise2nsFall1.998usWidth5usPeriod0Phase" H 1800 6950 50  0000 C CNN
+F 2 "" H 1800 6600 50  0001 C CNN
+F 3 "" H 1800 6600 50  0001 C CNN
+	1    1800 6600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2200 7000 2200 6300
+Wire Wire Line
+	1800 6300 1800 5800
+Wire Wire Line
+	1800 5800 3950 5800
+Text GLabel 900  5250 1    60   Input ~ 0
+Vpp
+Connection ~ 4950 2350
+Connection ~ 4400 2350
+Wire Wire Line
+	2800 2350 2800 2400
+Connection ~ 2800 2350
+Text GLabel 2800 2900 1    60   Input ~ 0
+Vdd
+$Comp
+L D D3
+U 1 1 5B19B0A8
+P 2800 3050
+F 0 "D3" H 2800 3150 50  0000 C CNN
+F 1 "1N4148" H 2800 2950 50  0000 C CNN
+F 2 "" H 2800 3050 50  0001 C CNN
+F 3 "" H 2800 3050 50  0001 C CNN
+F 4 "2,1" H 2800 3050 60  0001 C CNN "Spice_Node_Sequence"
+	1    2800 3050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1900 3200 3400 3200
+$Comp
+L D D4
+U 1 1 5B19B0B1
+P 2800 3350
+F 0 "D4" H 2800 3450 50  0000 C CNN
+F 1 "1N4148" H 2800 3250 50  0000 C CNN
+F 2 "" H 2800 3350 50  0001 C CNN
+F 3 "" H 2800 3350 50  0001 C CNN
+F 4 "2,1" H 2800 3350 60  0001 C CNN "Spice_Node_Sequence"
+	1    2800 3350
+	0    1    1    0   
+$EndComp
+$Comp
+L Schmidt1VHysteresis S2
+U 1 1 5B19B0B8
+P 3600 3500
+F 0 "S2" H 3950 3650 50  0000 L CNN
+F 1 "Schmidt1VHysteresis" H 3250 4000 50  0000 L CNN
+F 2 "switchSpice" H 4870 3470 50  0001 C CNN
+F 3 "" H 3600 3500 50  0001 C CNN
+	1    3600 3500
+	1    0    0    -1  
+$EndComp
+Connection ~ 2800 3200
+$Comp
+L VCVS0.5Gain E2
+U 1 1 5B19B0BF
+P 2800 4100
+F 0 "E2" H 2800 4050 50  0000 C CNN
+F 1 "VCVS0.5Gain" H 2800 4450 50  0000 C CNN
+F 2 "" H 2800 4100 50  0001 C CNN
+F 3 "" H 2800 4100 50  0001 C CNN
+	1    2800 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3400 3800 2800 3800
+Wire Wire Line
+	2600 4400 9050 4400
+Wire Wire Line
+	2600 4400 2600 4200
+Text GLabel 2600 4000 0    60   Input ~ 0
+Vdd
+$Comp
+L +5V V9
+U 1 1 5B19B0C9
+P 3750 4100
+F 0 "V9" H 3750 4050 50  0000 C CNN
+F 1 "+5V" H 3750 4150 50  0000 C CNN
+F 2 "" H 3750 4100 50  0001 C CNN
+F 3 "" H 3750 4100 50  0001 C CNN
+	1    3750 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R6
+U 1 1 5B19B0CF
+P 4400 3450
+F 0 "R6" V 4480 3450 50  0000 C CNN
+F 1 "10K" V 4400 3450 50  0000 C CNN
+F 2 "" H 4400 3450 50  0001 C CNN
+F 3 "" H 4400 3450 50  0001 C CNN
+	1    4400 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3750 3200 4750 3200
+Wire Wire Line
+	4400 4400 4400 3700
+Connection ~ 3750 4400
+Text GLabel 4400 3200 1    60   Input ~ 0
+SDt1
+$Comp
+L Delay120Rise94Fall_nsUnits DelayBuffer2
+U 1 1 5B19B0DF
+P 5000 3200
+F 0 "DelayBuffer2" H 5100 3350 50  0000 C CNN
+F 1 "Delay110Rise110Fall_nsUnits" H 4950 3550 50  0000 C CNN
+F 2 "" H 5000 3200 60  0001 C CNN
+F 3 "" H 5000 3200 60  0001 C CNN
+	1    5000 3200
+	1    0    0    -1  
+$EndComp
+Connection ~ 4400 3200
+Wire Wire Line
+	4950 4400 4950 3400
+$Comp
+L R R8
+U 1 1 5B19B0E7
+P 5550 3450
+F 0 "R8" V 5630 3450 50  0000 C CNN
+F 1 "10K" V 5550 3450 50  0000 C CNN
+F 2 "" H 5550 3450 50  0001 C CNN
+F 3 "" H 5550 3450 50  0001 C CNN
+	1    5550 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 3200 6400 3200
+Wire Wire Line
+	5550 4400 5550 3700
+Connection ~ 5550 4400
+Text GLabel 5550 3200 1    60   Input ~ 0
+SDdelayed
+$Comp
+L 0 #GND04
+U 1 1 5B19B0F1
+P 2800 4450
+F 0 "#GND04" H 2800 4350 50  0001 C CNN
+F 1 "0" H 2800 4380 50  0000 C CNN
+F 2 "" H 2800 4450 50  0001 C CNN
+F 3 "" H 2800 4450 50  0001 C CNN
+	1    2800 4450
+	1    0    0    -1  
+$EndComp
+Connection ~ 4950 4400
+Connection ~ 4400 4400
+Wire Wire Line
+	2800 4400 2800 4450
+Connection ~ 2800 4400
+$Comp
+L 0 #GND05
+U 1 1 5B19B62A
+P 2800 1450
+F 0 "#GND05" H 2800 1350 50  0001 C CNN
+F 1 "0" H 2800 1380 50  0000 C CNN
+F 2 "" H 2800 1450 50  0001 C CNN
+F 3 "" H 2800 1450 50  0001 C CNN
+	1    2800 1450
+	1    0    0    -1  
+$EndComp
+$Comp
+L 0 #GND06
+U 1 1 5B19B6BF
+P 2800 3500
+F 0 "#GND06" H 2800 3400 50  0001 C CNN
+F 1 "0" H 2800 3430 50  0000 C CNN
+F 2 "" H 2800 3500 50  0001 C CNN
+F 3 "" H 2800 3500 50  0001 C CNN
+	1    2800 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Vpulse0VInit5Vpulsed2nsDelay2msRise2msFall8msWidth20msPeriod0Phase V8
+U 1 1 5B19B71B
+P 1900 3500
+F 0 "V8" H 1900 3450 50  0000 C CNN
+F 1 "Vpulse0.9VInit4.1Vpulsed10usDelay20nsRise20nsFall10usWidth20usPeriod0Phase" H 1900 3850 50  0000 C CNN
+F 2 "" H 1900 3500 50  0001 C CNN
+F 3 "" H 1900 3500 50  0001 C CNN
+	1    1900 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L 0 #GND07
+U 1 1 5B19B8C9
+P 1900 3800
+F 0 "#GND07" H 1900 3700 50  0001 C CNN
+F 1 "0" H 1900 3730 50  0000 C CNN
+F 2 "" H 1900 3800 50  0001 C CNN
+F 3 "" H 1900 3800 50  0001 C CNN
+	1    1900 3800
+	1    0    0    -1  
+$EndComp
+Text GLabel 2300 3200 3    60   Input ~ 0
+SD
+Text GLabel 3350 5500 1    60   Input ~ 0
+Vdd
+$Comp
+L D D5
+U 1 1 5B19CE26
+P 3350 5650
+F 0 "D5" H 3350 5750 50  0000 C CNN
+F 1 "1N4148" H 3350 5550 50  0000 C CNN
+F 2 "" H 3350 5650 50  0001 C CNN
+F 3 "" H 3350 5650 50  0001 C CNN
+F 4 "2,1" H 3350 5650 60  0001 C CNN "Spice_Node_Sequence"
+	1    3350 5650
+	0    1    1    0   
+$EndComp
+$Comp
+L D D6
+U 1 1 5B19CE2E
+P 3350 5950
+F 0 "D6" H 3350 6050 50  0000 C CNN
+F 1 "1N4148" H 3350 5850 50  0000 C CNN
+F 2 "" H 3350 5950 50  0001 C CNN
+F 3 "" H 3350 5950 50  0001 C CNN
+F 4 "2,1" H 3350 5950 60  0001 C CNN "Spice_Node_Sequence"
+	1    3350 5950
+	0    1    1    0   
+$EndComp
+$Comp
+L Schmidt1VHysteresis S3
+U 1 1 5B19CE34
+P 4150 6100
+F 0 "S3" H 4500 6250 50  0000 L CNN
+F 1 "Schmidt1VHysteresis" H 3800 6600 50  0000 L CNN
+F 2 "switchSpice" H 5420 6070 50  0001 C CNN
+F 3 "" H 4150 6100 50  0001 C CNN
+	1    4150 6100
+	1    0    0    -1  
+$EndComp
+Connection ~ 3350 5800
+$Comp
+L VCVS0.5Gain E3
+U 1 1 5B19CE3B
+P 3350 6700
+F 0 "E3" H 3350 6650 50  0000 C CNN
+F 1 "VCVS0.5Gain" H 3350 7050 50  0000 C CNN
+F 2 "" H 3350 6700 50  0001 C CNN
+F 3 "" H 3350 6700 50  0001 C CNN
+	1    3350 6700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 6400 3350 6400
+Wire Wire Line
+	3150 7000 3150 6800
+Text GLabel 3150 6600 0    60   Input ~ 0
+Vdd
+$Comp
+L +5V V10
+U 1 1 5B19CE45
+P 4300 6700
+F 0 "V10" H 4300 6650 50  0000 C CNN
+F 1 "+5V" H 4300 6750 50  0000 C CNN
+F 2 "" H 4300 6700 50  0001 C CNN
+F 3 "" H 4300 6700 50  0001 C CNN
+	1    4300 6700
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R10
+U 1 1 5B19CE4B
+P 4950 6050
+F 0 "R10" V 5030 6050 50  0000 C CNN
+F 1 "10K" V 4950 6050 50  0000 C CNN
+F 2 "" H 4950 6050 50  0001 C CNN
+F 3 "" H 4950 6050 50  0001 C CNN
+	1    4950 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 5800 5300 5800
+Wire Wire Line
+	4950 7000 4950 6300
+Connection ~ 4300 7000
+Text GLabel 4950 5800 1    60   Input ~ 0
+HINt1
+$Comp
+L Delay120Rise94Fall_nsUnits DelayBuffer3
+U 1 1 5B19CE55
+P 5550 5800
+F 0 "DelayBuffer3" H 5650 5950 50  0000 C CNN
+F 1 "Delay120Rise94Fall_nsUnits" H 5500 6150 50  0000 C CNN
+F 2 "" H 5550 5800 60  0001 C CNN
+F 3 "" H 5550 5800 60  0001 C CNN
+	1    5550 5800
+	1    0    0    -1  
+$EndComp
+Connection ~ 4950 5800
+Wire Wire Line
+	5500 7000 5500 6000
+$Comp
+L R R11
+U 1 1 5B19CE5D
+P 6100 6050
+F 0 "R11" V 6180 6050 50  0000 C CNN
+F 1 "10K" V 6100 6050 50  0000 C CNN
+F 2 "" H 6100 6050 50  0001 C CNN
+F 3 "" H 6100 6050 50  0001 C CNN
+	1    6100 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 5800 6700 5800
+Wire Wire Line
+	6100 7000 6100 6300
+Text GLabel 6100 5800 1    60   Input ~ 0
+HINdelayed
+$Comp
+L 0 #GND08
+U 1 1 5B19CE67
+P 3350 7050
+F 0 "#GND08" H 3350 6950 50  0001 C CNN
+F 1 "0" H 3350 6980 50  0000 C CNN
+F 2 "" H 3350 7050 50  0001 C CNN
+F 3 "" H 3350 7050 50  0001 C CNN
+	1    3350 7050
+	1    0    0    -1  
+$EndComp
+Connection ~ 5500 7000
+Connection ~ 4950 7000
+Wire Wire Line
+	3350 7000 3350 7050
+Connection ~ 3350 7000
+$Comp
+L 0 #GND09
+U 1 1 5B19CE71
+P 3350 6100
+F 0 "#GND09" H 3350 6000 50  0001 C CNN
+F 1 "0" H 3350 6030 50  0000 C CNN
+F 2 "" H 3350 6100 50  0001 C CNN
+F 3 "" H 3350 6100 50  0001 C CNN
+	1    3350 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 7000 6100 7000
+Wire Wire Line
+	1800 6900 1800 7000
+Connection ~ 1800 7000
+$Comp
+L SwitchCO94Lo120Hi SCO_subcircuit1
+U 1 1 5B1A1E78
+P 6600 1600
+F 0 "SCO_subcircuit1" H 6725 1750 50  0000 L CNN
+F 1 "SwitchCO7.5Lo7.5Hi" H 6175 1475 50  0000 L CNN
+F 2 "switchSpice" H 7870 1570 50  0001 C CNN
+F 3 "" H 6600 1600 50  0001 C CNN
+	1    6600 1600
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	6700 1150 6700 1300
+Connection ~ 5550 1150
+Wire Wire Line
+	6700 1900 6700 3200
+Connection ~ 6700 2350
+Wire Wire Line
+	6400 3200 6400 1900
+Connection ~ 5550 3200
+Wire Wire Line
+	6400 1300 5800 1300
+Wire Wire Line
+	5800 1300 5800 2350
+Connection ~ 5800 2350
+$Comp
+L SwitchCO94Lo120Hi SCO_subcircuit2
+U 1 1 5B1A22AB
+P 7700 1600
+F 0 "SCO_subcircuit2" H 7825 1750 50  0000 L CNN
+F 1 "SwitchCO7.5Lo7.5Hi" H 7275 1475 50  0000 L CNN
+F 2 "switchSpice" H 8970 1570 50  0001 C CNN
+F 3 "" H 7700 1600 50  0001 C CNN
+	1    7700 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7800 1900 7800 2350
+Connection ~ 7800 2350
+Wire Wire Line
+	7100 1200 7100 1600
+Wire Wire Line
+	7100 1600 7000 1600
+Text GLabel 7800 750  0    60   Input ~ 0
+Vcc
+Wire Wire Line
+	7800 1300 7800 750 
+Wire Wire Line
+	8100 1600 9100 1600
+Wire Wire Line
+	8650 1600 8650 1800
+Wire Wire Line
+	8650 2300 8650 2350
+Connection ~ 8650 2350
+Text GLabel 8600 3600 0    60   Input ~ 0
+HO
+$Comp
+L R R2
+U 1 1 5B1A5081
+P 8600 3850
+F 0 "R2" V 8680 3850 50  0000 C CNN
+F 1 "500K" V 8600 3850 50  0000 C CNN
+F 2 "" H 8600 3850 50  0001 C CNN
+F 3 "" H 8600 3850 50  0001 C CNN
+	1    8600 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L SwitchCO94Lo120Hi SCO_subcircuit3
+U 1 1 5B1A5088
+P 6600 3500
+F 0 "SCO_subcircuit3" H 6725 3650 50  0000 L CNN
+F 1 "SwitchCO7.5Lo7.5Hi" H 6175 3375 50  0000 L CNN
+F 2 "switchSpice" H 7870 3470 50  0001 C CNN
+F 3 "" H 6600 3500 50  0001 C CNN
+	1    6600 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L SwitchCO94Lo120Hi SCO_subcircuit4
+U 1 1 5B1A5092
+P 7700 3500
+F 0 "SCO_subcircuit4" H 7825 3650 50  0000 L CNN
+F 1 "SwitchCO7.5Lo7.5Hi" H 7275 3375 50  0000 L CNN
+F 2 "switchSpice" H 8970 3470 50  0001 C CNN
+F 3 "" H 7700 3500 50  0001 C CNN
+	1    7700 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8100 3500 9050 3500
+Wire Wire Line
+	8600 3500 8600 3600
+Wire Wire Line
+	6400 3800 6400 4400
+Connection ~ 6400 4400
+Wire Wire Line
+	6700 5800 6700 3800
+Connection ~ 6100 5800
+Wire Wire Line
+	7200 3100 7200 3500
+Wire Wire Line
+	7200 3500 7000 3500
+Connection ~ 7500 2350
+Wire Wire Line
+	8600 4400 8600 4100
+Text GLabel 7800 3200 2    60   Input ~ 0
+Vpp
+Text GLabel 7800 3800 2    60   Input ~ 0
+Vs
+Wire Wire Line
+	7500 1300 7500 1200
+Wire Wire Line
+	7500 1200 7100 1200
+Wire Wire Line
+	7500 1900 7500 2350
+Wire Wire Line
+	7500 3200 7500 3100
+Wire Wire Line
+	7500 3100 7200 3100
+Wire Wire Line
+	7500 3800 7500 4400
+Connection ~ 7500 4400
+$Comp
+L C C1
+U 1 1 5B1AF7A2
+P 9100 1950
+F 0 "C1" V 9200 2100 50  0000 C CNN
+F 1 "3nF" V 9200 1800 50  0000 C CNN
+F 2 "" H 9100 1950 50  0001 C CNN
+F 3 "" H 9100 1950 50  0001 C CNN
+	1    9100 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9100 2350 9100 2200
+Wire Wire Line
+	9100 1600 9100 1700
+Connection ~ 8650 1600
+$Comp
+L C C2
+U 1 1 5B1AFAC3
+P 9050 3850
+F 0 "C2" V 9150 4000 50  0000 C CNN
+F 1 "3nF" V 9150 3700 50  0000 C CNN
+F 2 "" H 9050 3850 50  0001 C CNN
+F 3 "" H 9050 3850 50  0001 C CNN
+	1    9050 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9050 3500 9050 3600
+Wire Wire Line
+	9050 4400 9050 4100
+Connection ~ 8600 4400
+Connection ~ 8600 3500
+$EndSCHEMATC

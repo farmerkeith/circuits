@@ -1,0 +1,62 @@
+* /home/guy/aProjects/circuits/PWMdriver/IR2110/IR2110.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 07 Jun 2018 22:28:47 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+R1  LO 0 5K		
+R3  HIN 0 5K		
+V1  Vpp 0 +30V		
+V2  Vpp Vs +12V		
+V5  Vdd 0 +5V		
+V3  Vcc 0 +12V		
+V4  LIN 0 Vpulse1VInit4Vpulsed2nsDelay2nsRise2nsFall1.998usWidth5usPeriod0Phase		
+D1  LIN Vdd 1N4148		;Node Sequence Spec.<2,1>
+D2  0 LIN 1N4148		;Node Sequence Spec.<2,1>
+S1  Net-_S1-Pad1_ Vint1 LIN Net-_E1-Pad1_ Schmidt1VHysteresis		
+E1  Net-_E1-Pad1_ 0 Vdd 0 VCVS0.5Gain		
+V6  Net-_S1-Pad1_ 0 +5V		
+R5  Vint1 0 10K		
+R7  Vs 0 1000K		
+DelayBuffer1  Vint1 LINdelayed 0 Delay120Rise94Fall_nsUnits		
+R9  LINdelayed 0 10K		
+V7  HIN 0 Vpulse1.1VInit3.9Vpulsed2nsDelay2nsRise2nsFall1.998usWidth5usPeriod0Phase		
+D3  SD Vdd 1N4148		;Node Sequence Spec.<2,1>
+D4  0 SD 1N4148		;Node Sequence Spec.<2,1>
+S2  Net-_S2-Pad1_ SDt1 SD Net-_E2-Pad1_ Schmidt1VHysteresis		
+E2  Net-_E2-Pad1_ 0 Vdd 0 VCVS0.5Gain		
+V9  Net-_S2-Pad1_ 0 +5V		
+R6  SDt1 0 10K		
+DelayBuffer2  SDt1 SDdelayed 0 Delay110Rise110Fall_nsUnits		
+R8  SDdelayed 0 10K		
+V8  SD 0 Vpulse0.9VInit4.1Vpulsed10usDelay20nsRise20nsFall10usWidth20usPeriod0Phase		
+D5  HIN Vdd 1N4148		;Node Sequence Spec.<2,1>
+D6  0 HIN 1N4148		;Node Sequence Spec.<2,1>
+S3  Net-_S3-Pad1_ HINt1 HIN Net-_E3-Pad1_ Schmidt1VHysteresis		
+E3  Net-_E3-Pad1_ 0 Vdd 0 VCVS0.5Gain		
+V10  Net-_S3-Pad1_ 0 +5V		
+R10  HINt1 0 10K		
+DelayBuffer3  HINt1 HINdelayed 0 Delay120Rise94Fall_nsUnits		
+R11  HINdelayed 0 10K		
+SCO_subcircuit1  Net-_SCO_subcircuit1-Pad1_ 0 LINdelayed SDdelayed 0 SwitchCO7.5Lo7.5Hi		
+SCO_subcircuit2  LO Vcc 0 Net-_SCO_subcircuit1-Pad1_ 0 SwitchCO7.5Lo7.5Hi		
+R2  HO 0 500K		
+SCO_subcircuit3  Net-_SCO_subcircuit3-Pad1_ 0 HINdelayed SDdelayed 0 SwitchCO7.5Lo7.5Hi		
+SCO_subcircuit4  HO Vpp Vs Net-_SCO_subcircuit3-Pad1_ 0 SwitchCO7.5Lo7.5Hi		
+C1  LO 0 3nF		
+C2  HO 0 3nF		
+
+*.include ../../ComponentModels/ir2110.sub
+.include ../../ComponentModels/1n4148.spi
+.tran 5us 21us
+.control 
+run
+plot LIN LINdelayed SD SDdelayed+0.05 HIN HINdelayed title LIN
+*plot LIN Vint1 LINdelayed SD SDt1 SDdelayed title LIN
+plot LIN HIN SD lo ho title 'LO and HO'
+*plot xu1.md1_trig3_3  lin xu1.md2_inv2_1
+*plot lin xu1.md2_inv2_2 xu1.md2_nor3b_1
+
+.end
