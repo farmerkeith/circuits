@@ -1,0 +1,102 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:diodeTest-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L VSOURCE V1
+U 1 1 5B0238D8
+P 900 1450
+F 0 "V1" H 900 1350 50  0000 C CNN
+F 1 "DC 0V" H 900 1550 50  0000 C CNN
+F 2 "" H 900 1450 50  0001 C CNN
+F 3 "" H 900 1450 50  0001 C CNN
+	1    900  1450
+	1    0    0    -1  
+$EndComp
+Text Notes 3050 1850 0    60   ~ 0
++pspice\n.include ../../ComponentModels/gbj1506.spi\n.DC V1 0.48 1.55 0.01 \n.control\nrun\nplot i(v2)\nplot log(i(v2))/log(10)\nend
+$Comp
+L GND #PWR01
+U 1 1 5B0238DD
+P 900 2150
+F 0 "#PWR01" H 900 1900 50  0001 C CNN
+F 1 "GND" H 900 2000 50  0000 C CNN
+F 2 "" H 900 2150 50  0001 C CNN
+F 3 "" H 900 2150 50  0001 C CNN
+	1    900  2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L D D1
+U 1 1 5B0238DF
+P 1550 750
+F 0 "D1" H 1550 850 50  0000 C CNN
+F 1 "GBJ1506" H 1550 650 50  0000 C CNN
+F 2 "" H 1550 750 50  0001 C CNN
+F 3 "" H 1550 750 50  0001 C CNN
+F 4 "2,1" H 1550 750 60  0001 C CNN "Spice_Node_Sequence"
+	1    1550 750 
+	-1   0    0    1   
+$EndComp
+$Comp
+L VSOURCE V2
+U 1 1 5B023A30
+P 2400 1450
+F 0 "V2" H 2400 1350 50  0000 C CNN
+F 1 "DC 0V" H 2400 1550 50  0000 C CNN
+F 2 "" H 2400 1450 50  0001 C CNN
+F 3 "" H 2400 1450 50  0001 C CNN
+	1    2400 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2400 2150 900  2150
+Wire Wire Line
+	900  750  1400 750 
+Wire Wire Line
+	1700 750  2400 750 
+$EndSCHEMATC

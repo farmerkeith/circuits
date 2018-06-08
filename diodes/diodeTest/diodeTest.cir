@@ -1,0 +1,21 @@
+* /home/guy/aProjects/circuits/diodes/diodeTest/diodeTest.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Fri 08 Jun 2018 21:43:49 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V1  Net-_D1-Pad2_ GND DC 0V		
+D1  Net-_D1-Pad2_ Net-_D1-Pad1_ GBJ1506		;Node Sequence Spec.<2,1>
+V2  Net-_D1-Pad1_ GND DC 0V		
+
+.include ../../ComponentModels/gbj1506.spi
+.DC V1 0.48 1.55 0.01 
+.control
+run
+plot i(v2)
+plot log(i(v2))/log(10)
+end
+
+.end
