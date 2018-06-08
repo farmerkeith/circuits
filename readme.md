@@ -31,3 +31,4 @@ Restructured the folder with separate folders for each general topic.
 
 30 May 2018. Working on IR2110 driver and components for ngspice - switches and various voltage sources so far. 
   
+7 June 2018. Added quite a few components with translation from KiCad netlist output to ngspice input reuirements using sed, a text editing utility program. The components and the sed script are in the NGspice folder. The sed script is called "ng" and can be found in the NGspice folder directly. This is definitely a work in progress. 
