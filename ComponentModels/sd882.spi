@@ -1,0 +1,2 @@
+* models from http://www.diyaudio.com/forums/software-tools/234901-spice-model-toshiba-2sa1941-2sc5198.html
+.model sd882 NPN(Is=282f Xti=3 Eg=1.11 Vaf=100 Bf=200.7 Ise=288.7f Ne=1.368 Ikf=20 Nk=1.235 Xtb=1.5 Var=100 Br=52.37 Isc=8.515p Nc=1.527 Ikr=.2617 Rc=15.88m Cjc=166.3p Mjc=.4069 Vjc=.3905 Fc=.5 Cje=291.8p Mje=.3606 Vje=.75 Tr=10n Tf=1.551n Itf=1 Xtf=0 Vtf=10)

@@ -1,0 +1,3 @@
+* models from http://www.diyaudio.com/forums/software-tools/234901-spice-model-toshiba-2sa1941-2sc5198.html
+.model sb772 PNP(Is=282f Xti=3 Eg=1.11 Vaf=100 Bf=213.6 Ise=1.659p Ne=1.787 Ikf=6.472 Nk=.7894 Xtb=1.5 Var=100 Br=39.18 Isc=12.72p Nc=1.637 Ikr=.1652 Rc=64.89m Cjc=145.6p Mjc=.2985 Vjc=.3905 Fc=.5 Cje=255.3p Mje=.5064 Vje=1.615 Tr=10n Tf=1.927n Itf=6.218 Xtf=0 Vtf=10)
+
