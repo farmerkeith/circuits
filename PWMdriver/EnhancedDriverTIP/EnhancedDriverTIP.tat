@@ -1,0 +1,70 @@
+* /home/guy/aProjects/circuits/PWMdriver/EnhancedDriverTIP/EnhancedDriverTIP.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 19 Jul 2018 20:38:44 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V1  Vbb 0 12V		
+C4  Vcl Vc2 10uF		
+L1  VSL Vcl 33uH		
+R10  Vc2 0 0.001		
+R9  D2A 0 0.001		
+R5  VSL Q1S 0.001		
+R1  Q1D Vpp1 0.001		
+D3  D2A Q1S D32CTQ030		;Node Sequence Spec.<2,1>
+R4  Vpp2 Vpp1 5		
+D4  0 Vpp2 Zener30V		;Node Sequence Spec.<2,1>
+I1  0 Vpp1 DC 1		
+C3  Vpp1 0 0.1uF		
+V2  Vin 0 pulse 5VInit 0Vpulsed 1usDelay 2nsRise 2nsFall 3usWidth 7.5usPeriod 0Phase		
+R2  VB Q2c 10K		
+R8  Q2b Vin 1K		
+D1  Vbb VB 1N4148		;Node Sequence Spec.<2,1>
+C1  Q1D 0 1000uF		
+R7  Vcl 0 100K		
+D2  Vcl Vbb D32CTQ030		;Node Sequence Spec.<2,1>
+Q2  Q2c Q2b Q2e 2N3904		
+R11  Q2e 0 5K		
+C2  VB Q1S 1uF		
+XQ1  Q1G Q1D Q1S IRFZ44N		
+XQ4  VB Q4b Q1G TIP122		
+XQ5  Q1S Q5b Q1G TIP125		
+R3  Q3b Q2c 10K		
+R6  Q2c Q6b 10K		
+Q3  VB Q3b Q4b 2N3904		
+Q6  Q1S Q6b Q5b 2N3906		
+
+.model Zener30V D(bv=30v)
+.include /home/guy/aProjects/circuits/ComponentModels/irfz44n.spi
+.include /home/guy/aProjects/circuits/ComponentModels/1n4148.spi
+.include /home/guy/aProjects/circuits/ComponentModels/32ctq030.spi
+*.include /home/guy/aProjects/circuits/ComponentModels/bc547.spi
+.include /home/guy/aProjects/circuits/ComponentModels/2n3904.spi
+.include /home/guy/aProjects/circuits/ComponentModels/2n3906.spi
+*.include /home/guy/aProjects/circuits/ComponentModels/sd882.spi
+*.include /home/guy/aProjects/circuits/ComponentModels/sb772.spi
+.include /home/guy/aProjects/circuits/ComponentModels/tip122.spi
+.include /home/guy/aProjects/circuits/ComponentModels/tip125.spi
+.control
+tran 10ns 15us 
+plot vin*8 q1g q1s vb
+tran 2ns 1.5us 0.9us 
+*plot q1g vsl
+plot vpp1 q1d vbb
+plot (q1s-vsl)*1000  i(v1)
+plot vin*8 q1g q1s vb
+plot vin*8 q2b*10 q2c q2e vb
+tran 2ns 4.5us 4us 
+plot vin*8 q1g q1s vb
+plot vin*8 q2b*10 q2c q2e vb
+tran 100ns 1ms 
+plot I(V1)
+plot vpp1 vcl
+tran 10ns 1000us 980us
+plot I(V1)
+plot vin*8 q1g q1s vb
+*.endc
+
+*.end
