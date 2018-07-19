@@ -1,0 +1,62 @@
+* /home/guy/aProjects/Solar charger/Harry/LocalTech/EnhancedDriver2/EnhancedDriver2.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Fri 22 Jun 2018 09:37:00 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V1  Vbb 0 12V		
+C4  Vcl Vc2 10uF		
+L1  VSL Vcl 33uH		
+R8  Vc2 0 0.001		
+R7  D2A 0 0.001		
+R4  VSL Q1S 0.001		
+R1  Q1D Vpp1 0.001		
+D4  D2A Q1S D32CTQ030		;Node Sequence Spec.<2,1>
+R3  Vpp2 Vpp1 5		
+D5  0 Vpp2 Zener30V		;Node Sequence Spec.<2,1>
+I1  0 Vpp1 DC 1		
+C3  Vpp1 0 0.1uF		
+V2  Vin 0 pulse 5VInit 0Vpulsed 1usDelay 2nsRise 2nsFall 3usWidth 7.5usPeriod 0Phase		
+R2  VB Q2c 10K		
+R6  Q2b Vin 1K		
+D1  Vbb VB 1N4148		;Node Sequence Spec.<2,1>
+C1  Q1D 0 1000uF		
+R5  Vcl 0 100K		
+D2  Vcl Vbb D32CTQ030		;Node Sequence Spec.<2,1>
+Q2  Q2c Q2b Q2e 2N3904		
+R9  Q2e 0 5K		
+C2  VB Q1S 1uF		
+XQ1  Q1G Q1D Q1S IRFZ44N		
+Q5  VB Q5b Q1G SD882		
+Q3  Q1S Q3b Q1G SB772		
+Q4  Q4c Q4b Q4e 2N3904		
+R11  Q4b Vin 1K		
+R10  VB Q4c 10K		
+R12  Q4e 0 5K		
+R13  Q7b Q2c 10K		
+R14  Q2c Q6b 10K		
+Q7  VB Q7b Q5b 2N3904		
+Q6  Q1S Q6b Q3b 2N3906		
+
+.model Zener30V D(bv=30v)
+.include /home/guy/aProjects/circuits/ComponentModels/irfz44n.spi
+.include /home/guy/aProjects/circuits/ComponentModels/1n4148.spi
+.include /home/guy/aProjects/circuits/ComponentModels/32ctq030.spi
+.include /home/guy/aProjects/circuits/ComponentModels/bc547.spi
+.include /home/guy/aProjects/circuits/ComponentModels/2n3904.spi
+.include /home/guy/aProjects/circuits/ComponentModels/2n3906.spi
+.include /home/guy/aProjects/circuits/ComponentModels/sd882.spi
+.include /home/guy/aProjects/circuits/ComponentModels/sb772.spi
+.control
+tran 0.1us 15us 
+*plot I(V1)
+*plot q1g vsl
+plot vpp1 q1d vbb
+plot (q1s-vsl)*1000  i(v1)
+plot vin*8 q1g q1s vb
+plot vin*8 q4b*10 q4c q4e vb
+*.endc
+
+*.end
