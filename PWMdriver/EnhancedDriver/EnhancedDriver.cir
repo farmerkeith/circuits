@@ -1,0 +1,50 @@
+* /home/guy/aProjects/Solar charger/Harry/LocalTech/EnhancedDriver/EnhancedDriver.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 21 Jun 2018 20:40:01 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+V1  Vbb 0 12V		
+C4  Vcl Vc2 10uF		
+L1  VSL Vcl 33uH		
+R8  Vc2 0 0.001		
+R7  D2A 0 0.001		
+R4  VSL Q1S 0.001		
+R1  Q1D Vpp1 0.001		
+D1  D2A Q1S D32CTQ030		;Node Sequence Spec.<2,1>
+R3  Vpp2 Vpp1 5		
+D5  0 Vpp2 Zener30V		;Node Sequence Spec.<2,1>
+I1  0 Vpp1 DC 1		
+C3  Vpp1 0 0.1uF		
+V2  Vin 0 Vpulse5VInit0Vpulsed1usDelay2nsRise2nsFall3usWidth7.5usPeriod0Phase		
+R2  VB Net-_D4-Pad1_ 10K		
+R5  Q2b Vin 10K		
+D2  Vbb VB 1N4148		;Node Sequence Spec.<2,1>
+C1  Q1D 0 1000uF		
+R6  Vcl 0 100K		
+D3  Vcl Vbb D32CTQ030		;Node Sequence Spec.<2,1>
+Q2  Net-_D4-Pad1_ Q2b Q2e 2N3904		
+R11  Q2e 0 0.001		
+C2  VB Q1S 1uF		
+XQ1  Q1G Q1D Q1S IRFZ44N		
+Q3  VB Net-_D4-Pad1_ Q1G 2N3904		
+D4  Q1G Net-_D4-Pad1_ 1N4148		;Node Sequence Spec.<2,1>
+
+.model Zener30V D(bv=30v)
+.include /home/guy/aProjects/circuits/ComponentModels/irfz44n.spi
+.include /home/guy/aProjects/circuits/ComponentModels/1n4148.spi
+.include /home/guy/aProjects/circuits/ComponentModels/32ctq030.spi
+.include /home/guy/aProjects/circuits/ComponentModels/bc547.spi
+.include /home/guy/aProjects/circuits/ComponentModels/2n3904.spi
+.control
+tran 0.1us 15us 
+*plot I(V1)
+plot q1g vsl
+plot vpp1 q1d vbb
+plot (q1s-vsl)*1000  i(v1)
+plot vin*8 q1g q1s vb
+.endc
+
+.end
