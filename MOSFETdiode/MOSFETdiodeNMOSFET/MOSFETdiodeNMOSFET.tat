@@ -1,0 +1,33 @@
+* /home/guy/aProjects/circuits/MOSFETdiode/MOSFETdiodeNMOSFET/MOSFETdiodeNMOSFET.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: Mon 23 Jul 2018 19:07:55 AEST
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+XQ3  VG VK VA PSMN3R3-80PS		
+.include ../../ComponentModels/psmn3r3-80ps.spi
+XQ2  Vref Vref VK 2N7000		
+.include ../../ComponentModels/2n7000.spi
+XQ1  VG Vref VA 2N7000		
+R2  Vpp Vref 1000K		
+R1  Vpp VG 1000K		
+V2  VA 0 0V		
+V3  Net-_R3-Pad1_ 0 +12V		
+V1  Vpp 0 0V		
+R3  Net-_R3-Pad1_ VK 1		
+
+.DC V2 10 15 0.1  V1 0 39 9.5 
+* .TRAN 0.5us 10ms
+ // transient analysis for 10 ms in steps of 0.5 us (20,000 steps)
+.control
+run
+plot Vpp VA VK  VG Vref
+plot VA-VK
+plot vref-va vref-vk vg-va
+*plot -i(V2) i(V3)
+*plot VD*1000
+*plot (VD2-VD)*1000 (VD3-VD)*1000 VD*1000
+
+*.end

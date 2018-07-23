@@ -1,0 +1,215 @@
+EESchema Schematic File Version 2
+LIBS:Modules
+LIBS:NGspice
+LIBS:pspice
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:MOSFETdiodeNMOSFET-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "MOSFETdiode with N-Channel main and control MOSFETS"
+Date "2018-07-22"
+Rev ""
+Comp "farmerkeith"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Notes 3900 2325 0    60   ~ 0
++PSPICE \n.DC V2 10 15 0.1  V1 0 39 9.5 \n* .TRAN 0.5us 10ms\n // transient analysis for 10 ms in steps of 0.5 us (20,000 steps)\n.control\nrun\nplot Vpp VA VK  VG Vref\nplot VA-VK\nplot vref-va vref-vk vg-va\n*plot -i(V2) i(V3)\n*plot VD*1000\n*plot (VD2-VD)*1000 (VD3-VD)*1000 VD*1000\n
+Text GLabel 1375 2200 0    60   Input ~ 0
+VA
+Text GLabel 2975 2075 0    60   Input ~ 0
+VK
+Text GLabel 2475 1850 0    60   Input ~ 0
+VG
+Text GLabel 800  850  0    60   Input ~ 0
+Vpp
+$Comp
+L PSMN3R3-80PS Q3
+U 1 1 5B547F44
+P 2575 2100
+F 0 "Q3" V 2775 2175 50  0000 L CNN
+F 1 "PSMN3R3-80PS" V 2875 1825 50  0000 L CNN
+F 2 "TO-220" H 2775 2025 50  0001 L CIN
+F 3 "" H 2575 2100 50  0001 L CNN
+	1    2575 2100
+	0    1    1    0   
+$EndComp
+$Comp
+L 2N7000 Q2
+U 1 1 5B548241
+P 2875 1550
+F 0 "Q2" H 3075 1625 50  0000 L CNN
+F 1 "2N7000" H 3075 1550 50  0000 L CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Molded_Narrow" H 3075 1475 50  0001 L CIN
+F 3 "" H 2875 1550 50  0001 L CNN
+	1    2875 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L 2N7000 Q1
+U 1 1 5B54829D
+P 2075 1550
+F 0 "Q1" H 2275 1625 50  0000 L CNN
+F 1 "2N7000" H 2275 1550 50  0000 L CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Molded_Narrow" H 2275 1475 50  0001 L CIN
+F 3 "" H 2075 1550 50  0001 L CNN
+	1    2075 1550
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2675 1625 2275 1625
+Wire Wire Line
+	1975 1350 2475 1350
+Wire Wire Line
+	2475 1350 2475 1900
+Wire Wire Line
+	2975 1350 2675 1350
+Wire Wire Line
+	2675 1200 2675 1625
+Wire Wire Line
+	2775 2200 3175 2200
+Wire Wire Line
+	2975 2200 2975 1750
+Wire Wire Line
+	1375 2200 2375 2200
+Wire Wire Line
+	1975 2200 1975 1750
+$Comp
+L R R2
+U 1 1 5B5485F6
+P 2975 1100
+F 0 "R2" V 3055 1100 50  0000 C CNN
+F 1 "1000K" V 2975 1100 50  0000 C CNN
+F 2 "" H 2975 1100 50  0001 C CNN
+F 3 "" H 2975 1100 50  0001 C CNN
+	1    2975 1100
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 5B54864C
+P 1975 1100
+F 0 "R1" V 2055 1100 50  0000 C CNN
+F 1 "1000K" V 1975 1100 50  0000 C CNN
+F 2 "" H 1975 1100 50  0001 C CNN
+F 3 "" H 1975 1100 50  0001 C CNN
+	1    1975 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	800  850  2975 850 
+Connection ~ 2975 2200
+Connection ~ 1975 2200
+$Comp
+L +5V V2
+U 1 1 5B54A117
+P 1375 2500
+F 0 "V2" H 1375 2450 50  0000 C CNN
+F 1 "0V" H 1375 2550 50  0000 C CNN
+F 2 "" H 1375 2500 50  0001 C CNN
+F 3 "" H 1375 2500 50  0001 C CNN
+	1    1375 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V V3
+U 1 1 5B54A36C
+P 3675 2500
+F 0 "V3" H 3675 2450 50  0000 C CNN
+F 1 "+12V" H 3675 2550 50  0000 C CNN
+F 2 "" H 3675 2500 50  0001 C CNN
+F 3 "" H 3675 2500 50  0001 C CNN
+	1    3675 2500
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V V1
+U 1 1 5B54A519
+P 800 2500
+F 0 "V1" H 800 2450 50  0000 C CNN
+F 1 "0V" H 800 2550 50  0000 C CNN
+F 2 "" H 800 2500 50  0001 C CNN
+F 3 "" H 800 2500 50  0001 C CNN
+	1    800  2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	800  2800 3675 2800
+Connection ~ 1375 2800
+$Comp
+L 0 #GND01
+U 1 1 5B54AA0B
+P 1375 2875
+F 0 "#GND01" H 1375 2775 50  0001 C CNN
+F 1 "0" H 1375 2805 50  0000 C CNN
+F 2 "" H 1375 2875 50  0001 C CNN
+F 3 "" H 1375 2875 50  0001 C CNN
+	1    1375 2875
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1375 2875 1375 2800
+Wire Wire Line
+	800  2200 800  850 
+Connection ~ 1975 850 
+Wire Notes Line
+	1625 700  3125 700 
+Wire Notes Line
+	3125 700  3125 2475
+Wire Notes Line
+	3125 2475 1625 2475
+Wire Notes Line
+	1625 2475 1625 700 
+Text GLabel 2650 1200 0    60   Input ~ 0
+Vref
+Wire Wire Line
+	2650 1200 2675 1200
+Connection ~ 2675 1350
+$Comp
+L R R3
+U 1 1 5B5523BC
+P 3425 2200
+F 0 "R3" V 3505 2200 50  0000 C CNN
+F 1 "1" V 3425 2200 50  0000 C CNN
+F 2 "" H 3425 2200 50  0001 C CNN
+F 3 "" H 3425 2200 50  0001 C CNN
+	1    3425 2200
+	0    1    1    0   
+$EndComp
+$EndSCHEMATC
