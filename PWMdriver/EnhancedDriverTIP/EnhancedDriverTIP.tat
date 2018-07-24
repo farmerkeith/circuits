@@ -1,6 +1,6 @@
 * /home/guy/aProjects/circuits/PWMdriver/EnhancedDriverTIP/EnhancedDriverTIP.cir
 
-* EESchema Netlist Version 1.1 (Spice format) creation date: Thu 19 Jul 2018 20:38:44 AEST
+* EESchema Netlist Version 1.1 (Spice format) creation date: Tue 24 Jul 2018 22:00:34 AEST
 
 * To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
@@ -28,16 +28,19 @@ D2  Vcl Vbb D32CTQ030		;Node Sequence Spec.<2,1>
 Q2  Q2c Q2b Q2e 2N3904		
 R11  Q2e 0 5K		
 C2  VB Q1S 1uF		
-XQ1  Q1G Q1D Q1S IRFZ44N		
+XQ1  Q1G Q1D Q1S IRFZ44N		; X added
+.include ../../ComponentModels/irfz44n.spi
 XQ4  VB Q4b Q1G TIP122		
+.include ../../ComponentModels/tip122.spi
 XQ5  Q1S Q5b Q1G TIP125		
+.include ../../ComponentModels/tip125.spi
 R3  Q3b Q2c 10K		
 R6  Q2c Q6b 10K		
 Q3  VB Q3b Q4b 2N3904		
 Q6  Q1S Q6b Q5b 2N3906		
 
 .model Zener30V D(bv=30v)
-.include /home/guy/aProjects/circuits/ComponentModels/irfz44n.spi
+* .include /home/guy/aProjects/circuits/ComponentModels/irfz44n.spi
 .include /home/guy/aProjects/circuits/ComponentModels/1n4148.spi
 .include /home/guy/aProjects/circuits/ComponentModels/32ctq030.spi
 *.include /home/guy/aProjects/circuits/ComponentModels/bc547.spi
@@ -45,8 +48,8 @@ Q6  Q1S Q6b Q5b 2N3906
 .include /home/guy/aProjects/circuits/ComponentModels/2n3906.spi
 *.include /home/guy/aProjects/circuits/ComponentModels/sd882.spi
 *.include /home/guy/aProjects/circuits/ComponentModels/sb772.spi
-.include /home/guy/aProjects/circuits/ComponentModels/tip122.spi
-.include /home/guy/aProjects/circuits/ComponentModels/tip125.spi
+*.include /home/guy/aProjects/circuits/ComponentModels/tip122.spi
+*.include /home/guy/aProjects/circuits/ComponentModels/tip125.spi
 .control
 tran 10ns 15us 
 plot vin*8 q1g q1s vb
