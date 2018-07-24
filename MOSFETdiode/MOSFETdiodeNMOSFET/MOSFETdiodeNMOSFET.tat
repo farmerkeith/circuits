@@ -6,11 +6,11 @@
 * To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
 
 * Sheet Name: /
-XQ3  VG VK VA PSMN3R3-80PS		
+XQ3  VG VK VA PSMN3R3-80PS		 ; X added
 .include ../../ComponentModels/psmn3r3-80ps.spi
-XQ2  Vref Vref VK 2N7000		
+XQ2  Vref Vref VK 2N7000		 ; X added
 .include ../../ComponentModels/2n7000.spi
-XQ1  VG Vref VA 2N7000		
+XQ1  VG Vref VA 2N7000		 ; X added
 R2  Vpp Vref 1000K		
 R1  Vpp VG 1000K		
 V2  VA 0 0V		
