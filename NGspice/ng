@@ -1,15 +1,16 @@
 #!/bin/bash
-# Script to edit spice netlist output of KiCad to make it work with ngspice 
-# This is a shell script for interfacing between a Netlist produced by KiCad and ngspice which runs a circuit simulation of the circuit.
+# This is a shell script to edit the spice netlist output of KiCad to make it work with ngspice which runs a simulation of the circuit.
 # Most of the work is done by sed which checks each line of the Netlist and outputs it either unchanged or with specified changes
-# Now with command line options -m (to run Mousepad) and -ng (to run NGspice)
-# the command supported is either "ng filename" or "ng option filename" 
+# Now with command line options -m (to run Mousepad) and -h (to state the command syntax)
+# the command supported is either "ng filename component_model_directory" or "ng option filename component_model_directory" 
+
 # KiCad generates a file whose name is "filename.cir"
-# The sed command outputs a file named "filename.tat" which is then used to call ngspice.
+# The sed command reads "filename.cir" and outputs a file named "filename.tat" which is then used to call ngspice (or mousepad in the case of the -m option).
 # The option to call mousepad is useful when debugging to check the contents of the file. It is called for the recognised option "-m" 
 # and also for any unrecognised option.
-# The option to call ngspice is the main purpose of the program, for use when the output file is correct. It is called for the recognised option "-ng" 
-# and also for no option code.
+# The call to ngspice is the main purpose of the program, for use when the output file is correct. It is called when there is no option code.
+# The component_model_directory, provided as a relative or absolute path, is used in producing .include commands for models or subcircuits of 
+# components in the schematic.
 #
 # The sed command consists of a series of sub-commands. Each subcommand is on its own line starting with "-e" and ending with a backslash and newline character.
 # The backslash ("\") is an escape character that tells sed to not interpret the following character as the end of the sed command. This structure allows 
@@ -34,14 +35,53 @@
 # and requiring an "X" in front of the component designation.
 # the final sub-command replaces ".end" with "*.end" which comments out this line which if left in generates an error message in ngspice.
 
-if [ -n "$2" ] # there are 2 command line parameters; ie ng option file
-then
-  echo "Running script file ng on" $2.cir 
-  file=$2
-else           # only one command line parameter; ie ng file
-  echo "Running script file ng on" $1.cir 
-  file=$1
-fi
+# option interpretation section
+optspec=":hm";
+mflag="no"
+# echo 'line 39 $mflag= ' $mflag
+while getopts "$optspec" optchar; do
+  case "${optchar}" in
+    h)
+      echo "usage: $0 [-m] fileroot component_model_directory" >&2
+      exit 2
+      ;;
+    m)
+#      echo "line 50 option -m " >&2
+      mflag="yes"
+      shift
+      ;;
+    *)
+#      echo "line 55 option argument invalid" >&2
+      mflag="yes"
+      shift 
+      ;;
+  esac
+done
+# end of option interpretation section
+
+# component model directory interpretation section
+# the main task in this section is to deal with directory paths that contain one or more slash characters. 
+# Slash (forward slash) characters are special in sed, and need to be preceded by a backslash character to "escape" from the normal interpretation.
+file=$1            # this is the file name of the input and output files
+cmdirectory1=$2    # this is the path to the component model directory
+cmdirectory=""     # variable used  to construct the "escaped" version of the component model directory
+cmdlen=${#cmdirectory1} # length of the component model directory
+# let cmdlen-=3
+# echo $cmdlen
+echo "Running script file ng on $file with component models in $cmdirectory1" 
+for (( i=0; i<$cmdlen; i++ ))
+do
+#  echo ${cmdirectory1:i:1}
+  if [ ${cmdirectory1:i:1} == "/" ]; then
+    cmdirectory+="\\"
+  fi
+  cmdirectory+=${cmdirectory1:i:1}
+#  echo $cmdirectory
+done
+# echo $cmdirectory
+# end of component model directory interpretation section
+
+# start of the series of sed sub-commands
 sed -e 's/SwitchNO/SwitchNO \n.model SwitchNO SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1 /' \
     -e 's/Schmidt\([0-9][0-9.]*\)\(VHysteresis\)/Schmidt\n.model Schmidt SW Roff=1e7 Ron=0.01 Vt=0 Vh=\1 /' \
     -e 's/SwitchNC/SwitchNC \n.model SwitchNC SW Ron=1e7 Roff=0.01 Vt=4 Vh=0.1 /' \
@@ -53,34 +93,28 @@ sed -e 's/SwitchNO/SwitchNO \n.model SwitchNO SW Roff=1e7 Ron=0.01 Vt=1 Vh=0.1 /
     -e 's/adcBridge/adcBridge \n.model adcBridge adc_bridge(in_low=2 in_high=3) /' \
     -e 's/\(^SCO_subcircuit[0-9]*\) *\([A-Za-z0-9_\-]*\) \([A-Za-z0-9_\-]* \)\([A-Za-z0-9_\-]*\) \([A-Za-z0-9_\-]*\) \([A-Za-z0-9_\-]*\) SwitchCO\([0-9][0-9.pnum]*\)\(Lo\)\([0-9][0-9.pnum]*\)\(Hi\)/SNO\1 \2 \3 \5\ \6 MNO\1 \n.model MNO\1 SW Vt=2.5 Vh=0 Roff=1e9 Ron=\9 \nSNC\1 \2 \4 \5 \6 MNC\1 \n.model MNC\1 SW Roff=\7 Ron=1e9 Vt=2.5 Vh=0/' \
     -e 's/\(^DelayBuffer[0-9]*\)  *\([A-Za-z0-9_-]*\) \([A-Za-z0-9_-]*\) \([A-Za-z0-9_-]*\) [A-Za-z]*\([0-9.]*\)[A-Za-z]*\([0-9.]*\)[A-Za-z]*_\([pnum]\)sUnits/V\1 node5V\1 \4 5V \nSNO\1 nodeCOM\1 node5V\1 \2 \4 MNO\1 \n.model MNO\1 SW Vt=2.5 Vh=0 Roff=1e9 Ron=\5 \nSNC\1 nodeCOM\1 \4 \2 \4 MNC\1 \n.model MNC\1 SW Vt=2.5 Vh=0 Ron=1e9 Roff=\6 \nC\1 nodeCOM\1 \4 1.44269504\7F \nENL\1 \3 \4 value={V(nodeCOM\1)>2.5 ? \4+5 : \4} /' \
-    -e 's/^[qQ][0-9][0-9]*.*IRFZ44N[ \t]*$/X\0; X added/' \
-    -e '1,/IRFZ44N/s/^X[qQ][0-9][0-9]*.*IRFZ44N[ \t]*; X added$/\0\n.include ..\/..\/ComponentModels\/irfz44n.spi/' \
+    -e "s/^[qQ][0-9][0-9]*.*IRFZ44N[ \t]*$/X\0; X added/" \
+    -e "1,/IRFZ44N/s/^X[qQ][0-9][0-9]*.*IRFZ44N[ \t]*; X added$/\0.include $cmdirectory\/irfz44n.spi /" \
     -e 's/^[qQ][0-9][0-9]*.*PSMN3R3-80PS[ \t]*$/X\0 ; X added/' \
-    -e '1,/PSMN3R3-80PS/s/^X[qQ][0-9][0-9]*.*PSMN3R3-80PS[ \t]*; X added$/\0\n.include ..\/..\/ComponentModels\/psmn3r3-80ps.spi/' \
+    -e "1,/PSMN3R3-80PS/s/^X[qQ][0-9][0-9]*.*PSMN3R3-80PS[ \t]*; X added$/\0\n.include $cmdirectory\/psmn3r3-80ps.spi/" \
     -e 's/^[qQ][0-9][0-9]*.*2N7000[ \t]*$/X\0 ; X added/' \
-    -e '1,/2N7000/s/^X[qQ][0-9][0-9]*.*2N7000[ \t]* ; X added$/\0\n.include ..\/..\/ComponentModels\/2n7000.spi/' \
+    -e "1,/2N7000/s/^X[qQ][0-9][0-9]*.*2N7000[ \t]* ; X added$/\0\n.include $cmdirectory\/2n7000.spi/" \
     -e 's/^[qQ][0-9][0-9]*.*TIP12[257][ \t]*$/X\0/' \
-    -e '1,/TIP122/s/^X[qQ][0-9][0-9]*.*\(TIP122\)[ \t]*$/\0\n.include ..\/..\/ComponentModels\/tip122.spi/' \
-    -e '1,/TIP125/s/^X[qQ][0-9][0-9]*.*\(TIP125\)[ \t]*$/\0\n.include ..\/..\/ComponentModels\/tip125.spi/' \
-    -e '1,/TIP127/s/^X[qQ][0-9][0-9]*.*\(TIP127\)[ \t]*$/\0\n.include ..\/..\/ComponentModels\/tip127.spi/' \
+    -e "1,/TIP122/s/^X[qQ][0-9][0-9]*.*\(TIP122\)[ \t]*$/\0\n.include $cmdirectory\/tip122.spi/" \
+    -e "1,/TIP125/s/^X[qQ][0-9][0-9]*.*\(TIP125\)[ \t]*$/\0\n.include $cmdirectory\/tip125.spi/" \
+    -e "1,/TIP127/s/^X[qQ][0-9][0-9]*.*\(TIP127\)[ \t]*$/\0\n.include $cmdirectory\/tip127.spi/" \
     -e 's/.end/*.end/' \
     <$file.cir >$file.tat
+# end of the sed command (series of sed sub-commands)
 
-if [ -n "$2" ]
-then
-  if [[ $1 = "-ng" ]]; then
-    ngspice $2.tat
-  else
-    if [[ $1 = "-m" ]]; then
-      mousepad $2.tat
-    else
-      echo "option not recognised, running mousepad"
-      echo "recognised options are -m and -ng"
-      mousepad $2.tat
-    fi
-  fi
+# logic to call mousepad or ngspice
+# echo "line 111 mflag= " $mflag
+if [ $mflag == "yes" ]; then 
+#   echo "line 113 mflag = yes" $mflag
+  mousepad $1.tat
 else
-    echo "no option code, running ngspice"
-    ngspice $1.tat
+#   echo "line 116 mflag != yes (aka no)" $mflag
+  ngspice $1.tat
 fi
 
+# end of file
